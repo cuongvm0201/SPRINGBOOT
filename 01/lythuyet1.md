@@ -38,10 +38,12 @@ Artifact Id : Tên của packge, dự án
 Ngoài value, nó có những tham số params, method. Sử dụng phần tử params có thể có nhiều phương thức xử lý xử lý các yêu cầu đến cùng một URL, nhưng với các tham số khác nhau.
 ```
 ---
-**8. Ý nghĩa của @RequestResponse khi đặt trong hàm hứng request để làm gì?**
+**8. Ý nghĩa của @RequestBody khi đặt trong hàm hứng request để làm gì?**
 ```html
+@RequestBody được dùng để ánh xạ HttpRequest body sang một domain object tự động.
+Spring sẽ tự động ánh xạ dữ liệu JSON trong  HttpRequest body sang một Java Type object tương ứng.
 
----> 
+Mặc định, tên và kiểu dữ liệu trong JSON phải trùng khớp với tên và kiểu dữ liệu trong Java Type object. 
 ```
 ---
 **9. Hãy trả lời khi nào thì dùng @PathVariable và khi nào nên dùng @RequestParam**
