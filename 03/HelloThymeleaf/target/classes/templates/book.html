@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+</head>
+<body>
+    <h1>Book</h1>
+    <p>
+        title: <span th:text="${book.title}">book title</span></br>
+        author: <span th:text="${book.author}">book author</span></br>
+
+        student: <span th:text="|${student.name} : ${student.score}|">Name : Score</span></br>
+    </p>
+</body>
+</html>

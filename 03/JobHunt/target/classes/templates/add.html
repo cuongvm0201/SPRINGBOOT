@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm mới nhà tuyển dụng</title>
+</head>
+<body>
+    <h1>Thêm Mới Nhà Tuyển Dụng</h1>
+    <h3><a href="/employer/list">Danh sách nhà tuyển dụng</a></h3></br>
+
+    <form th:action="@{/employer/add}" th:object="${employer}" method="post">
+        <input type="text" placeholder="Name" th:field="*{name}"/><br><br>
+        <input type="text" placeholder="Website" th:field="*{website}"/><br><br>
+        <input type="text" placeholder="Email" th:field="*{email}"/><br><br>
+        <input type="text" placeholder="Address" th:field="*{address}"/><br><br>
+        <button type="submit">Thêm mới</button>
+      </form>
+</body>
+</html>

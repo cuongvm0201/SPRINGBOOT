@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách nhà tuyển dụng</title>
+</head>
+<body>
+    <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Name</th>
+            <th>Website</th>
+            <th>Email</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="employer, iStat:${listEmployers}">
+            <th scope="row" th:text="${iStat.index} +1"></th>
+            <td th:text="${employer.name}">Name</td>
+            <td th:text="${employer.website}">Website</td>
+            <td th:text="${employer.email}">Email</td>
+            <td th:text="${employer.address}">Address</td>
+          </tr>
+        </tbody>
+      </table>
+      <a href="/employer/add">Thêm mới nhà tuyển dụng</a></br>
+      <a href="/">Quay lại trang chủ</a></br>
+</body>
+</html>
