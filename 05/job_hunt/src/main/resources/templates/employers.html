@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List All Employers</title>
+</head>
+<body>
+    <h1>Employers</h1>
+    <a href="/employer/add">Thêm Nhà Tuyển Dụng</a><br><br>
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Logo</th>
+              <th scope="col">Website</th>
+              <th scope="col">Email</th>
+              <!-- <th scope="col">Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="employer, iStat:${employers}">
+              <th scope="row" th:text="${iStat.index} +1"></th>
+              <td><a th:href="|/employer/${employer.id}|" th:text="${employer.name}">Name</a></td>
+              <td><img th:src="|/logo/${employer.logo_path}|" width="50px"/></td>
+              <td><a th:href="${employer.website}" th:text="${employer.website}" target="_blank">Link</a></td>
+              <td th:text="${employer.email}">email</td>
+              <!-- <td><a th:href="|/employer/update/${employer.id}|">Update</a></td> -->
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>  
+</body>
+</html>

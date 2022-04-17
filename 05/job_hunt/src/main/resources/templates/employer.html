@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${employer.name}"></title>
+</head>
+<body>
+    <h1 th:text="${employer.name}"></h1>
+    <img th:src="|/logo/${employer.logo_path}|" width="200px"/>
+    <h2>List Jobs</h2>
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col">City</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="job, iStat:${jobs}">
+              <th scope="row" th:text="${iStat.index} +1"></th>
+              <td th:text="${job.title}">Title</td>
+              <td th:text="${job.description}">Description</td>
+              <td th:text="${job.city}">City</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>  
+
+      <a th:href="|/job/add/${employer.id}|">Add New JOB</a> 
+</body>
+</html>

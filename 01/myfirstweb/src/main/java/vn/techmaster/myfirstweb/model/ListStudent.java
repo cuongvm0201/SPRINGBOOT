@@ -11,7 +11,4 @@ public class ListStudent {
         allStudent.add(new Student("Tuấn",30,"Hà Nội","0923456789","tuan.tran222@gmail.com"));
         return allStudent;
     }
-
-
-   
 }

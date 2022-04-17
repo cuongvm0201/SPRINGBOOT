@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      action="#"
+      th:action="@{/job/add/{id}(id=${employer.id})}"
+      method="post"
+      name="job"
+      th:object="${job}"
+    > 
+      EmpID:
+      <body th:text="${employer.id}"></body>
+      <br /><br />
+      <!-- <input type="hidden" placeholder="employer.id" th:field="*{employer.id}" /><br> -->
+      <br /><br />
+      Title:
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        autocomplete="off"
+        th:field="*{title}"
+      /><br /><br />
+      Description:
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        autocomplete="off"
+        th:field="*{description}"
+      /><br /><br />
+      City:
+      <select th:field="*{city}">
+        <option th:value="'HaNoi'" th:text="HaNoi"></option>
+        <option th:value="'HoChiMinh'" th:text="HoChiMinh"></option>
+        <option th:value="'DaNang'" th:text="DaNang"></option>
+        <option th:value="'HaiPhong'" th:text="HaiPhong"></option></select
+      ><br /><br />
+      <button class="btn btn-primary mt-3" type="submit">Submit</button>
+    </form>
+  </body>
+</html>
