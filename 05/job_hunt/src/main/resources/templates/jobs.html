@@ -25,11 +25,13 @@
               <td th:text="${job.title}">Title</td>
               <td th:text="${job.description}">Description</td>
               <td th:text="${job.city}">City</td>
-              <td><a th:href="|/employer/${job.emp_id}|">Employer</a></td>
+              <td><a th:href="|/employer/${job.emp_id}|" th:text>Employer Detail</a></td>
             </tr>
           </tbody>
         </table>
-      </div>  
+      </div>
+      <a th:href="|/|">HomePage</a><br>
+      <a th:href="|/employer|">List All Employer</a> 
 
 </body>
 </html>

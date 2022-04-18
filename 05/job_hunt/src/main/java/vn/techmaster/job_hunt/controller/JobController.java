@@ -1,15 +1,18 @@
 package vn.techmaster.job_hunt.controller;
 
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.techmaster.job_hunt.model.Job;
@@ -39,14 +42,39 @@ public class JobController {
     @PostMapping(value = "/add/{id}")
     public String addJob(@ModelAttribute JobRequest jobRequest,
     @PathVariable String id, 
-    @ModelAttribute EmployerRequest employerRequest, Model model){
-        
+    @ModelAttribute EmployerRequest employerRequest, Model model, BindingResult result){
+        if (result.hasErrors()) {
+            return "job_add";
+          }
         String uuid  = UUID.randomUUID().toString();
           Job newJob = new Job(uuid, id,
           jobRequest.title(),
           jobRequest.description(),
           jobRequest.city());
           jobRepo.addJob(newJob);
+        return "redirect:/job";
+    }
+
+    @GetMapping(value = "/update/{emp_id}/{id}")
+    public String updateJobForm(Model model, @PathVariable("emp_id") String emp_id, @PathVariable("id") String id ){
+        model.addAttribute("jobs", Job.builder().title(null).description(null).city(null).build());
+        return "job_update";
+    }
+
+
+    @PutMapping(value = "/update/{emp_id}/{id}" )
+    public String updateJob(Model model, @PathVariable("id") String id,@PathVariable("emp_id") String emp_id,@ModelAttribute JobRequest jobRequest ){
+        Job newJob = new Job(id, emp_id,
+        jobRequest.title(),
+        jobRequest.description(),
+        jobRequest.city());
+        jobRepo.update(newJob);
+        return "redirect:/job";
+    }
+
+    @GetMapping(value = "/delete/{id}")
+    public String deleteJob(@PathVariable String id){
+        Job job = jobRepo.deleteById(id);
         return "redirect:/job";
     }
 

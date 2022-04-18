@@ -40,8 +40,8 @@ public class EmployerController {
 
     @GetMapping(value = "/{id}")
     public String showEmployerDetailByID(Model model, @PathVariable String id){
-       List<Job> jobList =jobRepo.findByEmpId(id);
-       model.addAttribute("jobs",jobList);
+       List<Job> jobList = jobRepo.findByEmpId(id);
+        model.addAttribute("jobs",jobList);
         model.addAttribute("employer", employerRepo.findById(id));
         return "employer";
     }

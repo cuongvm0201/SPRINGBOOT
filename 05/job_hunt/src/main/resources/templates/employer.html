@@ -18,6 +18,8 @@
               <th scope="col">Title</th>
               <th scope="col">Description</th>
               <th scope="col">City</th>
+              <th scope="col">Action1</th>
+              <th scope="col">Action2</th>
             </tr>
           </thead>
           <tbody>
@@ -26,11 +28,15 @@
               <td th:text="${job.title}">Title</td>
               <td th:text="${job.description}">Description</td>
               <td th:text="${job.city}">City</td>
+              <td><a th:href="|/job/update/${employer.id}/${job.id}|">Update</a></td>
+              <td><a th:href="|/job/delete/${job.id}|">Delete</a></td>
             </tr>
+            
           </tbody>
         </table>
       </div>  
 
-      <a th:href="|/job/add/${employer.id}|">Add New JOB</a> 
+      <a th:href="|/job/add/${employer.id}|">Add New JOB</a><br>
+      <a th:href="|/employer|">List All Employer</a> 
 </body>
 </html>
