@@ -34,16 +34,14 @@ public class ApplicantRepo {
       }
 
       public List<Applicant> findByJobId(String job_id) {
-        Optional<Entry<String, Applicant>>  opt = applicants.entrySet()
-        .stream()
-        .filter(e -> e.getValue().getJob_id().equalsIgnoreCase(job_id))
-        .findFirst();
-        // Optional.ofNullable(nullName).orElse("john");
-        // Job job = opt.ofNullable(null).orElse("john");
-        List<Applicant> applicantList = new ArrayList<>();
-        if(opt.isPresent())
-        applicantList.add(opt.get().getValue());
-        return  applicantList;
+        // Optional<Entry<String, Applicant>>  opt = applicants.entrySet()
+        // .stream()
+        // .filter(e -> e.getValue().getJob_id().equalsIgnoreCase(job_id))
+        // .findFirst();
+        // List<Applicant> applicantList = new ArrayList<>();
+        // if(opt.isPresent())
+        // applicantList.add(opt.get().getValue());
+        return  applicants.values().stream().filter(i -> i.getJob_id().equalsIgnoreCase(job_id)).toList();
       }
 
 

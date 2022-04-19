@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head th:replace="template.html :: header('${employer.name}')">
+  <head th:replace="template.html :: header(''+ ${employer.name})">
   </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
@@ -19,6 +19,7 @@
               <th scope="col">Title</th>
               <th scope="col">Description</th>
               <th scope="col">City</th>
+              <th scope="col">View All Applicant</th>
               <th scope="col">Action1</th>
               <th scope="col">Action2</th>
             </tr>
@@ -29,6 +30,7 @@
               <td th:text="${job.title}">Title</td>
               <td th:text="${job.description}">Description</td>
               <td th:text="${job.city}">City</td>
+              <td><a th:href="|/job/${job.id}|">Click To Show</a></td>
               <td><a th:href="|/job/update/${employer.id}/${job.id}|">Update</a></td>
               <td><a th:href="|/job/delete/${job.id}|">Delete</a></td>
             </tr>

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+  <head th:replace="template.html :: header('List Applicant of JOB'+ ${job.title} )">
+  </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/job">List Job</a>
+    </div>
+  </nav>
     <h2>List Applicants</h2>
+    Job: <h4 th:text="${job.title}">Name</h4><br>
+    Mô tả: <h4 th:text="${job.description}">Description</h4><br>
+    Địa Chỉ: <h4 th:text="${job.city}">Description</h4><br>
     <div class="container">
         <table class="table">
           <thead>

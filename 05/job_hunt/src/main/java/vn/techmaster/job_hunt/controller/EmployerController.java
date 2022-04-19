@@ -2,7 +2,12 @@ package vn.techmaster.job_hunt.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -40,7 +45,7 @@ public class EmployerController {
     @GetMapping(value = "/{id}")
     public String showEmployerDetailByID(Model model, @PathVariable String id){
         List<Job> jobList = jobRepo.findByEmpId(id);
-        model.addAttribute("jobs",jobList);
+        model.addAttribute("jobs", jobList);
         model.addAttribute("employer", employerRepo.findById(id));
         return "employer";
     }
