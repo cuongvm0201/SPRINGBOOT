@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List All Employers</title>
-</head>
+  <head th:replace="template.html :: header('List Employers')">
+  </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">Home Page</a>
+    </div>
+  </nav>
     <h1>Employers</h1>
-    <a href="/employer/add">Thêm Nhà Tuyển Dụng</a><br><br>
+    
     <div class="container">
         <table class="table">
           <thead>
@@ -34,5 +35,6 @@
           </tbody>
         </table>
       </div>  
+      <a href="/employer/add">Thêm Nhà Tuyển Dụng</a><br><br>
 </body>
 </html>

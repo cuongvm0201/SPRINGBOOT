@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import vn.techmaster.job_hunt.model.Applicant;
 import vn.techmaster.job_hunt.model.Job;
+import vn.techmaster.job_hunt.repository.ApplicantRepo;
 import vn.techmaster.job_hunt.repository.EmployerRepo;
 import vn.techmaster.job_hunt.repository.JobRepo;
 import vn.techmaster.job_hunt.request.EmployerRequest;
@@ -26,10 +28,20 @@ import vn.techmaster.job_hunt.request.JobRequest;
 public class JobController {
     @Autowired private JobRepo jobRepo;
     @Autowired private EmployerRepo employerRepo;
+    @Autowired private ApplicantRepo applicantRepo;
     @GetMapping
     public String listAllJobs(Model model){
+        
         model.addAttribute("jobs",jobRepo.getAll());
         return "jobs";
+    }
+
+    @GetMapping(value = "/{id}")
+    public String showEmployerDetailByID(Model model, @PathVariable String id){
+        List<Applicant> listApplicant = applicantRepo.findByJobId(id);
+        model.addAttribute("applicants",listApplicant);
+        model.addAttribute("job", jobRepo.findById(id));
+        return "job";
     }
 
     @GetMapping(value = "/add/{id}")

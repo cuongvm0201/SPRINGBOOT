@@ -33,14 +33,13 @@ public class EmployerController {
     @Autowired private JobRepo jobRepo;
     @GetMapping
     public String listAllEmployers(Model model){
-        
         model.addAttribute("employers",employerRepo.getAll());
         return "employers";
     }
 
     @GetMapping(value = "/{id}")
     public String showEmployerDetailByID(Model model, @PathVariable String id){
-       List<Job> jobList = jobRepo.findByEmpId(id);
+        List<Job> jobList = jobRepo.findByEmpId(id);
         model.addAttribute("jobs",jobList);
         model.addAttribute("employer", employerRepo.findById(id));
         return "employer";

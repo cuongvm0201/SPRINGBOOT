@@ -12,7 +12,8 @@
       th:action="@{/job/add/{id}(id=${employer.id})}"
       method="post"
       name="job"
-      th:object="${job}"> 
+      th:object="${job}"
+    > 
       EmpID:
       <body th:text="${employer.id}"></body>
       <br /><br />
@@ -39,7 +40,8 @@
         <option th:value="'HaNoi'" th:text="HaNoi"></option>
         <option th:value="'HoChiMinh'" th:text="HoChiMinh"></option>
         <option th:value="'DaNang'" th:text="DaNang"></option>
-        <option th:value="'HaiPhong'" th:text="HaiPhong"></option></select ><br /><br />
+        <option th:value="'HaiPhong'" th:text="HaiPhong"></option></select
+      ><br /><br />
       <button class="btn btn-primary mt-3" type="submit">Submit</button>
     </form>
   </body>

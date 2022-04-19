@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form
+      action="#"
+      th:action="@{/applicant/add/{id}(id=${job.id})}"
+      method="post"
+      name="applicant"
+      th:object="${applicant}"
+    > 
+      JOB_ID:
+      <body th:text="${job.id}"></body>
+      <br /><br />
+      <!-- <input type="hidden" placeholder="employer.id" th:field="*{employer.id}" /><br> -->
+      <br /><br />
+      Name:
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        autocomplete="off"
+        th:field="*{name}"
+      /><br /><br />
+      Email:
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        autocomplete="off"
+        th:field="*{email}"
+      /><br /><br />
+      Mobile:
+      <input
+        type="text"
+        class="form-control"
+        id="mobile"
+        autocomplete="off"
+        th:field="*{mobile}"
+      /><br /><br />
+      Skill:
+      <input
+        type="text"
+        class="form-control"
+        id="skill"
+        autocomplete="off"
+        th:field="*{skill}"
+      /><br /><br />
+      <button class="btn btn-primary mt-3" type="submit">Submit</button>
+    </form>
+</body>
+</html>

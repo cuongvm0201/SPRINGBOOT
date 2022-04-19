@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${employer.name}"></title>
-</head>
+  <head th:replace="template.html :: header('${employer.name}')">
+  </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/employer">List All Employer</a>
+    </div>
+  </nav>
     <h1 th:text="${employer.name}"></h1>
     <img th:src="|/logo/${employer.logo_path}|" width="200px"/>
     <h2>List Jobs</h2>

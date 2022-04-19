@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List All Employers</title>
-</head>
+  <head th:replace="template.html :: header('List JOB')">
+  </head>
 <body>
-   <h1>JOBS</h1>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">HomePage</a>
+    </div>
+  </nav>
     <div class="container">
         <table class="table">
           <thead>
@@ -17,6 +17,7 @@
               <th scope="col">Description</th>
               <th scope="col">City</th>
               <th scope="col">Company</th>
+              <th scope="col">Applicant</th>
             </tr>
           </thead>
           <tbody>
@@ -25,13 +26,14 @@
               <td th:text="${job.title}">Title</td>
               <td th:text="${job.description}">Description</td>
               <td th:text="${job.city}">City</td>
-              <td><a th:href="|/employer/${job.emp_id}|" th:text>Employer Detail</a></td>
+              <td><a th:href="|/employer/${job.emp_id}|">View Detail</a></td>
+              <td><a th:href="|/applicant/add/${job.id}|">Add New Applicant</a></td>
             </tr>
           </tbody>
         </table>
       </div>
       <a th:href="|/|">HomePage</a><br>
-      <a th:href="|/employer|">List All Employer</a> 
-
+      <a th:href="|/employer|">List All Employer</a><br>
+      <a th:href="|/applicant|">List All Applicant</a> 
 </body>
 </html>

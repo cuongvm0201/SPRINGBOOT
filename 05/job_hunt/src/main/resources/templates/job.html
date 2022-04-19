@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>List Applicants</h2>
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Skill</th>
+              <th scope="col">Action 1</th>
+              <th scope="col">Action 2</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="applicant, iStat:${applicants}">
+              <th scope="row" th:text="${iStat.index} +1"></th>
+              <td th:text="${applicant.name}">Name</td>
+              <td th:text="${applicant.email}">Email</td>
+              <td th:text="${applicant.mobile}">Moble</td>
+              <td th:text="${applicant.skill}">Skill</td>
+              <td><a th:href="|/applicant/update/${job.id}/${applicant.id}|">Update</a></td>
+              <td><a th:href="|/applicant/delete/${applicant.id}|">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>
