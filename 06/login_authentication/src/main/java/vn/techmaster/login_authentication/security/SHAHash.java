@@ -5,14 +5,14 @@ import java.security.NoSuchAlgorithmException;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-
+@Primary
 @Component
 public class SHAHash implements Hashing {
 
   //Chú ý đây là một lỗ hổng bảo mật, đúng ra cần phải sinh động salt mới mỗi khi hash password.
   //Sau đó lưu cả salt và hash password vào CSDL !
   private String salt = "Õ1X-343n42mnl3905u";
-
+  
   @Override
   public String hashPassword(String password) {
     String generatedPassword = null;
@@ -35,6 +35,9 @@ public class SHAHash implements Hashing {
   @Override
   public boolean validatePassword(String originalPassword, String storedPassword) {
     String hashed_pass = hashPassword(originalPassword);
+    System.out.println(originalPassword);
+    System.out.println("-------");
+    System.out.println(hashed_pass);
     return storedPassword.equals(hashed_pass);
   }
 }

@@ -13,7 +13,7 @@ https://howtodoinjava.com/java/java-security/how-to-generate-secure-password-has
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-@Primary
+
 @Component
 public class PBKDF2Hash implements Hashing {
   public String hashPassword(String password) {

@@ -23,10 +23,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-    @Autowired private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping
-    public String showHomePage() {
+    public String showHomePage(Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println(session.getId());
+        if (userDTO != null) {
+            model.addAttribute("user", userDTO);
+        }
         return "index";
     }
 
@@ -69,8 +75,15 @@ public class LoginController {
         return "register";
     }
 
+    @GetMapping("logout")
+    public String logout(HttpSession session) {
+        session.removeAttribute("user");
+        return "redirect:/";
+    }
+
     @GetMapping("foo")
     public String foo() {
         throw new UserException("Some Error");
     }
+
 }
