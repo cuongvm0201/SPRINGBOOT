@@ -1,5 +1,6 @@
 package vn.techmaster.login_authentication.repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,6 +14,10 @@ import vn.techmaster.login_authentication.model.User;
 @Repository
 public class UserRepo {
   private ConcurrentHashMap<String, User> users = new ConcurrentHashMap<>();
+  public List<User> getAll(){
+      return users.values().stream().toList();
+  }  
+
   public User addUser(String fullname, String email, String hashed_pass){
       return addUser(fullname, email, hashed_pass, State.PENDING);
   }

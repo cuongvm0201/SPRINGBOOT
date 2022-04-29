@@ -30,7 +30,7 @@ public class LoginController {
     @GetMapping
     public String showHomePage(Model model, HttpSession session) {
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println(session.getId());
+        System.out.println("Session ID: " + session.getId());
         if (userDTO != null) {
             model.addAttribute("user", userDTO);
         }
@@ -85,7 +85,7 @@ public class LoginController {
         // Add user pending để test exception
         // userService.addUser(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
 
-        // Add user được active luôn test login
+        // Add user được active luôn để test login
         userService.addUserThenAutoActivate(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
         return "index"; 
     }

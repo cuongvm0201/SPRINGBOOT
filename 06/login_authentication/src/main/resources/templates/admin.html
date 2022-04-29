@@ -8,5 +8,35 @@
 </head>
 <body>
     <h1>ADMIN</h1>
+    
+    <th:block th:if="${user != null}">
+    <h2>List User</h2>
+    <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">STT</th>
+              <th scope="col">Full_Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="member, iStat:${allmember}">
+              <th scope="row" th:text="${iStat.index} +1"></th>
+              <td th:text="${member.fullname}">Name</a></td>
+              <td th:text="${member.email}">Email</td>
+              <td th:text="${member.state}">State</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button><a href="/">Back</a></button> <br><br>
+      <a href="/logout" th:text="|Logout as ${user.fullname}|">Logout</a></br></br>
+    </th:block>
+    <th:block th:if="${user == null}">
+        <h2>Please Login To View</h2>
+        <a href="/login">Login</a>
+      </th:block>
 </body>
 </html>
