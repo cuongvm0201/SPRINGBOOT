@@ -82,7 +82,10 @@ public class LoginController {
         if (result.hasErrors()) {
             return "register";
         }
+        // Add user pending để test exception
         // userService.addUser(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
+
+        // Add user được active luôn test login
         userService.addUserThenAutoActivate(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
         return "index"; 
     }
