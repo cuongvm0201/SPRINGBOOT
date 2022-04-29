@@ -2,14 +2,16 @@ package vn.techmaster.login_authentication.service;
 
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import vn.techmaster.login_authentication.exception.UserException;
+import vn.techmaster.login_authentication.hash.Hashing;
 import vn.techmaster.login_authentication.model.State;
 import vn.techmaster.login_authentication.model.User;
 import vn.techmaster.login_authentication.repository.UserRepo;
-import vn.techmaster.login_authentication.security.Hashing;
 
 @Service
 @AllArgsConstructor
@@ -84,6 +86,12 @@ public class UserServiceInMemory implements UserService {
     public User findById(String id) {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @PostConstruct
+    public void addSomeData(){
+        this.addUserThenAutoActivate("Vu Manh Cuong", "vmcuong2192@gmail.com", "Cuong123@");
+        this.addUser("Vu Van Hoang", "hoang123@gmail.com", "Hoang456@");
     }
 
 }

@@ -7,6 +7,29 @@
     <title>Register New Account</title>
 </head>
 <body>
-    
+    <h1>Register</h1>
+    <form
+      method="post"
+      action="#"
+      th:action="register"
+      th:object="${registerrequest}"
+    >
+    Fullname: <input type="text" th:field="*{fullname}" />
+      <div th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}">
+        Fullname Error
+      </div>
+      <br /><br />
+      Email: <input type="text" th:field="*{email}" />
+      <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+        Email Error
+      </div>
+      <br /><br />
+      Password: <input type="password" th:field="*{password}" />
+      <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+        Password Error
+      </div>
+      <br /><br />
+      <button type="submit">SIGN UP</button>
+    </form>
 </body>
 </html>

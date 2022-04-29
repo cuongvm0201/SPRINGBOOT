@@ -1,4 +1,4 @@
-package vn.techmaster.login_authentication.security;
+package vn.techmaster.login_authentication.hash;
 
 public interface Hashing {
     public String hashPassword(String password);

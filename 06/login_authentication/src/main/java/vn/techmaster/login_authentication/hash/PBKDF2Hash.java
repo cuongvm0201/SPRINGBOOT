@@ -1,4 +1,4 @@
-package vn.techmaster.login_authentication.security;
+package vn.techmaster.login_authentication.hash;
 
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;

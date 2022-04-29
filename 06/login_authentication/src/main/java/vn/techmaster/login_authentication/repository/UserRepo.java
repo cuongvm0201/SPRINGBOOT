@@ -43,12 +43,6 @@ public class UserRepo {
       users.put(user.getId(), user);
   }
 
-  @PostConstruct
-  public void addSomeData(){
-     this.addUser("Vu Manh Cuong", "vmcuong2192@gmail.com", "Cuong123@", State.ACTIVE);
-     this.addUser("Vu Van Toan", "toan123@gmail.com", "ToanMiss@", State.PENDING);
-  }
-
   }
 
 

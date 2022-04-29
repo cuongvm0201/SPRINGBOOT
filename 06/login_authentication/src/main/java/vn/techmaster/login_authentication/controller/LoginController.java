@@ -14,6 +14,7 @@ import vn.techmaster.login_authentication.dto.UserDTO;
 import vn.techmaster.login_authentication.exception.UserException;
 import vn.techmaster.login_authentication.model.User;
 import vn.techmaster.login_authentication.request.LoginRequest;
+import vn.techmaster.login_authentication.request.RegisterRequest;
 import vn.techmaster.login_authentication.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,8 +72,19 @@ public class LoginController {
     }
 
     @GetMapping("register")
-    public String showRegister() {
+    public String showRegister(Model model) {
+        model.addAttribute("registerrequest", new RegisterRequest ("","",""));
         return "register";
+    }
+
+    @PostMapping("register")
+    public String registerUser(@Valid @ModelAttribute("registerrequest") RegisterRequest registerRequest, BindingResult result){
+        if (result.hasErrors()) {
+            return "register";
+        }
+        // userService.addUser(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
+        userService.addUserThenAutoActivate(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
+        return "index"; 
     }
 
     @GetMapping("logout")

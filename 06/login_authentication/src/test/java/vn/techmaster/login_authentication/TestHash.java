@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import vn.techmaster.login_authentication.security.Hashing;
+import vn.techmaster.login_authentication.hash.Hashing;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
