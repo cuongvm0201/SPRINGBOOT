@@ -1,5 +1,7 @@
 package vn.techmaster.login_authentication.controller;
 
+import java.util.Optional;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,13 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.techmaster.login_authentication.dto.UserDTO;
 import vn.techmaster.login_authentication.exception.UserException;
+import vn.techmaster.login_authentication.model.State;
 import vn.techmaster.login_authentication.model.User;
+import vn.techmaster.login_authentication.repository.ActiveRepo;
+import vn.techmaster.login_authentication.repository.UserRepo;
+import vn.techmaster.login_authentication.request.ActiveRequest;
 import vn.techmaster.login_authentication.request.LoginRequest;
 import vn.techmaster.login_authentication.request.RegisterRequest;
+import vn.techmaster.login_authentication.service.EmailService;
 import vn.techmaster.login_authentication.service.UserService;
+import vn.techmaster.login_authentication.util.Utils;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -26,6 +35,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LoginController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepo userRepo;
+    @Autowired
+    private EmailService emailService;
+    @Autowired
+    private ActiveRepo activeRepo;
 
     @GetMapping
     public String showHomePage(Model model, HttpSession session) {
@@ -78,16 +93,41 @@ public class LoginController {
     }
 
     @PostMapping("register")
-    public String registerUser(@Valid @ModelAttribute("registerrequest") RegisterRequest registerRequest, BindingResult result){
-        if (result.hasErrors()) {
-            return "register";
-        }
+    public String registerUser(@Valid @ModelAttribute("registerrequest") RegisterRequest registerRequest, Model model){
+       
         // Add user pending để test exception
-        // userService.addUser(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
-
+        String code = userService.generatedActivecode();
+        userService.addUser(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
+        emailService.sendMail(registerRequest.email(), "Mã Kích Hoạt", "Mã kích hoạt email là: "+ code);
+        activeRepo.addActive(registerRequest.email(), code);
+        System.out.println(code);
         // Add user được active luôn để test login
-        userService.addUserThenAutoActivate(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
-        return "index"; 
+        // userService.addUserThenAutoActivate(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
+
+        return "index";
+    }
+
+    @GetMapping(value = "active")
+    public String showFormActive(Model model){
+        model.addAttribute("activerequest", new ActiveRequest("",""));
+        return "active";
+    }
+
+    @PostMapping(value = "active")
+    public String submitActive(@Valid @ModelAttribute("activerequest") ActiveRequest activeRequest){
+        // if (result.hasErrors()) {
+        //     return "active";
+        // }
+        Optional<User> o_user = userRepo.findByEmail(activeRequest.email());
+        if (!o_user.isPresent()) {
+            throw new UserException("User is not found");
+        }
+        else if(userService.activateUser(activeRequest.email(),activeRequest.active_code()) == true){
+            userService.findByEmail(activeRequest.email()).get().setState(State.ACTIVE);
+            return "index";
+        }
+            
+        return "active";
     }
 
     @GetMapping("logout")

@@ -9,7 +9,7 @@ public interface UserService {
     public boolean logout(String email);
     
     public User addUser(String fullname, String email, String password);
-    public Boolean activateUser(String activation_code);
+    public Boolean activateUser(String email, String activation_code);
 
     public Boolean updatePassword(String email, String password);
     public Boolean updateEmail(String email, String newEmail);
@@ -17,4 +17,5 @@ public interface UserService {
     public Optional<User> findByEmail(String email);
     public User findById(String id);
     public User addUserThenAutoActivate(String fullname, String email, String password);
+    public String generatedActivecode();
 }   

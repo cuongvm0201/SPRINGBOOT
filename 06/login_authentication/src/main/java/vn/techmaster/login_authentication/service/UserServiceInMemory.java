@@ -9,15 +9,19 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import vn.techmaster.login_authentication.exception.UserException;
 import vn.techmaster.login_authentication.hash.Hashing;
+import vn.techmaster.login_authentication.model.Active;
 import vn.techmaster.login_authentication.model.State;
 import vn.techmaster.login_authentication.model.User;
+import vn.techmaster.login_authentication.repository.ActiveRepo;
 import vn.techmaster.login_authentication.repository.UserRepo;
+import vn.techmaster.login_authentication.util.Utils;
 
 @Service
 @AllArgsConstructor
 public class UserServiceInMemory implements UserService {
     private UserRepo userRepo;
     private Hashing hashing;
+    private ActiveRepo activeRepo;
 
     @Override
     public User login(String email, String password) {
@@ -59,11 +63,19 @@ public class UserServiceInMemory implements UserService {
     }
 
     @Override
-    public Boolean activateUser(String activation_code) {
-        // TODO Auto-generated method stub
-        return null;
+    public Boolean activateUser(String email,String activation_code) {
+        Optional<Active> o_active = activeRepo.findByEmail(email);
+        if(o_active.get().getEmail().equalsIgnoreCase(email) && o_active.get().getActive_code().equals(activation_code)){
+            return true;
+        }
+        return false;
     }
 
+    @Override
+    public String generatedActivecode(){
+        String randomCode = Utils.generatePassword(5);
+        return randomCode;
+    }
     @Override
     public Boolean updatePassword(String email, String password) {
         // TODO Auto-generated method stub
@@ -90,8 +102,7 @@ public class UserServiceInMemory implements UserService {
 
     @PostConstruct
     public void addSomeData(){
-        this.addUserThenAutoActivate("Vu Manh Cuong", "vmcuong2192@gmail.com", "Cuong123@");
-        this.addUser("Vu Van Hoang", "hoang123@gmail.com", "Hoang456@");
+        
     }
 
 }
