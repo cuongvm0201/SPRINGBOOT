@@ -63,19 +63,12 @@ public class UserServiceInMemory implements UserService {
     }
 
     @Override
-    public Boolean activateUser(String email,String activation_code) {
-        Optional<Active> o_active = activeRepo.findByEmail(email);
-        if(o_active.get().getEmail().equalsIgnoreCase(email) && o_active.get().getActive_code().equals(activation_code)){
-            return true;
-        }
-        return false;
+    public Boolean activateUser(String activation_code) {
+      
+        return null;
     }
 
-    @Override
-    public String generatedActivecode(){
-        String randomCode = Utils.generatePassword(5);
-        return randomCode;
-    }
+ 
     @Override
     public Boolean updatePassword(String email, String password) {
         // TODO Auto-generated method stub

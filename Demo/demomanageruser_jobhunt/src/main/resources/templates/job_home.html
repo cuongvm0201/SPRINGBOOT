@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> -->
+    <head th:replace="template.html :: header('Home Page')"></head>
+<!-- </head> -->
+<body>
+    <header th:insert="template.html :: topmenu"> </header>
+    <div class="row">
+        <div class="col-lg-8 mt-5">
+            <form action="#" th:action="@{/job/search}" method="get" th:object="${searchRequest}" >
+    
+                <div class="form-group row mt-3">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="title" autocomplete="off" placeholder="Key job title" name="keyword" th:value="*{keyword}"/>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <select th:field="*{city}">
+                            <option value="">Chọn Thành Phố</option>
+                            <option th:each="state : ${T(vn.techmaster.demomanageruser_jobhunt.model.City).values()}" name="city" th:value="${state}"
+                                    th:text="${state.label}">
+                            </option>
+                        </select>
+                    </div>
+                    <div style="margin-left: -200px" class="col-sm-2">
+                    <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <table id="job" class="table table-striped table-bordered ">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Employer</th>
+            <th scope="col">City</th>
+            <th scope="col">Description</th>
+            <th scope="col">Applicant Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="job, iStat:${jobs}">
+            <th scope="row" th:text="${iStat.index} +1"></th>
+            <td><a th:href="|/job/${job.id}|" th:text="${job.title}"></a></td>
+            <td th:text="${employers.get(job.emp_id).name}">Employer Name</td>
+            <td th:text="${job.city.label}">City</td>
+            <td th:text="${job.description}">Description</td>
+            <!-- <td th:if="${applicant_count.get(job.id)} == null">0</td> -->
+            <td th:utext="${applicant_count.get(job.id) == null} ? 0 : ${applicant_count.get(job.id)}">Applicant Total</td>
+          </tr>
+        </tbody>
+      </table>
+      <nav aria-label="..." style=" display: block; margin-left: 650px;">
+        <ul id="ulPage" class="pagination pagination-lg">
+            <li  class="page-item">
+                <a class="page-link" href="#" tabindex="-1">1</a>
+            </li>
+            <li id="liItem" class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+        </ul>
+    </nav>
+      <header th:replace="template.html :: footer"> </header>
+      <script>
+        var totalPage = [[${totalPage}]]
+        console.log(totalPage)
+        function renderPage(x){
+            let ulTarget = document.getElementById("ulPage");
+            let liTarget = document.getElementById("liItem");
+    
+            ulTarget.innerHTML = "";
+            for (let i = x; i > 0; i--) {
+                console.log(i)
+                ulTarget.insertAdjacentHTML("afterbegin",
+                    `<li id="liItem" class="page-item"><a class="page-link" href="/job?page=${i}">${i}</a></li>`)
+            }
+        }
+        renderPage(totalPage)
+    
+    </script>
+</body>
+</html>

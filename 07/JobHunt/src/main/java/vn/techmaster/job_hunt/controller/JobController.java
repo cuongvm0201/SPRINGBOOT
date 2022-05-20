@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import vn.techmaster.job_hunt.model.City;
 import vn.techmaster.job_hunt.model.Employer;
 import vn.techmaster.job_hunt.model.Job;
+import vn.techmaster.job_hunt.model.JobResponse;
 import vn.techmaster.job_hunt.request.EmployerRequest;
 import vn.techmaster.job_hunt.request.JobRequest;
 import vn.techmaster.job_hunt.request.SearchRequest;
@@ -37,25 +38,31 @@ public class JobController {
   private EmployerRepo empRepo;
   @Autowired
   private ApplicantRepo applicantRepo;
+  @GetMapping("/home")
+    public String listAllJob(Model model) {
+      return  pageJob(1,model);
+    }
 
   @GetMapping
-  public String listAllJob(Model model) {
+  public String pageJob(@RequestParam int page, Model model) {
+    JobResponse jobResponse = jobRepo.pageJob(page);
     model.addAttribute("searchRequest", new SearchRequest());
-    model.addAttribute("jobs", jobRepo.getAll());
+    model.addAttribute("totalPage", jobResponse.getTotalPage());
+    model.addAttribute("jobs", jobResponse.getJobs());
     model.addAttribute("employers", empRepo.getMapEmp());
     model.addAttribute("applicant_count", applicantRepo.countApplicant());
-    model.addAttribute("city", City.values());
+    // model.addAttribute("city", City.values());
     return "job_home";
   }
 
-  @GetMapping(value = "/{id}")
-  public String showJobDetailByID(Model model, @PathVariable String id) {
+  @GetMapping(value = "admin/{id}")
+  public String showJobDetailByIDAdmin(Model model, @PathVariable String id) {
     Job job = jobRepo.findById(id);
     model.addAttribute("job", job);
     model.addAttribute("employer", empRepo.findById(job.getEmp_id()));
-    // model.addAttribute("applicants", applicantRepo.findByJobId(id));
-    // return "job";
-    return "job_detail";
+    model.addAttribute("applicants", applicantRepo.findByJobId(id));
+    return "job";
+   
   }
 
   @GetMapping(value = "/add/{emp_id}")
@@ -140,5 +147,12 @@ public class JobController {
     return "redirect:/employer/" + jobDel.getEmp_id();
   }
 
-  
+  @GetMapping(value = "/{id}")
+  public String showJobDetailByID(Model model, @PathVariable String id) {
+    Job job = jobRepo.findById(id);
+    model.addAttribute("job", job);
+    model.addAttribute("employer", empRepo.findById(job.getEmp_id()));
+    return "job_detail";
+  }
+ 
 }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${employer.name}"></title>
+</head> -->
+
+<head th:replace="template.html :: header(${job.title})">
+</head>
+
+<body>
+<header th:insert="template.html :: topmenu"> </header>
+
+<div class="container">
+    <nav aria-label="breadcrumb" style="margin-bottom: 40px;">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" style="font-weight: 400; "><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item" style="font-weight: 400; "><a th:href="@{/employer}">Employers</a></li>
+            <li class="breadcrumb-item" style="font-weight: 400; "><a th:href="|/employer/${job.getEmployer().getId()}|">Jobs</a></li>
+            <li class="breadcrumb-item active" aria-current="page" style="font-weight: 600; color: #000">Apply</li>
+        </ol>
+    </nav>
+    <!-- employer info -->
+
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" th:src="|/logo/${employer.get().getLogo_path()}|" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${employer.get().getName()}">Card title</h5>
+            <p class="card-text" th:text="${employer.get().getLogo_path()}">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a th:href="${employer.get().getWebsite()}"  target="_blank" class="btn btn-primary">Visit</a>
+        </div>
+    </div>
+<!--    <div class="row" style="width: 70%">-->
+<!--        <div class="col-md">-->
+<!--            <img th:src="|/logo/${employer.logo_path}|" width="200" />-->
+<!--        </div>-->
+<!--    </div>-->
+    <table class="table table-bordered" style="width: 70%">
+        <tbody>
+<!--        <tr>-->
+<!--            <th scope="row" style="width: 20%">Employer Name</th>-->
+<!--            <td th:text="${employer.name}" style="width: 80%">Name</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th scope="row">Website</th>-->
+<!--            <td th:text="${employer.website}">Website</td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th scope="row">Email</th>-->
+<!--            <td th:text="${employer.email}">Email</td>-->
+<!--        </tr>-->
+        <!-- job info -->
+        <tr>
+            <td colspan="2"  class="text-center">JOB INFO</td>
+        </tr>
+        <tr>
+            <th scope="row" style="width: 20%">Title</th>
+            <td th:text="${job.title}" style="width: 80%">Title</td>
+        </tr>
+        <tr>
+            <th scope="row">Description</th>
+            <td th:text="${job.description}">Description</td>
+        </tr>
+        <tr>
+            <th scope="row">City</th>
+            <td th:text="${job.city}">City</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary"><a th:href="|/applicant/apply/${job.id}|" style="color: white;text-decoration: none">Apply</a></button>
+    <button type="button" class="btn btn-secondary"><a th:href="|/|" style="color: white;text-decoration: none">Back</a></button>
+
+
+</div>
+<header th:replace="template.html :: footer"> </header>
+</body>
+
+</html>

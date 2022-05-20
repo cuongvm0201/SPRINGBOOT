@@ -71,7 +71,7 @@ public class ApplicantController {
     // send email
     Job job = jobRepo.findById(applicantRequest.job_id());
     try {
-      mailService.sendEmail(empRepo.findById(job.getEmp_id()).getEmail(), job.getTitle());
+      mailService.sendEmail(empRepo.findById(job.getEmp_id()).getEmail(), applicantRequest, job.getTitle() );
     } catch (Exception e) {
       return "error_page";
     }

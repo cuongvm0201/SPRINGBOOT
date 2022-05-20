@@ -16,7 +16,7 @@ public class HomeController {
 
   @GetMapping
   public String showHomePage() {
-    return "redirect:/job";
+    return "redirect:/job/home";
   }
 
 

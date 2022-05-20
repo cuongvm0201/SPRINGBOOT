@@ -12,13 +12,16 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import vn.techmaster.job_hunt.model.Applicant;
+import vn.techmaster.job_hunt.request.ApplicantRequest;
+
 @Service
 public class MailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
 	
-	public void sendEmail(String empEmail, String jobTitle) {
+	public void sendEmail(String empEmail,ApplicantRequest applicant, String jobTitle) {
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(empEmail);
@@ -33,10 +36,9 @@ public class MailService {
        + "\n If I can provide you with any further information, please let me know. I look forward to hearing from you about this opportunity."
         
        + "\n Thank you for your consideration."
-        
-        +"\n \n Jane Lee"
-        +"\n Jane.Lee@email.com"
-       + "\n 454-555-4653");
+        + "\n Ứng viên:" 
+        + "\n" + applicant.name() + "\n" + applicant.phone() + "\n" + applicant.skills()
+        );
 
         javaMailSender.send(msg);
 

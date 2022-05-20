@@ -11,13 +11,12 @@ import lombok.AllArgsConstructor;
 public class EmailService {
     private JavaMailSender emailSender;
 
-    public void sendMail(String email, String subject, String content){
-        // Create a Simple MailMessage.
+    public void sendEmail(String email, String text){
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(email);
-        message.setSubject(subject);
-        message.setText(content);
+        message.setSubject("Your verification code of my application");
+        message.setText("http://localhost:8088/validate/"+text);
 
         // Send Message!
         emailSender.send(message);

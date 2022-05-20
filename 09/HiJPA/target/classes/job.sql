@@ -1,0 +1,1 @@
+insert into job (title, description) values ('AWS Developer', 'Can code Java in AWS');

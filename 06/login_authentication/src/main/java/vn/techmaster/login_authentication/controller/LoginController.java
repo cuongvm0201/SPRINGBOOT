@@ -1,6 +1,5 @@
 package vn.techmaster.login_authentication.controller;
 
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -37,10 +36,8 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private UserRepo userRepo;
-    @Autowired
-    private EmailService emailService;
-    @Autowired
-    private ActiveRepo activeRepo;
+   
+   
 
     @GetMapping
     public String showHomePage(Model model, HttpSession session) {
@@ -88,45 +85,32 @@ public class LoginController {
 
     @GetMapping("register")
     public String showRegister(Model model) {
-        model.addAttribute("registerrequest", new RegisterRequest ("","",""));
+        model.addAttribute("registerrequest", new RegisterRequest ("","","",""));
         return "register";
     }
 
     @PostMapping("register")
-    public String registerUser(@Valid @ModelAttribute("registerrequest") RegisterRequest registerRequest, Model model){
-       
-        // Add user pending để test exception
-        String code = userService.generatedActivecode();
-        userService.addUser(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
-        emailService.sendMail(registerRequest.email(), "Mã Kích Hoạt", "Mã kích hoạt email là: "+ code);
-        activeRepo.addActive(registerRequest.email(), code);
-        System.out.println(code);
-        // Add user được active luôn để test login
-        // userService.addUserThenAutoActivate(registerRequest.fullname(), registerRequest.email(), registerRequest.password());
-
-        return "index";
+    public String registerUser(@Valid @ModelAttribute("registerrequest") RegisterRequest registerRequest,BindingResult result){
+        if(!registerRequest.password().equals(registerRequest.confimPassword())){
+            result.addError(new FieldError("registerrequest", "confimPassword", "Mật khẩu không trùng nhau"));
+            return "register";
+        }
+        if (result.hasErrors()) {
+            return "register";
+        }
+        User user;
+        try {
+            userService.addUser(registerRequest.fullname(),registerRequest.email(),registerRequest.password());
+        }catch (UserException e){
+            result.addError(new FieldError("register", "email", e.getMessage()));
+            return "register";
+        }
+        return "redirect:/";
     }
 
-    @GetMapping(value = "active")
-    public String showFormActive(Model model){
-        model.addAttribute("activerequest", new ActiveRequest("",""));
-        return "active";
-    }
-
-    @PostMapping(value = "active")
-    public String submitActive(@Valid @ModelAttribute("activerequest") ActiveRequest activeRequest){
-        // if (result.hasErrors()) {
-        //     return "active";
-        // }
-        Optional<User> o_user = userRepo.findByEmail(activeRequest.email());
-        if (!o_user.isPresent()) {
-            throw new UserException("User is not found");
-        }
-        else if(userService.activateUser(activeRequest.email(),activeRequest.active_code()) == true){
-            userService.findByEmail(activeRequest.email()).get().setState(State.ACTIVE);
-            return "index";
-        }
-            
+    @GetMapping("/validate/{register-code}")
+    public String validateUser(@PathVariable("register-code")String code ){
+        userRepo.checkValidate(code);
         return "active";
     }
 
