@@ -6,12 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.dto.UserDTO;
 import com.example.demo.model.Employer;
+import com.example.demo.model.Roles;
 import com.example.demo.request.EmployerRequest;
 import com.example.demo.service.EmployerService;
 import com.example.demo.service.JobService;
 import com.example.demo.service.StorageService;
 
+import javax.management.relation.Role;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Optional;
@@ -30,27 +35,39 @@ public class EmployerController {
   private StorageService storageService;
 
   @GetMapping
-  public String listAllEmployers(Model model) {
+  public String listAllEmployers(Model model, HttpSession session) {
+    UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    System.out.println("Session ID: " + session.getId());
+    model.addAttribute("user", userDTO);
     model.addAttribute("employers", employerService.getAll());
     return "employers";
   }
 
   @GetMapping(value = "/{id}")
-  public String showEmployerDetailByID(Model model, @PathVariable String id) {
+  public String showEmployerDetailByID(Model model, @PathVariable String id, HttpSession session) {
+    UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    System.out.println("Session ID: " + session.getId());
+    model.addAttribute("user", userDTO);
     model.addAttribute("employer", employerService.findById(id));
     model.addAttribute("jobs", jobService.findByEmpId(id));
     return "employer";
   }
 
   @GetMapping(value = "/add")
-  public String addEmployerForm(Model model) {
+  public String addEmployerForm(Model model, HttpSession session) {
+    UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    System.out.println("Session ID: " + session.getId());
+    model.addAttribute("user", userDTO);
     model.addAttribute("employer", new EmployerRequest("", "", "", "", "", null));
     return "employer_add";
   }
 
   @PostMapping(value = "/add", consumes = { "multipart/form-data" })
   public String addEmployer(@Valid @ModelAttribute("employer") EmployerRequest employerRequest,
-      BindingResult result, Model model) throws IOException {
+      BindingResult result) throws IOException {
+    //     UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    // System.out.println("Session ID: " + session.getId());
+    // model.addAttribute("user", userDTO);
     if (employerRequest.getLogo().getOriginalFilename().isEmpty()) {
       result.addError(new FieldError("employer", "logo", "Logo is required"));
     }
@@ -81,7 +98,10 @@ public class EmployerController {
   }
 
   @GetMapping(value = "/edit/{id}")
-  public String editEmpId(Model model, @PathVariable("id") String id) {
+  public String editEmpId(Model model, @PathVariable("id") String id, HttpSession session) {
+    UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    System.out.println("Session ID: " + session.getId());
+    model.addAttribute("user", userDTO);
     Optional<Employer> employer = employerService.findById(id);
     if (employer.isPresent()) {
       Employer currentEmp = employer.get();
@@ -99,8 +119,10 @@ public class EmployerController {
   @PostMapping(value = "/edit", consumes = { "multipart/form-data" })
   public String editEmployer(@Valid @ModelAttribute("employerReq") EmployerRequest employerRequest,
       BindingResult result,
-      Model model) {
-
+      Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
     // Nêú có lỗi thì trả về trình duyệt
     if (result.hasErrors()) {
       return "employer_edit";
@@ -132,7 +154,10 @@ public class EmployerController {
   }
 
   @GetMapping(value = "/delete/{id}")
-  public String deleteEmployerByID(@PathVariable String id) {
+  public String deleteEmployerByID(@PathVariable String id,Model model, HttpSession session) {
+    UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    System.out.println("Session ID: " + session.getId());
+    model.addAttribute("user", userDTO);
     Optional<Employer> emp = employerService.findById(id);
     storageService.deleteFile(emp.get().getLogo_path());
     employerService.deleteById(id);

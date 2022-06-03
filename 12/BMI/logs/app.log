@@ -1,0 +1,53 @@
+[INFO ] 2021-12-04 11:45:44.403 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.1 on Cuong.local with PID 4813 (/Volumes/CODE/springboot2/12 Exception Handling/bmiservice/target/classes started by techmaster in /Volumes/CODE/springboot2/12 Exception Handling/bmiservice)
+[DEBUG] 2021-12-04 11:45:44.423 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2021-12-04 11:45:44.425 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-12-04 11:45:45.925 [main] BmiserviceApplication - Started BmiserviceApplication in 1.901 seconds (JVM running for 2.884)
+[ERROR] 2021-12-04 11:46:15.303 [http-nio-8080-exec-1] BMIController - Invalid height = 1.75, weight = a00
+[INFO ] 2021-12-04 11:48:31.356 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.1 on Cuong.local with PID 4924 (/Volumes/CODE/springboot2/12 Exception Handling/bmiservice/target/classes started by techmaster in /Volumes/CODE/springboot2/12 Exception Handling/bmiservice)
+[DEBUG] 2021-12-04 11:48:31.366 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2021-12-04 11:48:31.373 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2021-12-04 11:48:32.591 [main] BmiserviceApplication - Started BmiserviceApplication in 1.541 seconds (JVM running for 2.453)
+[ERROR] 2021-12-04 11:49:06.415 [http-nio-8080-exec-3] CustomExceptionHandler - 404 NOT_FOUND "Actor Not Found"
+[INFO ] 2022-05-30 19:49:29.783 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 18488 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 19:49:29.796 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 19:49:29.798 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 19:49:31.328 [main] BmiserviceApplication - Started BmiserviceApplication in 1.941 seconds (JVM running for 2.847)
+[ERROR] 2022-05-30 19:50:42.635 [http-nio-8080-exec-1] BMIController - Invalid height = 1.75, weight = a
+[INFO ] 2022-05-30 19:54:42.695 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 6684 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 19:54:42.708 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 19:54:42.710 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 19:54:44.221 [main] BmiserviceApplication - Started BmiserviceApplication in 1.953 seconds (JVM running for 2.79)
+[INFO ] 2022-05-30 19:55:15.429 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 18380 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 19:55:15.441 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 19:55:15.443 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 19:55:17.202 [main] BmiserviceApplication - Started BmiserviceApplication in 2.268 seconds (JVM running for 3.178)
+[INFO ] 2022-05-30 19:56:34.542 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 6944 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 19:56:34.551 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 19:56:34.552 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 19:56:36.082 [main] BmiserviceApplication - Started BmiserviceApplication in 1.957 seconds (JVM running for 2.72)
+[ERROR] 2022-05-30 19:57:02.178 [http-nio-8080-exec-5] CustomExceptionHandler - 404 NOT_FOUND "Actor Not Found"
+[INFO ] 2022-05-30 19:58:41.183 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 14808 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 19:58:41.191 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 19:58:41.193 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 19:58:42.749 [main] BmiserviceApplication - Started BmiserviceApplication in 2.014 seconds (JVM running for 2.903)
+[ERROR] 2022-05-30 19:58:57.120 [http-nio-8080-exec-1] CustomExceptionHandler - 404 NOT_FOUND "Actor Not Found"
+[INFO ] 2022-05-30 20:01:30.632 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 17380 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 20:01:30.642 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 20:01:30.644 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 20:01:32.138 [main] BmiserviceApplication - Started BmiserviceApplication in 1.905 seconds (JVM running for 2.703)
+[INFO ] 2022-05-30 20:55:07.552 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 18904 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 20:55:07.562 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 20:55:07.564 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 20:55:09.368 [main] BmiserviceApplication - Started BmiserviceApplication in 2.211 seconds (JVM running for 3.048)
+[INFO ] 2022-05-30 20:57:02.006 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 6064 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 20:57:02.014 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 20:57:02.017 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 20:57:04.006 [main] BmiserviceApplication - Started BmiserviceApplication in 2.38 seconds (JVM running for 3.351)
+[INFO ] 2022-05-30 20:57:24.917 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 5416 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 20:57:24.927 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 20:57:24.929 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 20:57:26.279 [main] BmiserviceApplication - Started BmiserviceApplication in 1.743 seconds (JVM running for 2.357)
+[INFO ] 2022-05-30 20:57:45.398 [main] BmiserviceApplication - Starting BmiserviceApplication using Java 17.0.2 on LAPTOP-T69PDSFH with PID 1932 (C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI\target\classes started by ACER in C:\Users\ACER\Desktop\Techmaster\NewSpringBoot\SPRINGBOOT\12\BMI)
+[DEBUG] 2022-05-30 20:57:45.410 [main] BmiserviceApplication - Running with Spring Boot v2.6.1, Spring v5.3.13
+[INFO ] 2022-05-30 20:57:45.413 [main] BmiserviceApplication - No active profile set, falling back to default profiles: default
+[INFO ] 2022-05-30 20:57:47.018 [main] BmiserviceApplication - Started BmiserviceApplication in 2.023 seconds (JVM running for 2.821)

@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.dto.UserDTO;
 import com.example.demo.model.Employer;
 import com.example.demo.model.Job;
 import com.example.demo.repository.ApplicantRepo;
@@ -14,9 +16,10 @@ import com.example.demo.service.ApplicantService;
 import com.example.demo.service.EmployerService;
 import com.example.demo.service.JobService;
 import com.example.demo.request.JobRequest;
+import com.example.demo.request.LoginRequest;
 import com.example.demo.request.SearchRequest;
 
-
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -33,16 +36,23 @@ public class JobController {
     private JobRepo jobRepo;
   
     @GetMapping
-    public String listAllJob(Model model){
+    public String listAllJob(Model model, HttpSession session){
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("searchRequest", new SearchRequest());
         model.addAttribute("jobs", jobRepo.findAll());
         model.addAttribute("employers", employerService.getAll());
         model.addAttribute("totalApplicantMap", applicantService.countApplicantTotal());
         return "job_home";
+        
     }
     @GetMapping(value = "admin/{id}")
-    public String showJobDetailByID(Model model, @PathVariable String id) {
+    public String showJobDetailByID(Model model, @PathVariable String id, HttpSession session) {
         Job job = jobService.findById(id);
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("job", job);
         model.addAttribute("employer", employerService.findById(job.getEmployer().getId()));
         model.addAttribute("applicants", applicantService.findApplicantsByJob_id(job.getId()));
@@ -50,8 +60,11 @@ public class JobController {
     }
 
     @GetMapping(value = "/{id}")
-    public String showJobApplyByID(Model model, @PathVariable String id) {
+    public String showJobApplyByID(Model model, @PathVariable String id, HttpSession session) {
         Job job = jobService.findById(id);
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("job", job);
         model.addAttribute("employer", employerService.findById(job.getEmployer().getId()));
         model.addAttribute("applicants", applicantService.findApplicantsByJob_id(job.getId()));
@@ -59,14 +72,21 @@ public class JobController {
     }
 
     @GetMapping(value = "/add/{emp_id}")
-    public String addEmployerForm(Model model, @PathVariable String emp_id) {
+    public String addEmployerForm(Model model, @PathVariable String emp_id, HttpSession session ) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("job", new JobRequest("", emp_id, "", "", null));
         return "job_add";
     }
 
 
     @GetMapping(value = "/search")
-    public String searchKeyword(@RequestBody @ModelAttribute("searchRequest") SearchRequest searchRequest, Model model) {
+    public String searchKeyword(@RequestBody @ModelAttribute("searchRequest") SearchRequest searchRequest
+    , Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("jobs", jobService.filterJob(searchRequest));
         model.addAttribute("employers", employerService.getAll());
         model.addAttribute("totalApplicantMap", applicantService.countApplicantTotal());
@@ -76,13 +96,15 @@ public class JobController {
     @PostMapping(value = "/add")
     public String addEmployer(@Valid @ModelAttribute("job") JobRequest jobRequest,
                               BindingResult result,
-                              Model model) {
+                              Model model, HttpSession session) {
 
         // Nêú có lỗi thì trả về trình duyệt
         if (result.hasErrors()) {
             return "job_add";
         }
-
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         Job newJob  = new Job();
         newJob.setTitle(jobRequest.getTitle());
         newJob.setDescription(jobRequest.getDescription());
@@ -98,7 +120,10 @@ public class JobController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public String editJobId(Model model, @PathVariable("id") String id) {
+    public String editJobId(Model model, @PathVariable("id") String id, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         Optional<Job> job = Optional.of(jobService.findById(id));
         if (job.isPresent()) {
             Job currentJob = job.get();
@@ -117,8 +142,10 @@ public class JobController {
     @PostMapping(value = "/edit")
     public String edit(@Valid @ModelAttribute("jobReq") JobRequest jobRequest,
                        BindingResult result,
-                       Model model) {
-
+                       Model model, HttpSession session) {
+                        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+                        System.out.println("Session ID: " + session.getId());
+                        model.addAttribute("user", userDTO);               
         // Nêú có lỗi thì trả về trình duyệt
         if (result.hasErrors()) {
             return "job_edit";
@@ -137,7 +164,10 @@ public class JobController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public String deleteJobByID(@PathVariable String id) {
+    public String deleteJobByID(@PathVariable String id, HttpSession session, Model model) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+                        System.out.println("Session ID: " + session.getId());
+                        model.addAttribute("user", userDTO); 
         Job jobDel = jobService.deleteById(id);
         return "redirect:/employer/" + jobDel.getEmployer().getId();
     }

@@ -1,0 +1,361 @@
+[DEBUG] 2021-12-04 11:45:45.727 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2021-12-04 11:45:45.799 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2021-12-04 11:45:45.817 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2021-12-04 11:45:45.828 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2021-12-04 11:46:05.916 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2021-12-04 11:46:05.916 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2021-12-04 11:46:05.916 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2021-12-04 11:46:05.917 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2021-12-04 11:46:05.918 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@63de901e
+[DEBUG] 2021-12-04 11:46:05.918 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@29a9d2c9
+[DEBUG] 2021-12-04 11:46:05.919 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2021-12-04 11:46:05.919 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 3 ms
+[DEBUG] 2021-12-04 11:46:05.927 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi/1.75/a00", parameters={}
+[DEBUG] 2021-12-04 11:46:05.935 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI(String, String)
+[DEBUG] 2021-12-04 11:46:15.344 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2021-12-04 11:46:15.345 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Nothing to write: null body
+[DEBUG] 2021-12-04 11:46:15.346 [http-nio-8080-exec-1] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2021-12-04 11:48:32.430 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2021-12-04 11:48:32.489 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2021-12-04 11:48:32.505 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2021-12-04 11:48:32.514 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2021-12-04 11:48:54.458 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2021-12-04 11:48:54.459 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2021-12-04 11:48:54.459 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2021-12-04 11:48:54.460 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2021-12-04 11:48:54.461 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@8826832
+[DEBUG] 2021-12-04 11:48:54.462 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@3877a6d0
+[DEBUG] 2021-12-04 11:48:54.463 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2021-12-04 11:48:54.463 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 4 ms
+[DEBUG] 2021-12-04 11:48:54.476 [http-nio-8080-exec-1] DispatcherServlet - GET "/bm6", parameters={}
+[WARN ] 2021-12-04 11:48:54.488 [http-nio-8080-exec-1] PageNotFound - No mapping for GET /bm6
+[DEBUG] 2021-12-04 11:48:54.498 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2021-12-04 11:48:54.537 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2021-12-04 11:48:54.539 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@f020f00]
+[DEBUG] 2021-12-04 11:48:54.557 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /bm6]
+[DEBUG] 2021-12-04 11:48:54.558 [http-nio-8080-exec-1] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2021-12-04 11:48:54.667 [http-nio-8080-exec-2] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2021-12-04 11:48:54.668 [http-nio-8080-exec-2] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2021-12-04 11:48:54.669 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2021-12-04 11:48:54.671 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2021-12-04 11:48:54.672 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@321c723c]
+[DEBUG] 2021-12-04 11:48:54.694 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2021-12-04 11:48:54.694 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2021-12-04 11:49:01.941 [http-nio-8080-exec-3] DispatcherServlet - GET "/bmi6", parameters={}
+[DEBUG] 2021-12-04 11:49:01.943 [http-nio-8080-exec-3] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController2#demoThrow4()
+[DEBUG] 2021-12-04 11:49:06.414 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleAllExceptions(Exception, WebRequest)
+[DEBUG] 2021-12-04 11:49:06.416 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2021-12-04 11:49:06.416 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@5a1fe794]
+[DEBUG] 2021-12-04 11:49:06.417 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.server.ResponseStatusException: 404 NOT_FOUND "Actor Not Found"]
+[DEBUG] 2021-12-04 11:49:06.418 [http-nio-8080-exec-3] DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+[DEBUG] 2021-12-04 11:49:06.448 [http-nio-8080-exec-4] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2021-12-04 11:49:06.450 [http-nio-8080-exec-4] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2021-12-04 11:49:06.451 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2021-12-04 11:49:06.451 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2021-12-04 11:49:06.452 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@64ed2260]
+[DEBUG] 2021-12-04 11:49:06.453 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2021-12-04 11:49:06.453 [http-nio-8080-exec-4] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:49:31.108 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 19:49:31.191 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 19:49:31.209 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 19:49:31.219 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 19:50:42.596 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 19:50:42.597 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 19:50:42.597 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 19:50:42.597 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 19:50:42.598 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@404afb8f
+[DEBUG] 2022-05-30 19:50:42.599 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@66d8c051
+[DEBUG] 2022-05-30 19:50:42.599 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 19:50:42.600 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 4 ms
+[DEBUG] 2022-05-30 19:50:42.612 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:50:42.619 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI(String, String)
+[DEBUG] 2022-05-30 19:50:42.664 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:50:42.665 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Nothing to write: null body
+[DEBUG] 2022-05-30 19:50:42.667 [http-nio-8080-exec-1] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:51:12.008 [http-nio-8080-exec-2] DispatcherServlet - GET "/bmi2/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:51:12.009 [http-nio-8080-exec-2] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI2(String, String)
+[DEBUG] 2022-05-30 19:51:12.011 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:51:12.024 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [BMIResult[index=-1.0, description=Bad number format]]
+[DEBUG] 2022-05-30 19:51:12.040 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:51:12.086 [http-nio-8080-exec-3] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:51:12.088 [http-nio-8080-exec-3] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:51:12.091 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:51:12.095 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:51:12.095 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@3c09ba20]
+[DEBUG] 2022-05-30 19:51:12.118 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:51:12.121 [http-nio-8080-exec-3] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:51:42.509 [http-nio-8080-exec-4] DispatcherServlet - GET "/bmi3/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:51:42.510 [http-nio-8080-exec-4] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI3(String, String)
+[DEBUG] 2022-05-30 19:51:42.513 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.BMIController#handleException(BMIException)
+[DEBUG] 2022-05-30 19:51:42.513 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:51:42.514 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@22327b90]
+[DEBUG] 2022-05-30 19:51:42.515 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Resolved [vn.techmaster.bmiservice.exception.BMIException: Cannot parse weight or height to float]
+[DEBUG] 2022-05-30 19:51:42.515 [http-nio-8080-exec-4] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:51:42.541 [http-nio-8080-exec-5] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:51:42.543 [http-nio-8080-exec-5] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:51:42.544 [http-nio-8080-exec-5] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:51:42.545 [http-nio-8080-exec-5] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:51:42.546 [http-nio-8080-exec-5] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@5c177c56]
+[DEBUG] 2022-05-30 19:51:42.547 [http-nio-8080-exec-5] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:51:42.548 [http-nio-8080-exec-5] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:52:06.009 [http-nio-8080-exec-6] DispatcherServlet - GET "/bmi3/1.75/74", parameters={}
+[DEBUG] 2022-05-30 19:52:06.009 [http-nio-8080-exec-6] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI3(String, String)
+[DEBUG] 2022-05-30 19:52:06.018 [http-nio-8080-exec-6] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:52:06.018 [http-nio-8080-exec-6] HttpEntityMethodProcessor - Writing [BMIResult[index=24.163265, description=Chu?n m?c]]
+[DEBUG] 2022-05-30 19:52:06.021 [http-nio-8080-exec-6] DispatcherServlet - Completed 200 OK
+[DEBUG] 2022-05-30 19:52:06.043 [http-nio-8080-exec-7] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:52:06.043 [http-nio-8080-exec-7] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:52:06.059 [http-nio-8080-exec-7] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:52:06.061 [http-nio-8080-exec-7] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:52:06.061 [http-nio-8080-exec-7] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@57f2e822]
+[DEBUG] 2022-05-30 19:52:06.062 [http-nio-8080-exec-7] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:52:06.063 [http-nio-8080-exec-7] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:52:09.745 [http-nio-8080-exec-8] DispatcherServlet - GET "/bmi3/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:52:09.746 [http-nio-8080-exec-8] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI3(String, String)
+[DEBUG] 2022-05-30 19:52:09.749 [http-nio-8080-exec-8] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.BMIController#handleException(BMIException)
+[DEBUG] 2022-05-30 19:52:09.750 [http-nio-8080-exec-8] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:52:09.751 [http-nio-8080-exec-8] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@790d9eb0]
+[DEBUG] 2022-05-30 19:52:09.752 [http-nio-8080-exec-8] ExceptionHandlerExceptionResolver - Resolved [vn.techmaster.bmiservice.exception.BMIException: Cannot parse weight or height to float]
+[DEBUG] 2022-05-30 19:52:09.753 [http-nio-8080-exec-8] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:52:09.778 [http-nio-8080-exec-9] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:52:09.780 [http-nio-8080-exec-9] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:52:09.781 [http-nio-8080-exec-9] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:52:09.783 [http-nio-8080-exec-9] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:52:09.784 [http-nio-8080-exec-9] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@54344dd7]
+[DEBUG] 2022-05-30 19:52:09.785 [http-nio-8080-exec-9] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:52:09.785 [http-nio-8080-exec-9] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:54:43.971 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 19:54:44.058 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 19:54:44.088 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 19:54:44.103 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 19:54:53.896 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 19:54:53.896 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 19:54:53.897 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 19:54:53.897 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 19:54:53.899 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@764df6ee
+[DEBUG] 2022-05-30 19:54:53.900 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@26b60eff
+[DEBUG] 2022-05-30 19:54:53.900 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 19:54:53.901 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 5 ms
+[DEBUG] 2022-05-30 19:54:53.911 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi3/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:54:53.923 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI3(String, String)
+[DEBUG] 2022-05-30 19:55:17.001 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 19:55:17.076 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 19:55:17.096 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 19:55:17.106 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 19:55:17.366 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 19:55:17.367 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 19:55:17.368 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 19:55:17.368 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 19:55:17.370 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@19b99646
+[DEBUG] 2022-05-30 19:55:17.370 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@e8206b6
+[DEBUG] 2022-05-30 19:55:17.371 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 19:55:17.371 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 5 ms
+[DEBUG] 2022-05-30 19:55:17.380 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi3/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:55:17.387 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI3(String, String)
+[DEBUG] 2022-05-30 19:55:17.996 [http-nio-8080-exec-2] DispatcherServlet - GET "/bmi3/1.75/a", parameters={}
+[DEBUG] 2022-05-30 19:55:17.997 [http-nio-8080-exec-2] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI3(String, String)
+[DEBUG] 2022-05-30 19:55:40.576 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.BMIController#handleException(BMIException)
+[DEBUG] 2022-05-30 19:55:44.013 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:55:44.015 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@51f3a229]
+[DEBUG] 2022-05-30 19:55:44.036 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [vn.techmaster.bmiservice.exception.BMIException: Cannot parse weight or height to float]
+[DEBUG] 2022-05-30 19:55:44.036 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:55:44.075 [http-nio-8080-exec-3] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:55:44.079 [http-nio-8080-exec-3] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:55:44.081 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:55:44.085 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:55:44.085 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@3d6863a9]
+[DEBUG] 2022-05-30 19:55:44.100 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:55:44.100 [http-nio-8080-exec-3] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:56:35.827 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 19:56:35.940 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 19:56:35.961 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 19:56:35.975 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 19:56:43.359 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 19:56:43.360 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 19:56:43.361 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 19:56:43.361 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 19:56:43.362 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@19f2a228
+[DEBUG] 2022-05-30 19:56:43.362 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@518bcb58
+[DEBUG] 2022-05-30 19:56:43.363 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 19:56:43.364 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 3 ms
+[DEBUG] 2022-05-30 19:56:43.377 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi4", parameters={}
+[DEBUG] 2022-05-30 19:56:43.381 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController2#demoThrow()
+[DEBUG] 2022-05-30 19:56:43.392 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.BMIController2#handleException(RuntimeException)
+[DEBUG] 2022-05-30 19:56:43.426 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:56:43.428 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@6b90ad49]
+[DEBUG] 2022-05-30 19:56:43.448 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Resolved [vn.techmaster.bmiservice.exception.BMIException: Cannot parse weight or height to float]
+[DEBUG] 2022-05-30 19:56:43.448 [http-nio-8080-exec-1] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:56:43.476 [http-nio-8080-exec-2] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:56:43.478 [http-nio-8080-exec-2] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:56:43.481 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:56:43.484 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:56:43.484 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@59096b78]
+[DEBUG] 2022-05-30 19:56:43.498 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:56:43.499 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:56:59.681 [http-nio-8080-exec-3] DispatcherServlet - GET "/bmi5", parameters={}
+[DEBUG] 2022-05-30 19:56:59.683 [http-nio-8080-exec-3] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController2#demoThrow2()
+[DEBUG] 2022-05-30 19:56:59.684 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.BMIController2#handleException(RuntimeException)
+[DEBUG] 2022-05-30 19:56:59.685 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:56:59.686 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@2ba1eeea]
+[DEBUG] 2022-05-30 19:56:59.687 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Resolved [vn.techmaster.bmiservice.exception.BMILogicException: Cannot parse weight or height to float]
+[DEBUG] 2022-05-30 19:56:59.688 [http-nio-8080-exec-3] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:56:59.714 [http-nio-8080-exec-4] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:56:59.716 [http-nio-8080-exec-4] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:56:59.717 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:56:59.719 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:56:59.719 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@7ec99b23]
+[DEBUG] 2022-05-30 19:56:59.720 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:56:59.721 [http-nio-8080-exec-4] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:57:02.174 [http-nio-8080-exec-5] DispatcherServlet - GET "/bmi6", parameters={}
+[DEBUG] 2022-05-30 19:57:02.176 [http-nio-8080-exec-5] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController2#demoThrow4()
+[DEBUG] 2022-05-30 19:57:02.177 [http-nio-8080-exec-5] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleAllExceptions(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:57:02.179 [http-nio-8080-exec-5] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:57:02.179 [http-nio-8080-exec-5] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@391d812b]
+[DEBUG] 2022-05-30 19:57:02.181 [http-nio-8080-exec-5] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.server.ResponseStatusException: 404 NOT_FOUND "Actor Not Found"]
+[DEBUG] 2022-05-30 19:57:02.182 [http-nio-8080-exec-5] DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+[DEBUG] 2022-05-30 19:57:02.204 [http-nio-8080-exec-6] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:57:02.205 [http-nio-8080-exec-6] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:57:02.206 [http-nio-8080-exec-6] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:57:02.207 [http-nio-8080-exec-6] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:57:02.208 [http-nio-8080-exec-6] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@7f429779]
+[DEBUG] 2022-05-30 19:57:02.209 [http-nio-8080-exec-6] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:57:02.210 [http-nio-8080-exec-6] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 19:58:42.538 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 19:58:42.635 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 19:58:42.654 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 19:58:42.666 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 19:58:43.329 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 19:58:43.330 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 19:58:43.330 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 19:58:43.331 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 19:58:43.332 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@19b99646
+[DEBUG] 2022-05-30 19:58:43.333 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@e8206b6
+[DEBUG] 2022-05-30 19:58:43.333 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 19:58:43.334 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 5 ms
+[DEBUG] 2022-05-30 19:58:43.343 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi6", parameters={}
+[DEBUG] 2022-05-30 19:58:43.348 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController2#demoThrow4()
+[DEBUG] 2022-05-30 19:58:57.119 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleAllExceptions(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:58:57.151 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:58:57.153 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@4440752a]
+[DEBUG] 2022-05-30 19:58:57.173 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.server.ResponseStatusException: 404 NOT_FOUND "Actor Not Found"]
+[DEBUG] 2022-05-30 19:58:57.173 [http-nio-8080-exec-1] DispatcherServlet - Completed 500 INTERNAL_SERVER_ERROR
+[DEBUG] 2022-05-30 19:58:57.210 [http-nio-8080-exec-2] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 19:58:57.213 [http-nio-8080-exec-2] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 19:58:57.215 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 19:58:57.217 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 19:58:57.218 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@4f4d928a]
+[DEBUG] 2022-05-30 19:58:57.239 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 19:58:57.240 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:00:31.502 [http-nio-8080-exec-3] DispatcherServlet - GET "/doctor/%7Bid%7D", parameters={}
+[DEBUG] 2022-05-30 20:00:31.504 [http-nio-8080-exec-3] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.DoctorController#getDoctorByID(int)
+[DEBUG] 2022-05-30 20:00:31.506 [http-nio-8080-exec-3] HandlerMethod - Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<vn.techmaster.bmiservice.model.Doctor> vn.techmaster.bmiservice.controller.DoctorController.getDoctorByID(int): Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "{id}"
+[DEBUG] 2022-05-30 20:00:31.506 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:00:31.515 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:31.516 [http-nio-8080-exec-3] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@39c622fd]
+[DEBUG] 2022-05-30 20:00:31.516 [http-nio-8080-exec-3] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: "{id}"]
+[DEBUG] 2022-05-30 20:00:31.518 [http-nio-8080-exec-3] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:00:31.538 [http-nio-8080-exec-4] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 20:00:31.538 [http-nio-8080-exec-4] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 20:00:31.548 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:00:31.549 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:31.549 [http-nio-8080-exec-4] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@4df513b6]
+[DEBUG] 2022-05-30 20:00:31.550 [http-nio-8080-exec-4] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 20:00:31.551 [http-nio-8080-exec-4] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:00:40.262 [http-nio-8080-exec-5] DispatcherServlet - GET "/doctor/3", parameters={}
+[DEBUG] 2022-05-30 20:00:40.263 [http-nio-8080-exec-5] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.DoctorController#getDoctorByID(int)
+[DEBUG] 2022-05-30 20:00:40.268 [http-nio-8080-exec-5] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:40.269 [http-nio-8080-exec-5] HttpEntityMethodProcessor - Writing [Doctor(id=3, name=Nguy?n Qu?c Toàn, skills=ph?u thu?t, th?m m?)]
+[DEBUG] 2022-05-30 20:00:40.272 [http-nio-8080-exec-5] DispatcherServlet - Completed 200 OK
+[DEBUG] 2022-05-30 20:00:40.307 [http-nio-8080-exec-6] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 20:00:40.308 [http-nio-8080-exec-6] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 20:00:40.310 [http-nio-8080-exec-6] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:00:40.312 [http-nio-8080-exec-6] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:40.313 [http-nio-8080-exec-6] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@4cc51cd8]
+[DEBUG] 2022-05-30 20:00:40.313 [http-nio-8080-exec-6] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 20:00:40.314 [http-nio-8080-exec-6] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:00:43.280 [http-nio-8080-exec-7] DispatcherServlet - GET "/doctor/2", parameters={}
+[DEBUG] 2022-05-30 20:00:43.281 [http-nio-8080-exec-7] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.DoctorController#getDoctorByID(int)
+[DEBUG] 2022-05-30 20:00:43.283 [http-nio-8080-exec-7] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:43.284 [http-nio-8080-exec-7] HttpEntityMethodProcessor - Writing [Doctor(id=2, name=?oàn Xuân D?ng, skills=?? ??, m?)]
+[DEBUG] 2022-05-30 20:00:43.285 [http-nio-8080-exec-7] DispatcherServlet - Completed 200 OK
+[DEBUG] 2022-05-30 20:00:43.312 [http-nio-8080-exec-8] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 20:00:43.314 [http-nio-8080-exec-8] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 20:00:43.315 [http-nio-8080-exec-8] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:00:43.316 [http-nio-8080-exec-8] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:43.317 [http-nio-8080-exec-8] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@5b3209ee]
+[DEBUG] 2022-05-30 20:00:43.318 [http-nio-8080-exec-8] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 20:00:43.318 [http-nio-8080-exec-8] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:00:45.688 [http-nio-8080-exec-9] DispatcherServlet - GET "/doctor/5", parameters={}
+[DEBUG] 2022-05-30 20:00:45.690 [http-nio-8080-exec-9] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.DoctorController#getDoctorByID(int)
+[DEBUG] 2022-05-30 20:00:45.691 [http-nio-8080-exec-9] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:45.691 [http-nio-8080-exec-9] HttpEntityMethodProcessor - Writing [Doctor(id=5, name=?ào Trung ??c, skills=ch?n ?oán hình ?nh)]
+[DEBUG] 2022-05-30 20:00:45.692 [http-nio-8080-exec-9] DispatcherServlet - Completed 200 OK
+[DEBUG] 2022-05-30 20:00:45.722 [http-nio-8080-exec-10] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 20:00:45.723 [http-nio-8080-exec-10] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 20:00:45.724 [http-nio-8080-exec-10] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:00:45.725 [http-nio-8080-exec-10] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:00:45.726 [http-nio-8080-exec-10] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@24f3050f]
+[DEBUG] 2022-05-30 20:00:45.727 [http-nio-8080-exec-10] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 20:00:45.728 [http-nio-8080-exec-10] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:01:31.905 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:01:31.992 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 20:01:32.011 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 20:01:32.022 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 20:01:37.580 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 20:01:37.581 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 20:01:37.581 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 20:01:37.581 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 20:01:37.582 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@27e735c6
+[DEBUG] 2022-05-30 20:01:37.583 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@4af4b064
+[DEBUG] 2022-05-30 20:01:37.583 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 20:01:37.584 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 4 ms
+[DEBUG] 2022-05-30 20:01:37.593 [http-nio-8080-exec-1] DispatcherServlet - GET "/doctor/100", parameters={}
+[DEBUG] 2022-05-30 20:01:37.600 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.DoctorController#getDoctorByID(int)
+[DEBUG] 2022-05-30 20:01:37.615 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleUserNotFoundException(RecordNotFoundException, WebRequest)
+[DEBUG] 2022-05-30 20:01:47.625 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:01:47.626 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@6a455dc3]
+[DEBUG] 2022-05-30 20:01:47.646 [http-nio-8080-exec-1] ExceptionHandlerExceptionResolver - Resolved [vn.techmaster.bmiservice.exception.RecordNotFoundException: 100 is not found]
+[DEBUG] 2022-05-30 20:01:47.646 [http-nio-8080-exec-1] DispatcherServlet - Completed 404 NOT_FOUND
+[DEBUG] 2022-05-30 20:01:47.672 [http-nio-8080-exec-2] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 20:01:47.675 [http-nio-8080-exec-2] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 20:01:47.678 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:01:47.679 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:01:47.680 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@102b165f]
+[DEBUG] 2022-05-30 20:01:47.691 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 20:01:47.691 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:55:09.109 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:55:09.205 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 20:55:09.223 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 20:55:09.233 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:57:03.745 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:57:03.841 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 20:57:03.863 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 20:57:03.877 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:57:25.999 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:57:26.102 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 20:57:26.131 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 20:57:26.149 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:57:46.745 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-05-30 20:57:46.839 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-05-30 20:57:46.867 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-05-30 20:57:46.888 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+[INFO ] 2022-05-30 20:58:01.371 [http-nio-8080-exec-1] DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+[DEBUG] 2022-05-30 20:58:01.371 [http-nio-8080-exec-1] DispatcherServlet - Detected StandardServletMultipartResolver
+[DEBUG] 2022-05-30 20:58:01.371 [http-nio-8080-exec-1] DispatcherServlet - Detected AcceptHeaderLocaleResolver
+[DEBUG] 2022-05-30 20:58:01.372 [http-nio-8080-exec-1] DispatcherServlet - Detected FixedThemeResolver
+[DEBUG] 2022-05-30 20:58:01.373 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@6b18f6a9
+[DEBUG] 2022-05-30 20:58:01.373 [http-nio-8080-exec-1] DispatcherServlet - Detected org.springframework.web.servlet.support.SessionFlashMapManager@33a4aa1a
+[DEBUG] 2022-05-30 20:58:01.374 [http-nio-8080-exec-1] DispatcherServlet - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+[INFO ] 2022-05-30 20:58:01.374 [http-nio-8080-exec-1] DispatcherServlet - Completed initialization in 3 ms
+[DEBUG] 2022-05-30 20:58:01.386 [http-nio-8080-exec-1] DispatcherServlet - GET "/bmi2/1.75/a", parameters={}
+[DEBUG] 2022-05-30 20:58:01.391 [http-nio-8080-exec-1] RequestMappingHandlerMapping - Mapped to vn.techmaster.bmiservice.controller.BMIController#calculateBMI2(String, String)
+[DEBUG] 2022-05-30 20:58:01.442 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [text/html, application/xhtml+xml, image/avif, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:58:01.452 [http-nio-8080-exec-1] HttpEntityMethodProcessor - Writing [BMIResult[index=-1.0, description=Bad number format]]
+[DEBUG] 2022-05-30 20:58:01.466 [http-nio-8080-exec-1] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-05-30 20:58:01.504 [http-nio-8080-exec-2] DispatcherServlet - GET "/favicon.ico", parameters={}
+[WARN ] 2022-05-30 20:58:01.506 [http-nio-8080-exec-2] PageNotFound - No mapping for GET /favicon.ico
+[DEBUG] 2022-05-30 20:58:01.508 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Using @ExceptionHandler vn.techmaster.bmiservice.controller.CustomExceptionHandler#handleException(Exception, WebRequest)
+[DEBUG] 2022-05-30 20:58:01.512 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Using 'application/json;q=0.8', given [image/avif, image/webp, image/apng, image/svg+xml, image/*, */*;q=0.8] and supported [application/json, application/*+json, application/json, application/*+json]
+[DEBUG] 2022-05-30 20:58:01.513 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@3aee9663]
+[DEBUG] 2022-05-30 20:58:01.532 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
+[DEBUG] 2022-05-30 20:58:01.532 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST

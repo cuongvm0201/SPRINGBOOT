@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link th:rel="stylesheet" th:href="@{/styles/cssandjs/register.css}" />
+    <title>Register New Account</title>
+</head>
+<body>
+    
+    <!-- <form
+      method="post"
+      action="#"
+      th:action="register"
+      th:object="${registerrequest}"
+    >
+    Fullname: <input type="text" th:field="*{fullname}" />
+      <div th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}">
+        Fullname Error
+      </div>
+      <br /><br />
+      Email: <input type="text" th:field="*{email}" />
+      <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+        Email Error
+      </div>
+      <br /><br />
+      Password: <input type="password" th:field="*{password}" />
+      <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+        Password Error
+      </div>
+      <br /><br />
+      Confim Password: <input type="password" th:field="*{confimPassword}" />
+      <div th:if="${#fields.hasErrors('confimPassword')}" th:errors="*{confimPassword}">
+        Password Error
+      </div>
+      <br /><br />
+      <button type="submit">SIGN UP</button>
+      <button><a style="text-decoration: none;" href="/">Back</a></button>
+    </form> -->
+
+    <div class="registration-form">
+      <form method="post"
+      action="#"
+      th:action="register"
+      th:object="${registerrequest}"
+      >
+          <div class="form-icon">
+              <span><i class="icon icon-user"></i></span>
+          </div>
+          <div class="form-group">
+              <input type="text" class="form-control item" id="username" placeholder="Username" th:field="*{fullname}"/>
+              <div th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}">
+                Fullname Error
+              </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control item" id="email" placeholder="Email" th:field="*{email}"/>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+              Email Error
+            </div>
+          </div>
+          <div class="form-group">
+              <input type="password" class="form-control item" id="password" placeholder="Password" th:field="*{password}"/>
+              <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                Password Error
+              </div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control item" id="password" placeholder="ConfimPassword" th:field="*{confimPassword}"/>
+            <div th:if="${#fields.hasErrors('confimPassword')}" th:errors="*{confimPassword}">
+              Password Error
+            </div>
+        </div>
+          
+          <div class="form-group">
+              <button type="submit" class="btn btn-block create-account">Create Account</button>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-block create-account"><a style="text-decoration: none;" href="/">Back</a></button>
+          </div>
+      </form>
+      <div class="social-media">
+          <h5>Sign up with social media</h5>
+          <div class="social-icons">
+              <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+              <a href="#"><i class="icon-social-google" title="Google"></i></a>
+              <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+          </div>
+      </div>
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

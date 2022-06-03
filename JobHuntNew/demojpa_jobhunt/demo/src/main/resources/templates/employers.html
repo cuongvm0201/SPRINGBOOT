@@ -23,8 +23,9 @@
         <li class="breadcrumb-item active" aria-current="page" style="font-weight: 600; color: #000">Employers</li>
       </ol>
     </nav>
+    <th:block th:if="${user != null && user.getRole().toString().equals('ADMIN')}" >
     <a th:href="@{/employer/add}" class="btn btn-primary ">Add Employer</a><br><br>
-
+    </th:block>
 
     
     <table class="table table-striped table-bordered">

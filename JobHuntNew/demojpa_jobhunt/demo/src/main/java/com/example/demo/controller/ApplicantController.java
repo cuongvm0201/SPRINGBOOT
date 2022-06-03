@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.dto.UserDTO;
 import com.example.demo.model.Applicant;
 import com.example.demo.model.Employer;
 import com.example.demo.model.Job;
@@ -15,6 +17,7 @@ import com.example.demo.service.JobService;
 import com.example.demo.service.MailService;
 import com.example.demo.request.ApplicantRequest;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -32,13 +35,19 @@ public class ApplicantController {
     private MailService mailService;
 
     @GetMapping
-    public String listAll(Model model) {
+    public String listAll(Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("applicants", applicantService.getAll());
         return "applicants";
     }
 
     @GetMapping(value = "/apply/{job_id}")
-    public String applyForm(Model model, @PathVariable String job_id) {
+    public String applyForm(Model model, @PathVariable String job_id, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         model.addAttribute("applicantReq", new ApplicantRequest(null, job_id, null, null, null, null));
         return "applicant_apply";
     }
@@ -46,8 +55,10 @@ public class ApplicantController {
     @PostMapping(value = "/add")
     public String addApplicant(@Valid @ModelAttribute("applicantReq") ApplicantRequest applicantRequest,
                                BindingResult result,
-                               Model model) {
-
+                               Model model, HttpSession session) {
+                                UserDTO userDTO = (UserDTO) session.getAttribute("user");
+                                System.out.println("Session ID: " + session.getId());
+                                model.addAttribute("user", userDTO);
         // Nêú có lỗi thì trả về trình duyệt
         if (result.hasErrors()) {
             return "applicant_apply";
@@ -74,7 +85,10 @@ public class ApplicantController {
     }
 
     @GetMapping(value = "/{id}")
-    public String editId(Model model, @PathVariable("id") String id) {
+    public String editId(Model model, @PathVariable("id") String id, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        System.out.println("Session ID: " + session.getId());
+        model.addAttribute("user", userDTO);
         Optional<Applicant> applicantOpt = Optional.of(applicantService.findById(id));
         if (applicantOpt.isPresent()) {
             Applicant currentApplicant = applicantOpt.get();
@@ -94,8 +108,10 @@ public class ApplicantController {
     @PostMapping(value = "/edit", params = "action=save")
     public String edit(@Valid @ModelAttribute("applicantReq") ApplicantRequest applicantRequest,
                        BindingResult result,
-                       Model model) {
-
+                       Model model, HttpSession session) {
+                        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+                        System.out.println("Session ID: " + session.getId());
+                        model.addAttribute("user", userDTO);
         // Nêú có lỗi thì trả về trình duyệt
         if (result.hasErrors()) {
             return "applicant_edit";

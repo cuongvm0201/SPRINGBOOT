@@ -29,6 +29,16 @@
       <li class="nav-item active">
         <a class="nav-link navbar-brand" aria-current="page" href="/">About us</a>
       </li>
+      <li style="margin-left: 850px" class="nav-item active">
+        <th:block th:if="${user == null}">
+          <a class="nav-link navbar-brand" aria-current="page" href="/api/login" >Login</a>
+          <a class="nav-link navbar-brand" aria-current="page" href="/api/register" >Register</a>
+        </th:block>
+        <th:block th:if="${user != null}">
+          <a class="nav-link navbar-brand" aria-current="page" href="/api/logout" th:text="|Logout as ${user.fullname}|">About us</a>
+        </th:block>
+        
+      </li>
     </ul>
   </div>
 

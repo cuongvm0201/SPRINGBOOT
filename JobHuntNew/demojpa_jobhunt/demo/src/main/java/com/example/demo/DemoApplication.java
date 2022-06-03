@@ -1,13 +1,18 @@
 package com.example.demo;
 
+import com.example.demo.hash.Hashing;
 import com.example.demo.model.Applicant;
 import com.example.demo.model.City;
 import com.example.demo.model.Employer;
 import com.example.demo.model.Job;
+import com.example.demo.model.Roles;
 import com.example.demo.model.Skill;
+import com.example.demo.model.State;
+import com.example.demo.model.User;
 import com.example.demo.repository.ApplicantRepo;
 import com.example.demo.repository.EmployerRepo;
 import com.example.demo.repository.JobRepo;
+import com.example.demo.repository.UserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,7 +40,11 @@ public class DemoApplication implements CommandLineRunner {
     @Autowired
     private ApplicantRepo applicantRepo;
 
+    @Autowired
+    private UserRepo userRepo;
 	
+    @Autowired
+    private Hashing hashing;
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
 
@@ -45,6 +54,25 @@ public class DemoApplication implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
+        User userAdmin = User.builder()
+        .id("333")
+        .email("cuong_admin@gmail.com")
+        .fullname("Cường Vũ")
+        .state(State.ACTIVE)
+        .role(Roles.ADMIN)
+        .hashed_password(hashing.hashPassword("123456"))
+        .build();
+
+        User userNormal = User.builder()
+        .id("666")
+        .email("cuong_vu@gmail.com")
+        .fullname("Cường Vũ")
+        .state(State.ACTIVE)
+        .role(Roles.MEMBER)
+        .hashed_password(hashing.hashPassword("123456"))
+        .build();
+        userRepo.save(userAdmin);
+        userRepo.save(userNormal);
        Employer employer1 = Employer.builder()
        .id("1").name("FPT")
        .website("https://fpt.com.vn")
