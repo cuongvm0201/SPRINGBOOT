@@ -359,3 +359,7 @@
 [DEBUG] 2022-05-30 20:58:01.513 [http-nio-8080-exec-2] HttpEntityMethodProcessor - Writing [vn.techmaster.bmiservice.exception.APIError@3aee9663]
 [DEBUG] 2022-05-30 20:58:01.532 [http-nio-8080-exec-2] ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.NoHandlerFoundException: No handler found for GET /favicon.ico]
 [DEBUG] 2022-05-30 20:58:01.532 [http-nio-8080-exec-2] DispatcherServlet - Completed 400 BAD_REQUEST
+[DEBUG] 2022-06-07 11:28:28.055 [main] RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+[DEBUG] 2022-06-07 11:28:28.228 [main] RequestMappingHandlerMapping - 10 mappings in 'requestMappingHandlerMapping'
+[DEBUG] 2022-06-07 11:28:28.266 [main] WebMvcConfigurer - Default resource handling disabled
+[DEBUG] 2022-06-07 11:28:28.289 [main] ExceptionHandlerExceptionResolver - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice

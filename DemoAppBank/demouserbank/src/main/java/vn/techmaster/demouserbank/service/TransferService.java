@@ -8,7 +8,6 @@ import vn.techmaster.demouserbank.exception.TransferException;
 import vn.techmaster.demouserbank.model.Account;
 import vn.techmaster.demouserbank.repository.AccountRepo;
 @Service
-@Slf4j
 public class TransferService {
     @Autowired AccountRepo accountRepo;
    
@@ -17,7 +16,7 @@ public class TransferService {
         if(accountRepo.findById(sendAccountId).isPresent()){
             sendAccount = accountRepo.findById(sendAccountId).get();
         } else {
-            log.info(sendAccountId + "is not found");
+    
             throw new TransferException("Account người gửi không chính xác");
             
         }
@@ -25,7 +24,7 @@ public class TransferService {
        if(accountRepo.findById(recieveAccountId).isPresent()){
         recieveAcount = accountRepo.findById(recieveAccountId).get();
        } else {
-        log.info(recieveAccountId + "is not found");
+        
            throw new TransferException("Account người nhận không tồn tại");
 
        }
@@ -42,7 +41,6 @@ public class TransferService {
            }
        
        } else {
-        log.error("Số tiền cần phải lớn hơn 0", NumberFormatException.class);
         throw new TransferException("Số tiền nhập vào phải là số nguyên dương");
        }
 
@@ -55,7 +53,6 @@ public class TransferService {
         if(accountRepo.findById(accountId).isPresent()){
             currentAccount = accountRepo.findById(accountId).get();
         } else {
-            log.info(currentAccount + "is not found");
             throw new TransferException("Account không tồn tại");
         }
 
@@ -68,7 +65,6 @@ public class TransferService {
             }
         
         } else {
-         log.info("Số tiền nhập vào cần phải lớn hơn 0");
          throw new TransferException("Số tiền nhập vào phải là số nguyên dương");
         }
 
@@ -81,7 +77,6 @@ public class TransferService {
         if(accountRepo.findById(accountId).isPresent()){
             currentAccount = accountRepo.findById(accountId).get();
         } else {
-            log.info("Số tiền nhập vào cần phải lớn hơn 0");
             throw new TransferException("Account không tồn tại");
         }
 
@@ -90,7 +85,7 @@ public class TransferService {
                 accountRepo.save(currentAccount);
             
         } else {
-            log.info("Số tiền nhập vào cần phải lớn hơn 0");
+        
          throw new TransferException("Số tiền nhập vào phải là số nguyên dương");
         }
 
