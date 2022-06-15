@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.annotation.PostConstruct;
+
+import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import vn.techmaster.bank.exception.CommandException;
@@ -27,6 +31,63 @@ public class AccountSaverService {
     @Autowired private AccountRepo accountRepo;
     @Autowired private AccountSaverRepo accountSaverRepo;
     @Autowired private RateConfigService rateConfigService;
+
+    @Scheduled(fixedRate = 10000)
+    public void auto_renew(){
+    List<AccountSaver> allAccSave = accountSaverRepo.findAll();
+    for (int i = 0; i < allAccSave.size(); i++) {
+       AccountSaver ai = allAccSave.get(i);
+       Account accByaccSave = accountRepo.findById(ai.getAccount().getId()).get();
+       Double bonusBalance;
+       if(ai.getTypeSave().equals(TypeSave.FINAL)){
+        if(ai.getMonths() == 0){
+            bonusBalance= ai.getStartBalance()*((ai.getRate()/100)/12);
+        } else {
+            bonusBalance = ai.getStartBalance()*ai.getMonths()*((ai.getRate()/100)/12);
+        }
+        if(ai.getCloseAt().plusDays(1).compareTo(LocalDateTime.now()) <= 0){
+            switch(ai.getAutoSaver()){
+                case AUTORENEW:
+                ai.setOpenAt(LocalDateTime.now());
+                ai.setCloseAt(ai.getOpenAt().plusMonths(ai.getMonths()));
+                ai.setStartBalance(ai.getEndBalance()+bonusBalance);
+                ai.setEndBalance(ai.getStartBalance());
+                accountSaverRepo.save(ai);
+                break;
+                case NON_AUTORENEW:
+                ai.setEndBalance(ai.getStartBalance()+bonusBalance);
+                accByaccSave.setBalance(accByaccSave.getBalance()+ai.getEndBalance());
+                accountSaverRepo.deleteById(ai.getId());
+                accountRepo.save(accByaccSave);
+                break;
+            }
+        }
+        }
+
+        if(ai.getTypeSave().equals(TypeSave.EVERYMONTH)){
+            final Double currentBalance = ai.getStartBalance();
+            Double bonusBalancePerMonth = currentBalance*(((ai.getRate()*0.8)/100)/12);
+            if(ai.getCloseAt().plusDays(1).compareTo(LocalDateTime.now()) <= 0){
+                switch(ai.getAutoSaver()){
+                    case AUTORENEW:
+                    ai.setOpenAt(LocalDateTime.now());
+                    ai.setCloseAt(ai.getOpenAt().plusMonths(ai.getMonths()));
+                    ai.setStartBalance(ai.getEndBalance()+(bonusBalancePerMonth*ai.getMonths()));
+                    ai.setEndBalance(ai.getStartBalance());
+                    accountSaverRepo.save(ai);
+                    break;
+                    case NON_AUTORENEW:
+                    ai.setEndBalance(ai.getStartBalance()+(bonusBalancePerMonth*ai.getMonths()));
+                    accByaccSave.setBalance(accByaccSave.getBalance()+ai.getEndBalance());
+                    accountSaverRepo.deleteById(ai.getId());
+                    accountRepo.save(accByaccSave);
+                    break;
+                }
+            }
+        }   
+    }
+}
+
 
     public AccountSaverInfo openAccount(AccountSaverRequest accountSaverRequest){
         User user = userRepo.findById(accountSaverRequest.userID())
@@ -54,6 +115,7 @@ public class AccountSaverService {
         .months(accountSaverRequest.months())
         .rate(rateConfigService.findRateByMonth(accountSaverRequest.months()))
         .typeSave(accountSaverRequest.typeSave())
+        .autoSaver(accountSaverRequest.autoSaver())
         .openAt(LocalDateTime.now())
         .updateAt(null)
         .closeAt(LocalDateTime.now().plusMonths(accountSaverRequest.months())).build();
@@ -66,6 +128,7 @@ public class AccountSaverService {
         .months(accountSaverRequest.months())
         .rate(rateConfigService.findRateByMonth(accountSaverRequest.months()))
         .typeSave(accountSaverRequest.typeSave())
+        .autoSaver(accountSaverRequest.autoSaver())
         .openAt(LocalDateTime.now())
         .updateAt(LocalDateTime.now().plusMonths(1))
         .closeAt(LocalDateTime.now().plusMonths(accountSaverRequest.months())).build();
@@ -100,7 +163,6 @@ public class AccountSaverService {
            
             account.setBalance(account.getBalance()+bonusBalance);
             accountRepo.save(account);
-            accountSaver.setStartBalance(0D);
             accountSaverRepo.deleteById(accountSaver.getId());
     
             return "Tài khoản "+ account.getId() + " nhận thành công khoản lãi: "+ bonusBalance;

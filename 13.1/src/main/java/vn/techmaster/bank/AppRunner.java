@@ -1,9 +1,6 @@
 package vn.techmaster.bank;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +18,7 @@ import org.springframework.stereotype.Component;
 import vn.techmaster.bank.exception.RecordNotFoundException;
 import vn.techmaster.bank.model.Account;
 import vn.techmaster.bank.model.AccountSaver;
+import vn.techmaster.bank.model.AutoSaver;
 import vn.techmaster.bank.model.Bank;
 import vn.techmaster.bank.model.RateConfig;
 import vn.techmaster.bank.model.TypeSave;
@@ -30,6 +28,7 @@ import vn.techmaster.bank.repository.AccountSaverRepo;
 import vn.techmaster.bank.repository.BankRepo;
 import vn.techmaster.bank.repository.RateConfigRepo;
 import vn.techmaster.bank.repository.UserRepo;
+import vn.techmaster.bank.service.AccountSaverService;
 
 @Component
 @Transactional
@@ -40,6 +39,7 @@ public class AppRunner implements ApplicationRunner{
   @Autowired private BankRepo bankRepo;
   @Autowired private RateConfigRepo rateConfigRepo;
   @Autowired private AccountSaverRepo accountSaverRepo;
+  @Autowired private AccountSaverService accountSaverService;
   
   private void generateAccount() {
     
@@ -65,23 +65,24 @@ public class AppRunner implements ApplicationRunner{
     Account bob_vcb_1 = new Account("00012", vcb, bob, 10000000D,list1);
     accountRepo.save(bob_vcb_1);
     
-    String str1 = "2021-06-13T00:00:00";
-    String str2 = "2022-06-13T00:04:00";
+    String str1 = "2021-06-14T13:02:00";
+    String str2 = "2022-06-14T13:02:00";
     AccountSaver accsaver1 = AccountSaver.builder()
     .id("1234")
     .account(bob_vcb_1)
     .startBalance(2000000D)
     .endBalance(2000000D)
-    .months(0L)
-    .rate(0.1)
+    .months(12L)
+    .rate(6.5)
     .typeSave(TypeSave.FINAL)
+    .autoSaver(AutoSaver.NON_AUTORENEW)
     .openAt(LocalDateTime.parse(str1))
     .updateAt(null)
     .closeAt(LocalDateTime.parse(str2))
     .build();
 
-    String str11 = "2021-06-13T00:00:00";
-    String str22 = "2022-06-13T00:00:00";
+    String str11 = "2021-06-14T13:02:00";
+    String str22 = "2022-06-14T13:02:00";
     AccountSaver accsaver2 = AccountSaver.builder()
     .id("3333")
     .account(bob_vcb_1)
@@ -90,6 +91,7 @@ public class AppRunner implements ApplicationRunner{
     .months(12L)
     .rate(6.5)
     .typeSave(TypeSave.EVERYMONTH)
+    .autoSaver(AutoSaver.AUTORENEW)
     .openAt(LocalDateTime.parse(str11))
     .updateAt(LocalDateTime.parse(str11).plusMonths(1))
     .closeAt(LocalDateTime.parse(str22))
@@ -117,6 +119,6 @@ public class AppRunner implements ApplicationRunner{
   @Override
   public void run(ApplicationArguments args) throws Exception {
     generateAccount();
-
+    
   }
 }

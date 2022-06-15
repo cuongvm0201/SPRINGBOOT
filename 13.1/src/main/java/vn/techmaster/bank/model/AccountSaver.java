@@ -36,8 +36,13 @@ public class AccountSaver {
   private Double endBalance;
   private Long months;
   private Double rate;
+
   @Enumerated(EnumType.STRING)
   private TypeSave typeSave;
+  
+  @Enumerated(EnumType.STRING)
+  private AutoSaver autoSaver;
+
   private LocalDateTime openAt;
   private LocalDateTime updateAt;
   private LocalDateTime closeAt;
