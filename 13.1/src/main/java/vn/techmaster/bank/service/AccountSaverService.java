@@ -32,7 +32,9 @@ public class AccountSaverService {
     @Autowired private AccountSaverRepo accountSaverRepo;
     @Autowired private RateConfigService rateConfigService;
 
-    @Scheduled(fixedRate = 10000)
+    // Tự động set lịch 2 tiếng quét 1 lần
+    // Nếu có sổ tiết kiệm quá hạn rút lãi 1 ngày sẽ chạy vào điều kiện 
+    @Scheduled(fixedRate = 7200000)
     public void auto_renew(){
     List<AccountSaver> allAccSave = accountSaverRepo.findAll();
     for (int i = 0; i < allAccSave.size(); i++) {
@@ -137,7 +139,9 @@ public class AccountSaverService {
         return new AccountSaverInfo(newAccSaver.getId(), 
         newAccSaver.getStartBalance(), 
         newAccSaver.getMonths(), 
-        newAccSaver.getRate(), 
+        newAccSaver.getRate(),
+        newAccSaver.getTypeSave(),
+        newAccSaver.getAutoSaver(), 
         newAccSaver.getOpenAt(), newAccSaver.getCloseAt());
     }
 

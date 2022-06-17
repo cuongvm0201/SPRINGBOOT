@@ -65,8 +65,8 @@ public class AppRunner implements ApplicationRunner{
     Account bob_vcb_1 = new Account("00012", vcb, bob, 10000000D,list1);
     accountRepo.save(bob_vcb_1);
     
-    String str1 = "2021-06-14T13:02:00";
-    String str2 = "2022-06-14T13:02:00";
+    String str1 = "2021-06-17T10:10:10";
+    String str2 = "2022-06-17T10:10:10";
     AccountSaver accsaver1 = AccountSaver.builder()
     .id("1234")
     .account(bob_vcb_1)
@@ -81,8 +81,8 @@ public class AppRunner implements ApplicationRunner{
     .closeAt(LocalDateTime.parse(str2))
     .build();
 
-    String str11 = "2021-06-14T13:02:00";
-    String str22 = "2022-06-14T13:02:00";
+    String str11 = "2021-06-17T10:10:10";
+    String str22 = "2022-06-17T13:10:10";
     AccountSaver accsaver2 = AccountSaver.builder()
     .id("3333")
     .account(bob_vcb_1)
