@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Data
@@ -24,6 +26,7 @@ public class Bank {
   private String name;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonIgnore
   @JoinColumn(name = "bank_id")
   private List<Account> accounts = new ArrayList<>();
 }

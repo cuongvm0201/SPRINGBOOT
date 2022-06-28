@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="template.html :: header('User Information')">
+<body>
+  <header th:insert="template.html :: topmenu"> </header>
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center text-uppercase mb-3">Thông tin user</h2>
+        <form action="#" th:action="@{/api/v1/user/findbyid/edit}" method="post" name="userRequest" th:object="${userRequest}">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="bg-light p-4">
+              <input type="hidden" class="form-control" th:field="*{id}" />
+              <div class="mb-3">
+                <label class="col-form-label">Fullname</label>
+                <input type="text" id="fullname" class="form-control" th:field="*{fullname}" />
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">Email</label>
+                <input type="text" id="email" class="form-control" th:field="*{email}" readonly />
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">Phone</label>
+                <input type="text" id="phone" class="form-control" th:field="*{mobile}" />
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">Address</label>
+                <input type="text" id="address" class="form-control" th:field="*{address}" />
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">City</label>
+                <select class="form-select" id="address" th:field="*{city}" >
+                  <option value="">-Chọn Thành Phố-</option>
+                      <option  th:each="state : ${T(vn.techmaster.finalproject.model.City).values()}" th:value="${state}"
+                              th:text="${state.label}">
+                      </option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Avatar</label>
+                <div class="avatar-preview mb-3 rounded">
+                  <img
+                    src="https://via.placeholder.com/200"
+                    alt="avatar"
+                    id="avatar-preview"
+                    class="rounded"
+                  />
+                </div>
+                
+                <label for="avatar" class="btn btn-warning">Đổi avatar</label>
+                <input type="file" id="avatar" class="d-none" />
+              </div>
+              <div class="mb-3">
+                <label class="col-form-label">Password</label>
+                <div class="">
+                  <button class="btn btn-primary">
+                  <a th:href="@{/api/v1/user/findbyid/updatepass/{id}(id=${user.id})}" th:target="_blank" style="color: white;"> Đổi mật khẩu</a>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-3">
+              <!-- <button class="btn btn-secondary btn-back" th:href="@{http://localhost:8080}">Quay lại</button> -->
+              <button class="btn btn-success" id="btn-save">Cập nhật</button>
+            </div>
+          </div>
+        </div>
+      </form>
+        </div>
+      </div>
+  
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+      ></script>
+       <!-- Link jQuery -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script th:src="@{/js/cssandjs/user_detail.js}"></script> -->
+</body>
+</html>

@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,6 +33,7 @@ public class AccountSaver {
   private String id;
 
   @ManyToOne(fetch = FetchType.LAZY)
+  @JsonIgnore
   private Account account; //Mỗi accountsaver phải gắn vào một account
   private Double startBalance;
   private Double endBalance;

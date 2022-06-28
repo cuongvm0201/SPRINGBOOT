@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="template_client.html :: header('List House')"></head>
+<body>
+  <header th:insert="template_client.html :: topmenu"> </header>
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="top-text header-text">
+            <h6>Check Out Our Listings</h6>
+            <h2>Item listings of Different Categories</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="listing-page">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-12" >
+            <div class="item">
+              <div class="row" >
+                <div class="col-lg-12" th:each="house, iStat:${houses}" th:class="${iStat.odd}? 'odd'" >
+                  <div class="listing-item">
+                    <div class="left-image">
+                      <a th:href="|/api/v1/house/${house.id}|"><img th:src="|/photo/${house.logo_main}|" alt=""></a>
+                      <div class="hover-content">
+                        <div class="main-white-button">
+                          <th:block th:if="${user == null}">
+                          <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/login" >Login</a>
+                          </th:block>
+                          <th:block th:if="${user != null}">
+                          <a th:href="|/api/v1/reverse/newreverse/creat/${house.id}/${user.id}|"><i class="fa fa-eye"></i>Đặt Ngay</a>
+                        </th:block>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="right-content align-self-center">
+                      <a href="#"><h4 th:text="${house.name}"></h4></a> <br>
+                      Giá 1 đêm: <h6 class="price" th:text="${house.price}"></h6><br>
+                      Address: <h6 class="details" th:text="${house.address}"></h6><br>
+                      Type: <span class="info" th:text="${house.typeHouse}"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div> 
+    </div> 
+  </div> 
+                
+
+      <footer th:insert="template_client.html :: footer"> </footer>
+</body>
+</html>

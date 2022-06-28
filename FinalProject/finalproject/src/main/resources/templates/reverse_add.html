@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="template_client.html :: header('Creat Reverse')"></head>
+<body>
+    <header th:insert="template_client.html :: topmenu"> </header>
+    <div class="page-heading">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="top-text header-text">
+              <h2>Chi tiết đặt phòng</h2>
+              <form action="#" th:action="@{/api/v1/reverse/newreverse/creat}" method="post" name="reverseRequest" th:object="${reverseRequest}">
+                <input type="hidden" class="form-control" th:field="*{houseID}" />
+                <input type="hidden" class="form-control" th:field="*{userID}" />
+                <label for="houseName" class="col-sm-2 col-form-label">House Name:</label>
+                <input type="text" class="form-control" th:field="*{houseName}" autocomplete="off" disabled />
+                <label for="userName" class="col-sm-2 col-form-label">User Name:</label>
+                <input type="text"  class="form-control" th:field="*{userName}" autocomplete="off" disabled />
+                <label for="mobile" class="col-sm-2 col-form-label">Mobile:</label>
+                <input type="text"  class="form-control" th:field="*{mobile}" autocomplete="off" />
+                <label for="checkin" class="col-sm-2 col-form-label">CheckIn Date:</label>
+                <input type="date" class="form-control" th:field="*{checkin}"/>
+                <div th:if="${#fields.hasErrors('checkin')}" th:errors="*{checkin}">
+                  CheckIn Error
+                  </div>
+                <label for="checkout" class="col-sm-2 col-form-label">CheckOut Date:</label>
+                <input type="date" class="form-control" th:field="*{checkout}"/>
+                <div th:if="${#fields.hasErrors('checkout')}" th:errors="*{checkout}">
+                  CheckOut Error
+                  </div>
+                <button type="submit" class="btn btn-primary mt-3" ><a th:href="|/api/v1/reverse/newreverse/payment/${houseID}/${userID}|" ></a>Reverse Now</button>
+                
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <footer th:insert="template_client.html :: footer"> </footer>
+</body>
+</html>

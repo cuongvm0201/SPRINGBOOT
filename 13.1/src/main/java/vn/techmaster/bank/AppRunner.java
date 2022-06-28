@@ -62,7 +62,8 @@ public class AppRunner implements ApplicationRunner{
     .orElseThrow(() ->new RecordNotFoundException("users", "0003"));
 
     List<AccountSaver> list1 = new ArrayList<>();
-    Account bob_vcb_1 = new Account("00012", vcb, bob, 10000000D,list1);
+    String bob_time = "2020-06-17T10:10:10";
+    Account bob_vcb_1 = new Account("00012", vcb, bob, 10000000D,list1,LocalDateTime.parse(bob_time));
     accountRepo.save(bob_vcb_1);
     
     String str1 = "2021-06-17T10:10:10";
@@ -101,14 +102,19 @@ public class AppRunner implements ApplicationRunner{
     accountSaverRepo.save(accsaver1);
     accountSaverRepo.save(accsaver2);
     
-    Account bob_vcb_2 = new Account("00013", vcb, bob, 0D,null);
+    String bob_time2 = "2020-06-19T10:10:10";
+    Account bob_vcb_2 = new Account("00013", vcb, bob, 0D,null,LocalDateTime.parse(bob_time2));
     accountRepo.save(bob_vcb_2);
 
-    Account alice_acb = new Account("78912", acb, alice, 5000000D,null);
+    String alice_time = "2020-06-18T10:10:10";
+    Account alice_acb = new Account("78912", acb, alice, 5000000D,null,LocalDateTime.parse(alice_time));
     accountRepo.save(alice_acb);
 
-    Account tom_acb = new Account("8901233", acb, tom, 20000000D,null);
-    Account tom_vcb = new Account("1212155", vcb, tom, 2000000D,null);
+
+    String tome_time1 = "2017-03-18T10:00:00";
+    String tome_time2 = "2018-08-18T11:11:11";
+    Account tom_acb = new Account("8901233", acb, tom, 20000000D,null,LocalDateTime.parse(tome_time1));
+    Account tom_vcb = new Account("1212155", vcb, tom, 2000000D,null,LocalDateTime.parse(tome_time2));
     accountRepo.save(tom_acb);
     accountRepo.save(tom_vcb);
 

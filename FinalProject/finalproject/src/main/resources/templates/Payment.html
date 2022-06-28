@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_client.html :: header('Payment')">
+    </head>
+<body>
+    <header th:insert="template_client.html :: topmenu"> </header>
+    <div class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="top-text header-text">
+                <h2>Payment Information</h2>
+                <div class="form-container">
+                    <form action="#" th:action="@{/api/v1/reverse/newreverse/payment}" method="post" name="payRequest" th:object="${payRequest}">
+                        <input type="hidden" class="form-control" th:field="*{reverseID}" />
+                        <input type="hidden" class="form-control" th:field="*{userID}" />
+                        <label for="name">Name</label><br>
+                        <input id="name" maxlength="20" type="text" placeholder="Fill your name" th:field="*{name}"><br>
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                            Name Error
+                          </div>
+                        <label for="cardnumber">Card Number</label><br>
+                        <input id="cardnumber" type="text" placeholder="Enter 16 digit number" th:field="*{cardnumber}"><br>
+                        <div th:if="${#fields.hasErrors('cardnumber')}" th:errors="*{cardnumber}">
+                            cardnumber Error
+                          </div>
+                        <label for="expirationdate">Expiration (month)</label><br>
+                        <input id="expirationdate" type="text" placeholder="Enter month" th:field="*{month}"><br>
+                        <div th:if="${#fields.hasErrors('month')}" th:errors="*{month}">
+                            month Error
+                          </div>
+                        <label for="expirationdate">Expiration (year)</label><br>
+                        <input id="expirationdate" type="text" placeholder="Enter year" th:field="*{year}"><br>
+                        <div th:if="${#fields.hasErrors('year')}" th:errors="*{year}">
+                            year Error
+                          </div>
+                        <label for="securitycode">Security Code</label><br>
+                        <input id="securitycode" type="password" placeholder="Enter security_code" th:field="*{securitycode}"><br><br>
+                        <div th:if="${#fields.hasErrors('securitycode')}" th:errors="*{securitycode}">
+                            securitycode Error
+                          </div>
+                    <button class="btn btn-primary" type="submit">Pay Now</button>
+               
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       
+    <footer th:insert="template_client.html :: footer"> </footer>
+</body>
+</html>

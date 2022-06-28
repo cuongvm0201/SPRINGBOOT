@@ -1,0 +1,57 @@
+package vn.techmaster.finalproject.model;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class House {
+    @Id
+    private String id;
+    private String name;
+    private String description;
+    @Enumerated(EnumType.STRING)
+    private City city;
+    @Enumerated(EnumType.STRING)
+    private TypeHouse typeHouse;
+    private String address;
+   
+    private Long price;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    @JoinColumn(name = "house_id")
+    private List<Reverse> reverses = new ArrayList<>();
+
+    @Column
+    private String logo_main;
+    @Column
+    private String logo_sub_main1;
+    @Column
+    private String logo_sub_main2;
+    @Column
+    private String logo_sub_main3;
+    private LocalDateTime creatAt;
+    private LocalDateTime updateAt;
+}

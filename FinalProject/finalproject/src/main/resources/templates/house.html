@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="template_client.html :: header('List House')"></head>
+<body>
+  <header th:insert="template_client.html :: topmenu"> </header>
+  <div class="page-heading">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="top-text header-text">
+            <h3>Chi Tiết Căn Nhà</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="listing-page">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" >
+          <div class="item">
+            <div class="row" >
+              <div class="col-lg-12">
+                <div class="listing-item">
+                  <div class="left-image" >
+                    <img th:src="|/photo/${house.logo_main}|" alt="">
+                  </div>
+                  <div class="right-content align-self-center">
+                    <a href="#"><h4 th:text="${house.name}"></h4></a> <br>
+                    Giá 1 đêm: <h6 class="price" th:text="${house.price}"></h6><br>
+                    Address: <h6 class="details" th:text="${house.address}"></h6><br>
+                    Type: <span class="info" th:text="${house.typeHouse}"></span><br>
+                    <th:block th:if="${user != null && !user.getRole().toString().equals('ADMIN')}">
+                      <button class="btn btn-primary"><a th:href="|/api/v1/reverse/newreverse/creat/${house.getId()}/${user.getId()}|" style="color: white;">Đặt Ngay</a></button>
+                      </th:block>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+
+     
+<footer th:insert="template_client.html :: footer"> </footer>
+</body>
+</html>

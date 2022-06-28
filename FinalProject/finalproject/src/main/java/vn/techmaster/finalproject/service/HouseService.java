@@ -1,0 +1,80 @@
+package vn.techmaster.finalproject.service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import vn.techmaster.finalproject.exception.SearchException;
+import vn.techmaster.finalproject.model.House;
+import vn.techmaster.finalproject.model.Reverse;
+import vn.techmaster.finalproject.repository.HouseRepo;
+import vn.techmaster.finalproject.request.SearchRequest;
+
+@Service
+public class HouseService {
+    @Autowired
+    private HouseRepo houseRepo;
+
+    public List<House> showAllHouse() {
+        return houseRepo.findAll();
+    }
+
+    public List<House> findHouseBySearch(SearchRequest searchRequest) {
+        LocalDate date1 = LocalDate.parse(searchRequest.checkin());
+        LocalDate date2 = LocalDate.parse(searchRequest.checkout());
+        if (date2.compareTo(LocalDate.now()) < 0
+                || date1.compareTo(date2) > 0) {
+            throw new SearchException("Ngày đã chọn không hợp lệ");
+        }
+
+        List<House> allHouse = showAllHouse();
+        List<House> filterHouse = new ArrayList<>();
+        for (int i = 0; i < allHouse.size(); i++) {
+            if (allHouse.get(i).getCity().equals(searchRequest.city()) && allHouse.get(i).getPrice() >= searchRequest.price() ) {
+             
+                    if (allHouse.get(i).getReverses().isEmpty()) {
+                        filterHouse.add(allHouse.get(i));
+                    }
+                    for (int j = 0; j < allHouse.get(i).getReverses().size(); j++) {
+                        Reverse a = allHouse.get(i).getReverses().get(j);
+
+                        if ((date1.compareTo(date2) <= 0 && date2.isBefore(a.getCheckin()))) {
+                            filterHouse.add(allHouse.get(i));
+                        }
+                        if ((date1.compareTo(a.getCheckout()) > 0 && date2.compareTo(date1) >= 0)) {
+                            filterHouse.add(allHouse.get(i));
+                        }
+                    }
+                
+            }
+
+            if ( !allHouse.get(i).getCity().equals(searchRequest.city()) && allHouse.get(i).getPrice() >= searchRequest.price()) {
+
+                if (allHouse.get(i).getReverses().isEmpty()) {
+                    filterHouse.add(allHouse.get(i));
+                }
+                for (int j = 0; j < allHouse.get(i).getReverses().size(); j++) {
+                    Reverse a = allHouse.get(i).getReverses().get(j);
+
+                    if ((date1.compareTo(date2) <= 0 && date2.isBefore(a.getCheckin()))) {
+                        filterHouse.add(allHouse.get(i));
+                    }
+                    if ((date1.compareTo(a.getCheckout()) > 0 && date2.compareTo(date1) >= 0)) {
+                        filterHouse.add(allHouse.get(i));
+                    }
+                }
+            }
+        }
+
+        return filterHouse;
+    }
+
+    public Optional<House> findById(String id) {
+        return houseRepo.findById(id);
+    }
+}
