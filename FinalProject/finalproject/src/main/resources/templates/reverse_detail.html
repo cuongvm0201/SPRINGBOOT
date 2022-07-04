@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template.html :: header('Reverse Information')">
+<body>
+    <header th:insert="template.html :: topmenu"> </header>
+    <div class="container">
+        <table class="table table-striped table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">ID</th>
+              <th scope="col">User Name</th>
+              <th scope="col">House Name</th>
+              <th scope="col">Check In</th>
+              <th scope="col">Check Out</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="reverse, iStat:${reverses}">
+              <th scope="row" th:text="${iStat.index} +1"></th>
+              <td th:text="${reverse.getId()}"></td>
+              <td th:text="${reverse.user.fullname}"></td>
+              <td th:text="${reverse.house.name}"></td>
+              <td th:text="${reverse.checkin}"></td>
+              <td th:text="${reverse.checkout}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+</body>
+</html>

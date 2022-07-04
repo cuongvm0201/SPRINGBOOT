@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,7 @@ import vn.techmaster.finalproject.exception.UserException;
 import vn.techmaster.finalproject.model.User;
 import vn.techmaster.finalproject.repository.HouseRepo;
 import vn.techmaster.finalproject.request.LoginRequest;
+import vn.techmaster.finalproject.request.RegisterRequest;
 import vn.techmaster.finalproject.service.UserService;
 
 @Controller
@@ -64,6 +66,42 @@ public class LoginController {
         }
     }
 
+    @GetMapping("register")
+    public String showRegister(Model model) {
+        model.addAttribute("registerrequest", new RegisterRequest("", "", "", ""));
+        return "register";
+    }
+
+    @PostMapping("register")
+    public String registerUser(@Valid @ModelAttribute("registerrequest") RegisterRequest registerRequest,
+            BindingResult result) {
+        if(userService.checkEmail(registerRequest.getEmail()) == true) {
+            result.addError(new FieldError("registerrequest", "email", "Email đã tồn tại"));
+            return "register";
+        }
+                
+        if (!registerRequest.getPassword().equals(registerRequest.getConfimPassword())) {
+            result.addError(new FieldError("registerrequest", "confimPassword", "Mật khẩu không trùng nhau"));
+            return "register";
+        }
+        if (result.hasErrors()) {
+            return "register";
+        }
+        User user;
+        try {
+            userService.addUser(registerRequest.getFullname(), registerRequest.getEmail(), registerRequest.getPassword());
+        } catch (UserException e) {
+            result.addError(new FieldError("register", "email", e.getMessage()));
+            return "register";
+        }
+        return "redirect:/";
+    }
+
+    @GetMapping("/validate/{register-code}")
+    public String validateUser(@PathVariable("register-code") String code) {
+        userService.checkValidate(code);
+        return "active";
+    }
 
     @GetMapping("logout")
     public String logout(HttpSession session) {

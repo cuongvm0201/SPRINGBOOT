@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head th:replace="template_client.html :: header('HOME PAGE')">
-   
-</head>
+  </head>
   <body>
+     <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
     <header th:insert="template_client.html :: topmenu"> </header>
     <div class="main-banner"> 
     <div id="booking" class="section">
@@ -58,11 +69,29 @@
                 </div>
               </form>
             </div>
+            <div class="col-lg-10 offset-lg-1">
+              <ul class="categories">
+                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Hà Nội"></span> Hà Nội</a></li>
+                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Đà Nẵng"></span> Đà Nẵng</a></li>
+                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Sài Gòn"></span> Sài Gòn</a></li>
+                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Nha Trang"></span> Nha Trang</a></li>
+                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Phú Quốc"></span> Phú Quốc</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+   
   </div>
-    <header th:insert="template_client.html :: footer"> </header>
+  
+    <footer th:insert="template_client.html :: footer"> </footer>
+    <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/newstyles/assets/js/owl-carousel.js}"></script>
+  <script th:src="@{/newstyles/assets/js/animation.js}"></script>
+  <script th:src="@{/newstyles/assets/js/imagesloaded.js}"></script>
+  <script th:src="@{/newstyles/assets/js/custom.js}"></script>
   </body>
 </html>

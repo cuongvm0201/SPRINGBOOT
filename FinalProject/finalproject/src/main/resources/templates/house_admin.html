@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_admin.html :: header('Dach sách nhà')">
+    </head>
+<body>
+    <header th:insert="template_admin.html :: topmenu"> </header>
+
+  <div class="container">
+
+    <th:block th:if="${user.getRole().toString().equals('MEMBER') }" >
+        <p>Bạn không có quyền xem trang này</p>
+    </th:block>
+    <th:block th:if="${user.getRole().toString().equals('ADMIN') || user.getRole().toString().equals('SUBADMIN') }" >
+    <a th:href="@{/api/v1/admin/creat-house}" class="btn btn-primary ">Add House</a><br><br>
+    <table class="table table-striped table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">City</th>
+          <th scope="col">Type</th>
+          <th scope="col">Address</th>
+          <th scope="col">Price</th>
+          <th scope="col">Picture</th>
+          <th scope="col">Edit</th>
+          <th scope="col">S.O.S</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="house, iStat:${houses}">
+          <th scope="row" th:text="${iStat.index} +1"></th>
+          <td th:text="${house.id}"></td>
+          <td th:text="${house.name}"></td>
+          <td th:text="${house.description}"></td>
+          <td th:text="${house.city}"></td>
+          <td th:text="${house.typeHouse}"></td>
+          <td th:text="${house.address}"></td>
+          <td th:text="${house.price}"></td>
+          <td><img th:src="@{'/firstphotos/'+${house.logo_main}}" width="53px" height="38px"/></td>
+          <td><a th:href="|/api/v1/admin/edit/${house.getId()}|" class="btn btn-primary float-end">Sửa</a></td>
+          <td><a th:href="|/api/v1/admin/delete/${house.getId()}|" class="btn btn-primary float-end">Xóa</a></td>
+        </tr>
+      </tbody>
+    </table>
+ </th:block>
+  </div>
+
+</body>
+</body>
+</html>

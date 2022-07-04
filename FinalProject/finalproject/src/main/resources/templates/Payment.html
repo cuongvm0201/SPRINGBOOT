@@ -39,8 +39,11 @@
                         <div th:if="${#fields.hasErrors('securitycode')}" th:errors="*{securitycode}">
                             securitycode Error
                           </div>
-                    <button class="btn btn-primary" type="submit">Pay Now</button>
-               
+
+                    <button class="btn btn-primary" type="submit">Pay Now</button><br>
+                    </form>
+                    <a class="btn btn-primary"  aria-current="page" href="/api/v1/reverse/newreverse/payment-cancel">Hủy</a>
+                   
                 </div>
               </div>
             </div>

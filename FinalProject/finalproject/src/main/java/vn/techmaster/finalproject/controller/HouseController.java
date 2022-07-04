@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vn.techmaster.finalproject.dto.UserDTO;
 
 import vn.techmaster.finalproject.repository.HouseRepo;
-import vn.techmaster.finalproject.repository.UserRepo;
 import vn.techmaster.finalproject.request.SearchRequest;
 import vn.techmaster.finalproject.service.HouseService;
 
@@ -35,7 +34,6 @@ public class HouseController {
     @GetMapping
     public String getAllHouse(Model model, HttpSession session) {
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println("Session ID: " + session.getId());
         model.addAttribute("user", userDTO);
         model.addAttribute("searchRequest", new SearchRequest(null,null,null,null));
         model.addAttribute("houses", houseRepo.findAll());
@@ -45,7 +43,6 @@ public class HouseController {
     @GetMapping("/{id}")
     public String getHouseById(Model model, @PathVariable String id, HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println("Session ID: " + session.getId());
         model.addAttribute("user", userDTO);
         model.addAttribute("house", houseRepo.findById(id).get());
         return "house";
@@ -53,7 +50,9 @@ public class HouseController {
 
     @GetMapping("/searchhouse")
     public String searchEmptyHouse(@Valid @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult result,
-     Model model) {
+     Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        model.addAttribute("user", userDTO);
         if (result.hasErrors()) {
             return "index";
         }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_admin.html :: header('Thêm Nhà Mới')">
+</head>
+<body>
+    <th:block th:if="${user.getRole().toString().equals('MEMBER')}" >
+        <p>Bạn không có quyền xem trang này</p>
+    </th:block>
+    <header th:insert="template_admin.html :: topmenu"> </header>
+    <div class="container">
+    <th:block th:if="${user.getRole().toString().equals('ADMIN') || user.getRole().toString().equals('SUBADMIN') }" >
+        <div class="row">
+            <input type="hidden" th:field="*{user.id}" />
+            <div class="col-lg-8 mt-5">
+              <form action="#" th:action="@{/api/v1/admin/creat-house}" method="post" name="houseRequest" enctype="multipart/form-data"
+                th:object="${houseRequest}">
+                <div class="form-group row">
+                  <label for="name" class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="name" autocomplete="off" th:field="*{name}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="website" class="col-sm-2 col-form-label">Description</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="description" autocomplete="off" th:field="*{description}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+                </div>
+                <div class="form-group row mt-3">
+                    <label for="website" class="col-sm-2 col-form-label">City</label>
+                    <div class="col-sm-4">
+                <select class="form-control" name="city" th:field="*{city}">
+                    <option value="">-Chọn Thành Phố-</option>
+                    <option  th:each="state : ${T(vn.techmaster.finalproject.model.City).values()}" th:value="${state}"
+                            th:text="${state.label}">
+                    </option>
+                </select>
+                <div class="text-danger" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Error</div>
+            </div>
+            </div>
+            <div class="form-group row mt-3">
+                <label for="website" class="col-sm-2 col-form-label">Type House</label>
+                <div class="col-sm-4">
+            <select class="form-control" name="typeHouse" th:field="*{typeHouse}">
+                <option value="">-Chọn Loại Nhà-</option>
+                <option  th:each="state : ${T(vn.techmaster.finalproject.model.TypeHouse).values()}" th:value="${state}"
+                        th:text="${state.label}">
+                </option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('typeHouse')}" th:errors="*{typeHouse}">Type Error</div>
+        </div>
+        </div>
+                <div class="form-group row mt-3">
+                  <label for="email" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="address" autocomplete="off" th:field="*{address}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</div>
+                </div>
+                <div class="form-group row mt-3">
+                    <label for="email" class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-4">
+                      <input type="text" class="form-control" id="price" autocomplete="off" th:field="*{price}" />
+                    </div>
+                    <div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
+                  </div>
+                <div class="form-group row mt-3">
+                  <label for="logo" class="col-sm-2 col-form-label">Select a Logo</label>
+                  <div class="col-sm-4">
+                    <input type="file" class="form-control" th:field="*{logo}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('logo')}" th:errors="*{logo}">Upload Error</div>
+                </div>
+                <button class="btn btn-primary mt-3" type="submit">Thêm Mới</button>
+              </form>
+            </div>
+          </div>
+    </th:block>
+
+</div>
+</body>
+</html>

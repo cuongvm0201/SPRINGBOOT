@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_admin.html :: header('Dach sách khách hàng')">
+    </head>
+<body>
+    <header th:insert="template_admin.html :: topmenu"> </header>
+    <div class="registration-form">
+        <form method="post"
+        action="#"
+        th:action="@{/api/v1/admin/creat-user-admin}"
+        th:object="${creatAccRequest}"
+        >
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="username" placeholder="Username" th:field="*{fullname}"/>
+                <div th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}">
+                  Fullname Error
+                </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control item" id="email" placeholder="Email" th:field="*{email}"/>
+              <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                Email Error
+              </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control item" id="password" placeholder="Password" th:field="*{password}"/>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                  Password Error
+                </div>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control item" id="password" placeholder="ConfimPassword" th:field="*{confimPassword}"/>
+              <div th:if="${#fields.hasErrors('confimPassword')}" th:errors="*{confimPassword}">
+                Password Error
+              </div>
+          </div>
+          <div class="col-sm-4">
+            <select class="form-control" name="state" th:field="*{state}">
+                <option value="">-Chọn Trạng Thái-</option>
+                <option  th:each="state : ${T(vn.techmaster.finalproject.model.State).values()}" th:value="${state}"
+                        th:text="${state.label}">
+                </option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">State Error</div>
+        </div>
+        <div class="col-sm-4">
+            <select class="form-control" name="role" th:field="*{role}">
+                <option value="">-Chọn Role-</option>
+                <option  th:each="state : ${T(vn.techmaster.finalproject.model.Roles).values()}" th:value="${state}"
+                        th:text="${state.label}">
+                </option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('role')}" th:errors="*{role}">Roles Error</div>
+        </div>
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-block create-account">Create Account</button>
+            </div>
+  
+            <div class="form-group">
+              <button class="btn btn-block create-account"><a style="text-decoration: none;" href="/">Back</a></button>
+            </div>
+        </form>
+</body>
+</html>

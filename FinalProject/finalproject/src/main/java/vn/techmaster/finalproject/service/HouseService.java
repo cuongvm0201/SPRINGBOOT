@@ -3,8 +3,8 @@ package vn.techmaster.finalproject.service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,7 +53,7 @@ public class HouseService {
                 
             }
 
-            if ( !allHouse.get(i).getCity().equals(searchRequest.city()) && allHouse.get(i).getPrice() >= searchRequest.price()) {
+            if ( searchRequest.city() == null && allHouse.get(i).getPrice() >= searchRequest.price()) {
 
                 if (allHouse.get(i).getReverses().isEmpty()) {
                     filterHouse.add(allHouse.get(i));
@@ -74,7 +74,30 @@ public class HouseService {
         return filterHouse;
     }
 
+    public House add(House house) {
+        String id = UUID.randomUUID().toString();
+        house.setId(id);
+        houseRepo.save(house);
+        return house;
+    }
+
+    public void updateLogo(String id, String logo_path) {
+        Optional<House> house = findById(id);
+        house.get().setLogo_main(logo_path);
+        houseRepo.save(house.get());
+    }
+
     public Optional<House> findById(String id) {
         return houseRepo.findById(id);
+    }
+
+
+    public void edit(House houseEdit) {
+        
+        houseRepo.save(houseEdit);
+    }
+
+    public void deleteById(String id) {
+        houseRepo.deleteById(id);
     }
 }

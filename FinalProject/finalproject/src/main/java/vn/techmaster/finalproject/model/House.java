@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -44,14 +46,25 @@ public class House {
     @JoinColumn(name = "house_id")
     private List<Reverse> reverses = new ArrayList<>();
 
-    @Column
+    
     private String logo_main;
-    @Column
+  
     private String logo_sub_main1;
-    @Column
+
     private String logo_sub_main2;
-    @Column
+ 
     private String logo_sub_main3;
+    
     private LocalDateTime creatAt;
     private LocalDateTime updateAt;
+
+    @PrePersist
+    public void prePersist() {
+        creatAt = LocalDateTime.now();
+      }
+
+    @PreRemove
+    public void preRemove() {
+        reverses.stream().forEach(p -> p.setHouse(null));
+      }
 }

@@ -1,8 +1,13 @@
 package vn.techmaster.finalproject.model;
 
 public enum State {
-    PENDING,
-    ACTIVE,
-    DISABLED,
-    REMOVED
+    PENDING("PENDING"),
+    ACTIVE("ACTIVE"),
+    DISABLED("DISABLED"),
+    REMOVED("REMOVED");
+
+    public final String label;
+    private State(String label) {
+      this.label = label;
+    }
 }

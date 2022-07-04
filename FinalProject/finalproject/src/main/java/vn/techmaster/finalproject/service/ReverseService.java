@@ -1,7 +1,10 @@
 package vn.techmaster.finalproject.service;
 
 
-import java.util.UUID;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +25,17 @@ public class ReverseService {
 
         return reverseRepo.save(reverse);
     }
+
+    public List<Reverse> findAllReverseByUserID(String userID){
+         List<Reverse> allReverse = reverseRepo.findAll();   
+         List<Reverse> reverseByUser = new ArrayList<>();
+         for(int i = 0; i < allReverse.size();i++){
+            if(allReverse.get(i).getUser().getId().equals(userID)){
+                reverseByUser.add(allReverse.get(i));
+            }
+         }
+        return reverseByUser;
+    }
+
+
 }

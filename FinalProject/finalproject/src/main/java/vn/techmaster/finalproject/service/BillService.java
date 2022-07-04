@@ -1,6 +1,8 @@
 package vn.techmaster.finalproject.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import vn.techmaster.finalproject.repository.BillRepo;
 
 @Service
 public class BillService {
-    @Autowired private SendBillToMailService sendBillToMailService;
+    @Autowired private EmailService emailService;
     @Autowired private BillRepo billRepo;
     public Bill creatBillByUser(Bill newBill){
         long startDate = newBill.getReverse().getCheckin().toEpochDay();
@@ -43,7 +45,7 @@ public class BillService {
 
 
         //Send Mail
-        sendBillToMailService.sendMail(mailUser, "Thông tin hóa đơn thuê nhà", 
+        emailService.sendMail(mailUser, "Thông tin hóa đơn thuê nhà", 
         "Mã đơn hàng: " + id + "\n" +
         "Tên người đặt: " + userName + "\n" +
         "SĐT Khách Hàng: " + mobile + "\n" +
@@ -53,4 +55,16 @@ public class BillService {
         "Ngày Check-Out: " + checkout
         );
     }
+
+
+    public List<Bill> findAllBillByUserID(String userID){
+        List<Bill> allBills = billRepo.findAll();   
+        List<Bill> billByUser = new ArrayList<>();
+        for(int i = 0; i < allBills.size();i++){
+           if(allBills.get(i).getUser().getId().equals(userID)){
+            billByUser.add(allBills.get(i));
+           }
+        }
+       return billByUser;
+   }
 }

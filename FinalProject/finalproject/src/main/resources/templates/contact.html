@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_client.html :: header('CONTACT')">
+    </head>
+<body>
+         <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+    <header th:insert="template_client.html :: topmenu"> </header>
+    <div class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="top-text header-text">
+                <h6>Keep in touch with us</h6>
+                <h2>Feel free to send us a message about your business needs</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="contact-page">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="inner-content">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div id="map">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.862232099335!2d105.7943114!3d20.9981589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acba7ddb0f43%3A0xe7d7c05f85f830a!2zNDggUC4gVOG7kSBI4buvdSwgVHJ1bmcgVsSDbiwgVOG7qyBMacOqbSwgSMOgIE7hu5lp!5e0!3m2!1svi!2s!4v1656392416522!5m2!1svi!2s" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 align-self-center">
+                    <form id="contact" action="#" th:action="@{/api/v1/user/contact}" method="post" name="contactRequest" th:object="${contactRequest}">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <input type="text" name="name" id="name" placeholder="Tên" autocomplete="on" th:field="*{fullname}" required>
+                          </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <input type="text" name="mobile" id="mobile" placeholder="Số Điện Thoại" autocomplete="on" th:field="*{phone}" required>
+                          </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Email" th:field="*{email}" required="">
+                          </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <textarea name="message" type="text" class="form-control" id="message" placeholder="Tin Nhắn" th:field="*{message}" required=""></textarea>  
+                          </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                          <fieldset>
+                            <button type="submit" id="form-submit" class="main-button "><i class="fa fa-paper-plane"></i> Gửi Đi</button>
+                          </fieldset>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer th:insert="template_client.html :: footer"> </footer>
+    <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/newstyles/assets/js/owl-carousel.js}"></script>
+  <script th:src="@{/newstyles/assets/js/animation.js}"></script>
+  <script th:src="@{/newstyles/assets/js/imagesloaded.js}"></script>
+  <script th:src="@{/newstyles/assets/js/custom.js}"></script>
+</body>
+</html>

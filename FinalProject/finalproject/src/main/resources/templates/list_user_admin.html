@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_admin.html :: header('Dach sách khách hàng')">
+    </head>
+<body>
+    <header th:insert="template_admin.html :: topmenu"> </header>
+
+  <div class="container">
+
+    <th:block th:if="${user.getRole().toString().equals('MEMBER') }" >
+        <p>Bạn không có quyền xem trang này</p>
+    </th:block>
+    <th:block th:if="${user.getRole().toString().equals('ADMIN') || user.getRole().toString().equals('SUBADMIN') }" >
+    <a th:href="@{/api/v1/admin/creat-user-admin}" class="btn btn-primary ">Add User</a><br><br>
+    <table class="table table-striped table-bordered">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">ID</th>
+          <th scope="col">User_Name</th>
+          <th scope="col">User_Email</th>
+          <th scope="col">User_Phone</th>
+          <th scope="col">User_Address</th>
+          <th scope="col">User_City</th>
+          <th scope="col">User_State</th>
+          <th scope="col">User_Role</th>
+          <th scope="col">CreatAt</th>
+          <th scope="col">UpdateAt</th>
+          <th scope="col">Edit</th>
+          <th scope="col">S.O.S</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="member, iStat:${listuser}">
+          <th scope="row" th:text="${iStat.index} +1"></th>
+          <td th:text="${member.id}"></td>
+          <td th:text="${member.fullname}"></td>
+          <td th:text="${member.email}"></td>
+          <td th:text="${member.mobile}"></td>
+          <td th:text="${member.address}"></td>
+          <td th:text="${member.city}"></td>
+          <td th:text="${member.state}"></td>
+          <td th:text="${member.role}"></td>
+          <td th:text="${member.creatAt}"></td>
+          <td th:text="${member.updateAt}"></td>
+          <td><a th:href="|/api/v1/admin/edit-user-admin/${member.getId()}|" class="btn btn-primary float-end">Sửa</a></td>
+          <td><a th:href="|/api/v1/admin/delete-user/${member.getId()}|" class="btn btn-primary float-end">Xóa</a></td>
+        </tr>
+      </tbody>
+    </table>
+ </th:block>
+  </div>
+
+</body>
+</html>

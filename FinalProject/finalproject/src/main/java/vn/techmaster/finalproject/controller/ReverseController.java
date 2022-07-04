@@ -52,12 +52,12 @@ public class ReverseController {
     @PathVariable String userID,
     HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println("Session ID: " + session.getId());
         model.addAttribute("user", userDTO);
         House currentHouse = houseRepo.findById(houseID).get();
         User currentUser = userRepo.findById(userDTO.getId()).get();
         model.addAttribute("reverseRequest",
-        new ReverseRequest("",userDTO.getId(),houseID,currentHouse.getName(),currentUser.getMobile(),currentUser.getFullname(),"",""));
+        new ReverseRequest("",userID,houseID,
+        currentHouse.getName(),currentUser.getFullname(),currentUser.getMobile(),"",""));
         return "reverse_add";
     }
 
@@ -65,62 +65,86 @@ public class ReverseController {
     public String creatNewReverse(@Valid @ModelAttribute("reverseRequest") ReverseRequest reverseRequest,
     BindingResult result,
     Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        model.addAttribute("user", userDTO);
           // Nêú có lỗi thì trả về trình duyệt
           if (result.hasErrors()) {
-            return "redirect:/api/v1/reverse/newreverse/creat/" + reverseRequest.getHouseID() + "/" + reverseRequest.getUserID();
-        }
-        // if(reverseRequest.getCheckout() == null && reverseRequest.getCheckin() == null){
-        //     result.addError(new FieldError("reverseRequest", "checkin", "Ngày không được để trống"));
-        //     result.addError(new FieldError("reverseRequest", "checkout", "Ngày không được để trống"));
-        // }
+            return "reverse_add";
+         }
+         // check lịch đặt của nhà với id - start
+            LocalDate checkin = LocalDate.parse(reverseRequest.getCheckin());
+            LocalDate checkout = LocalDate.parse(reverseRequest.getCheckout());
+        
+         
+         if(checkin.compareTo(checkout) > 0){
+             result.addError(new FieldError("reverseRequest", "checkin", "Ngày không hợp lệ"));
+             return "reverse_add";
+         }
+ 
+         if(checkout.compareTo(LocalDate.now()) <= 0){
+             result.addError(new FieldError("reverseRequest", "checkout", "Ngày không hợp lệ"));
+             return "reverse_add";
+         }
+ 
         List<House> allCurrentHouse = houseRepo.findAll();
         List<Reverse> allCurrentReverse = reverseRepo.findAll();
-        LocalDate checkin = LocalDate.parse(reverseRequest.getCheckin());
-        LocalDate checkout = LocalDate.parse(reverseRequest.getCheckout());
-        if(checkout.compareTo(LocalDate.now()) <= 0){
-            result.addError(new FieldError("reverseRequest", "checkout", "Ngày không hợp lệ"));
-        }
+       
+       
+        
+        for (int i = 0; i < allCurrentHouse.size(); i++) {
+            for (int j = 0; j < allCurrentHouse.get(i).getReverses().size(); j++) {
+                Reverse a = allCurrentHouse.get(i).getReverses().get(j);
+                    if (checkin.equals(a.getCheckin()) && checkout.equals(a.getCheckout())) {
+                        result.addError(new FieldError("reverseRequest", "checkin", "Ngày này đã có lịch đặt"));
+                        result.addError(new FieldError("reverseRequest", "checkout", "Ngày này đã có lịch đặt"));
+                        return "reverse_add";
+                    }
+                    if ((checkin.compareTo(a.getCheckin()) <= 0 && checkout.compareTo(a.getCheckout()) >= 0)) {
+                        result.addError(new FieldError("reverseRequest", "checkin", "Ngày này đã có lịch đặt"));
+                        result.addError(new FieldError("reverseRequest", "checkout", "Ngày này đã có lịch đặt"));
+                        return "reverse_add";
+                        }
 
-        if(checkin.compareTo(checkout) > 0){
-            result.addError(new FieldError("reverseRequest", "checkin", "Ngày không hợp lệ"));
+                        if ((checkin.compareTo(a.getCheckin()) >= 0 && checkout.compareTo(a.getCheckout()) <= 0)) {
+                            result.addError(new FieldError("reverseRequest", "checkin", "Ngày này đã có lịch đặt"));
+                            result.addError(new FieldError("reverseRequest", "checkout", "Ngày này đã có lịch đặt"));
+                            return "reverse_add";
+                            }
+                            if (((checkin.compareTo(a.getCheckin()) >= 0 && checkin.compareTo(a.getCheckout()) <= 0) &&  checkout.compareTo(a.getCheckout()) >= 0)) {
+                                result.addError(new FieldError("reverseRequest", "checkin", "Ngày này đã có lịch đặt"));
+                                result.addError(new FieldError("reverseRequest", "checkout", "Ngày này đã có lịch đặt"));
+                                return "reverse_add";
+                                }       
+            }
         }
         
-        // for (int i = 0; i < allCurrentHouse.size(); i++) {
-        //     for (int j = 0; j < allCurrentHouse.get(i).getReverses().size(); j++) {
-        //         Reverse a = allCurrentHouse.get(i).getReverses().get(j);
-        //             if ((checkin.compareTo(checkout) <= 0 && checkout.compareTo(a.getCheckin()) >=0 && checkout.compareTo(a.getCheckout()) <= 0)) {
-        //                 result.addError(new FieldError("reverse", "checkin", "Ngày này không có phòng trống"));
-        //                 result.addError(new FieldError("reverse", "checkout", "Ngày này không có phòng trống"));
-        //                 }
-        //             if ((checkin.compareTo(a.getCheckout()) > 0 && checkout.compareTo(checkin) >= 0)) {
-        //                     result.addError(new FieldError("reverse", "checkout", "Ngày không được để trống"));
-        //                 }
-        //     }
-        // }
-        
-        
+        // check lịch đặt của nhà với id - end 
 
       
 
 
-        UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println("Session ID: " + session.getId());
-        model.addAttribute("user", userDTO);
-        Reverse newReverse = new Reverse(UUID.randomUUID().toString(), 
-        userService.findById(userDTO.getId()).get(),
-         houseService.findById(reverseRequest.getHouseID()).get(),
-          null, checkin, checkout);
-          model.addAttribute("payRequest", new PayRequest(newReverse.getId(),reverseRequest.getUserID(),"","","","",""));
-          reverseService.creatNewReverse(newReverse);
-        return "redirect:/api/v1/reverse/newreverse/payment/" + newReverse.getId() + "/" + userDTO.getId() ;
+       
+        String newReverseID = UUID.randomUUID().toString();
+        session.setAttribute("reverseDTO",
+                    new Reverse(newReverseID,
+                    userService.findById(userDTO.getId()).get(),
+                    houseService.findById(reverseRequest.getHouseID()).get(),
+                     null,
+                     checkin,
+                     checkout
+                     ));
+          model.addAttribute("payRequest", new PayRequest(newReverseID,reverseRequest.getUserID(),"","","","",""));
+          
+        return "redirect:/api/v1/reverse/newreverse/payment/" + newReverseID + "/" + userDTO.getId() ;
     }
 
     @GetMapping("/newreverse/payment/{reverseID}/{userID}")
     public String paymentReverse(Model model,HttpSession session, @PathVariable String reverseID, @PathVariable String userID){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println("Session ID: " + session.getId());
+        Reverse newReverse = (Reverse) session.getAttribute("reverseDTO");
+        model.addAttribute("reverseDTO", newReverse);
         model.addAttribute("user", userDTO);
-        model.addAttribute("payRequest", new PayRequest(reverseID,userID,"","","","",""));
+        model.addAttribute("payRequest", new PayRequest(newReverse.getId(),userID,"","","","",""));
         model.addAttribute("reverseID", reverseID);
         model.addAttribute("userID", userID);
         return "Payment";
@@ -132,19 +156,26 @@ public class ReverseController {
         if (result.hasErrors()) {
             return "Payment";
         }
+
+        Reverse newReverse = (Reverse) session.getAttribute("reverseDTO");
+        model.addAttribute("reverseDTO", newReverse);
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        System.out.println("Session ID: " + session.getId());
         model.addAttribute("user", userDTO);
-        
+        reverseService.creatNewReverse(newReverse);
         Bill newBill = new Bill();
         newBill.setId(UUID.randomUUID().toString());
         newBill.setUser(userRepo.findById(userDTO.getId()).get());
         newBill.setReverse(reverseRepo.findById(payRequest.getReverseID()).get());
         newBill.setCreatAt(LocalDateTime.now());
         billService.creatBillByUser(newBill);
-        
+        session.removeAttribute("reverseDTO");
         return "success";
     }
     
+    @GetMapping("/newreverse/payment-cancel")
+    public String cancelPayment(HttpSession session) {
+        session.removeAttribute("reverseDTO");
+        return "redirect:/";
+    }
 
 }

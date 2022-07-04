@@ -26,11 +26,24 @@ public class ActiveCodeService {
         activeCodeRepo.save(newActive);
         return newActive;
     }
+
+    public void removeCode(String id){
+
+    }
     public ConcurrentHashMap<String, String> getAllActiveCode() {
         ConcurrentHashMap<String, String> results = new ConcurrentHashMap<>();
         List<ActiveCode> activecodes = activeCodeRepo.findAll();
         for (int i = 0; i < activecodes.size(); i++) {
               results.put(activecodes.get(i).getCode(),activecodes.get(i).getUser_id());
+        }
+        return results;
+    }
+
+    public ConcurrentHashMap<String,String> getActiveCodeByID(){
+        ConcurrentHashMap<String, String> results = new ConcurrentHashMap<>();
+        List<ActiveCode> activecodes = activeCodeRepo.findAll();
+        for (int i = 0; i < activecodes.size(); i++) {
+              results.put(activecodes.get(i).getCode(),activecodes.get(i).getId());
         }
         return results;
     }
