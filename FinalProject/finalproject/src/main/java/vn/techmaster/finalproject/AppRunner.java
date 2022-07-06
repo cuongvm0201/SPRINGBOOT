@@ -79,29 +79,159 @@ public class AppRunner implements ApplicationRunner {
         userrRepo.save(user2);
         House house1 = House.builder()
         .id("1001")
-        .city(City.DaNang)
-        .name("Nhà Cao Cấp 1")
+        .city(City.HoChiMinh)
+        .name("Căn hộ chung cư tại Vinhomes Golden River Ba Son")
+        .description("Cho thuê gấp căn hộ Vinhomes Golden River, O2 Tôn Đức Thắng, P Bến Nghé, Quận 1. TP. HCM."
+         +"\n" 
+         + "Căn hộ 02 phòng ngủ (75 - 100m2)"
+          +"\n" + ".Full nội thất")
         .typeHouse(TypeHouse.STAR4)
-        .address("12 Hải Phòng, Chính Gián, Hải Châu, Đà Nẵng")
-        .price(1500000L)
-        .logo_main("listing-01.jpg")
-        .logo_sub_main1("listing-05.jpg")
-        .logo_sub_main2("listing-06.jpg")
+        .address("O2 Tôn Đức Thắng, P Bến Nghé, Quận 1.")
+        .price(1000000L)
+        .logo_main("logomain-nha1.jpg")
+        .logo_sub_main1("logosubmain1-nha1.jpg")
+        .logo_sub_main2("logosubmain2-nha1.jpg")
+        .logo_sub_main3("logosubmain3-nha1.jpg")
         .creatAt(LocalDateTime.now())
         .build();
 
         House house2 = House.builder()
         .id("1002")
-        .city(City.HaNoi)
-        .name("Nhà Cao Cấp 2")
+        .city(City.HoChiMinh)
+        .name("Căn hộ chung cư tại Vinhomes Grand Park")
+        .description("CHO THUÊ CĂN HỘ CAO CẤP TẠI VINHOME GRAND PARK"
+        +"\n" 
+        + "2 Phòng Ngủ, 1 WC."
+         +"\n" + ".Full nội thất")
         .typeHouse(TypeHouse.STAR4)
-        .address("333 Lê Duẩn, Hà Nội")
-        .price(2000000L)
-        .logo_main("listing-02.jpg")
+        .address("Chung cư Grand Park Quận 9, Hồ Chí Minh")
+        .price(1500000L)
+        .logo_main("logomain-nha2.jpeg")
+        .logo_sub_main1("logosubmain1-nha2.jpeg")
+        .logo_sub_main2("logosubmain2-nha2.jpeg")
+        .logo_sub_main3("logosubmain3-nha2.jpeg")
         .creatAt(LocalDateTime.now())
         .build();
+
+        House house3 = House.builder()
+        .id("1003")
+        .city(City.HoChiMinh)
+        .name("Căn hộ chung cư tại Masteri Thảo Điền")
+        .description("CHO THUÊ CĂN HỘ CAO CẤP MASTERI THẢO ĐIỀN"
+        +"\n" 
+        + "Căn hộ Masteri 2 phòng ngủ, diện tích 65m2 - 72m2."
+         +"\n" + ".Full nội thất")
+        .typeHouse(TypeHouse.STAR4)
+        .address("Chung cư Masteri Thảo Điền Quận 2, Hồ Chí Minh")
+        .price(1500000L)
+        .logo_main("logomain-nha3.jpg")
+        .logo_sub_main1("logosubmain1-nha3.jpg")
+        .logo_sub_main2("logosubmain2-nha3.jpg")
+        .logo_sub_main3("logosubmain3-nha3.jpg")
+        .creatAt(LocalDateTime.now())
+        .build();
+
+        House house4 = House.builder()
+        .id("1004")
+        .city(City.HoChiMinh)
+        .name("Căn hộ chung cư tại Sunwah Pearl")
+        .description("CĂN GÓC 3PN VIEW SÔNG TRỰC DIỆN, GIÁ THUÊ CỰC SỐC"
+        +"\n" 
+        + "Kết cấu: 3Phòng Ngủ - 2WC."
+        +"\n" 
+        + "Diện tích: 128.15 m2."
+         +"\n" + ".Full nội thất")
+        .typeHouse(TypeHouse.STAR5)
+        .address("90 Nguyễn Hữu Cảnh, P.22, Q.Bình Thạnh, Tp.HCM")
+        .price(2000000L)
+        .logo_main("logomain-nha4.jpg")
+        .logo_sub_main1("logosubmain1-nha4.jpg")
+        .logo_sub_main2("logosubmain2-nha4.jpg")
+        .logo_sub_main3("logosubmain3-nha4.jpg")
+        .creatAt(LocalDateTime.now())
+        .build();
+
+        House house5 = House.builder()
+        .id("1005")
+        .city(City.HaNoi)
+        .name("Căn hộ chung cư tại Times City")
+        .description("CĂN THUÊ MỚI NHẤT TIMES CITY THÁNG 7/2022"
+        +"\n" 
+        + "Căn hộ 2 Phòng Ngủ: 80m2."
+         +"\n" + ".Full nội thất")
+        .typeHouse(TypeHouse.STAR4)
+        .address("Khu đô thị Vinhomes Times City, 458 Minh Khai, HBT, HN")
+        .price(1000000L)
+        .logo_main("logomain-nha5.jpg")
+        .logo_sub_main1("logosubmain1-nha5.jpg")
+        .logo_sub_main2("logosubmain2-nha5.jpg")
+        .logo_sub_main3("logosubmain3-nha5.jpg")
+        .creatAt(LocalDateTime.now())
+        .build();
+
+        House house6 = House.builder()
+        .id("1006")
+        .city(City.HaNoi)
+        .name("Căn hộ chung cư tại Goldmark City")
+        .description("CĂN HỘ 2 Phòng Ngủ CHO THUÊ TẠI TÒA SAPPHIRE GIÁ RẺ NHẤT THỊ TRƯỜNG."
+        +"\n" 
+        + "Căn hộ loại 2 Phòng Ngủ diện tích rộng 75m2."
+         +"\n" + "Full nội thất")
+        .typeHouse(TypeHouse.STAR4)
+        .address("136 Hồ Tùng Mậu, Phú Diễn, Bắc Từ Liêm, Hà Nội.")
+        .price(1200000L)
+        .logo_main("logomain-nha6.jpg")
+        .logo_sub_main1("logosubmain1-nha6.jpg")
+        .logo_sub_main2("logosubmain2-nha6.jpg")
+        .logo_sub_main3("logosubmain3-nha6.jpg")
+        .creatAt(LocalDateTime.now())
+        .build();
+
+        House house7 = House.builder()
+        .id("1007")
+        .city(City.HaNoi)
+        .name("Căn hộ chung cư D’. El Dorado")
+        .description("TÒA NHÀ D'EL DORADO HỖ TRỢ CHO THUÊ CĂN HỘ 2 Phòng Ngủ"
+        +"\n" 
+        + "Căn hộ diện tích 59m2 - 92m2: 2 phòng ngủ, 2 WC."
+         +"\n" + "Full nội thất")
+        .typeHouse(TypeHouse.STAR4)
+        .address("659A, Đường Lạc Long Quân, Phường Phú Thượng, Tây Hồ, Hà Nội")
+        .price(1500000L)
+        .logo_main("logomain-nha7.jpg")
+        .logo_sub_main1("logosubmain1-nha7.jpg")
+        .logo_sub_main2("logosubmain2-nha7.jpg")
+        .logo_sub_main3("logosubmain3-nha7.jpg")
+        .creatAt(LocalDateTime.now())
+        .build();
+
+        House house8 = House.builder()
+        .id("1008")
+        .city(City.HaNoi)
+        .name("Căn hộ chung cư tại Times City ParkHill")
+        .description("CĂN HỘ CHO THUÊ TẠI TIMES CITY - PARK HILL"
+        +"\n" 
+        + "Căn hộ 2 phòng ngủ - Diện tích: 83m2 - 87m2."
+         +"\n" + "Full nội thất")
+        .typeHouse(TypeHouse.STAR4)
+        .address("L2 T11 OF-05 Khu đô thị Vinhomes Times City, 458 Minh Khai, HBT, HN")
+        .price(1500000L)
+        .logo_main("logomain-nha8.jpg")
+        .logo_sub_main1("logosubmain1-nha8.jpg")
+        .logo_sub_main2("logosubmain2-nha8.jpg")
+        .logo_sub_main3("logosubmain3-nha8.jpg")
+        .creatAt(LocalDateTime.now())
+        .build();
+
+
         houseRepo.save(house1);
         houseRepo.save(house2);
+        houseRepo.save(house3);
+        houseRepo.save(house4);
+        houseRepo.save(house5);
+        houseRepo.save(house6);
+        houseRepo.save(house7);
+        houseRepo.save(house8);
         String str1 = "2022-06-28";
         String str2 = "2022-07-04";
         List<Bill> list1 = new ArrayList<>();

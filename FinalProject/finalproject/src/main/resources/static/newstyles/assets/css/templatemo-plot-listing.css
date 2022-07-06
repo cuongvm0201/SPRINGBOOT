@@ -136,6 +136,12 @@ img {
   overflow: hidden;
 }
 
+/* .listing-item .left-image img {
+  width: 745px;
+  height: 555px;
+  object-fit: cover;
+} */
+
 /* 
 ---------------------------------------------
 global styles
@@ -2072,4 +2078,6 @@ responsive
   .category-post .icon {
     transform: translateX(-22px);
   }
+  
+
 }

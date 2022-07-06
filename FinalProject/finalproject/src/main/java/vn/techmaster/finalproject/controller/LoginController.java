@@ -49,7 +49,7 @@ public class LoginController {
             session.setAttribute("user",
                     new UserDTO(user.getId(), user.getFullname(), user.getEmail(), user.getRole()));
                     
-            return "redirect:/api/v1/house";
+            return "redirect:/";
         } catch (UserException ex) {
             switch (ex.getMessage()) {
                 case "User is not found":

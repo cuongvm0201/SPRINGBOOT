@@ -7,7 +7,7 @@
         <p>Bạn không có quyền xem trang này</p>
     </th:block>
     <header th:insert="template_admin.html :: topmenu"> </header>
-    <img th:src="@{'/firstphotos/'+${house.logo_main}}" width="200" />
+    <img th:src="@{'/firstphotos/'+${house.logo_main}}" width="500px" height="380px" /><br>
     <div class="container">
     <th:block th:if="${user.getRole().toString().equals('ADMIN') || user.getRole().toString().equals('SUBADMIN') }" >
         <div class="row">
@@ -16,6 +16,9 @@
                 th:object="${houseRequest}">
                 <input type="hidden" class="form-control" th:field="*{id}" />
                 <input type="hidden" class="form-control" th:field="*{logo_main}" />
+                <input type="hidden" class="form-control" th:field="*{logo_sub_main1}" />
+                <input type="hidden" class="form-control" th:field="*{logo_sub_main2}" />
+                <input type="hidden" class="form-control" th:field="*{logo_sub_main3}" />
                 <div class="form-group row">
                   <label for="name" class="col-sm-2 col-form-label">Name</label>
                   <div class="col-sm-4">
@@ -74,6 +77,27 @@
                     <input type="file" class="form-control" th:field="*{logo}" />
                   </div>
                   <div class="text-danger" th:if="${#fields.hasErrors('logo')}" th:errors="*{logo}">Upload Error</div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="logo" class="col-sm-2 col-form-label">Select a Logo 1</label>
+                  <div class="col-sm-4">
+                    <input type="file" class="form-control" th:field="*{logo1}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('logo1')}" th:errors="*{logo1}">Upload Error</div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="logo" class="col-sm-2 col-form-label">Select a Logo 2</label>
+                  <div class="col-sm-4">
+                    <input type="file" class="form-control" th:field="*{logo2}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('logo2')}" th:errors="*{logo2}">Upload Error</div>
+                </div>
+                <div class="form-group row mt-3">
+                  <label for="logo" class="col-sm-2 col-form-label">Select a Logo 3</label>
+                  <div class="col-sm-4">
+                    <input type="file" class="form-control" th:field="*{logo3}" />
+                  </div>
+                  <div class="text-danger" th:if="${#fields.hasErrors('logo3')}" th:errors="*{logo3}">Upload Error</div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Xác nhận</button>
               </form>

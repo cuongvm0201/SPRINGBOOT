@@ -34,10 +34,10 @@
           <div class="col-lg-12" >
             <div class="item">
               <div class="row" >
-                <div class="col-lg-12" th:each="house, iStat:${houses}" th:class="${iStat.odd}? 'odd'" >
+                <div class="col-lg-12" th:each="house, iStat:${listHouses}" th:class="${iStat.odd}? 'odd'" >
                   <div class="listing-item">
                     <div class="left-image">
-                      <a th:href="|/api/v1/house/${house.id}|"><img th:src="@{'/firstphotos/'+${house.logo_main}}" width="500px" height="380px" alt=""></a>
+                      <a th:href="|/api/v1/house/${house.id}|"><img th:src="@{'/firstphotos/'+${house.logo_main}}" alt=""></a>
                       <div class="hover-content">
                         <div class="main-white-button">
                           <th:block th:if="${user == null}">
@@ -59,11 +59,33 @@
                   </div>
                 </div>
               </div>
+              <div th:if="${totalPages > 1}">
+                <div class="row col-sm-10">
+                    <div class="col-sm-2">
+                        Total Rows: [[${totalItems}]]
+                    </div>
+                    <div class="col-sm-1">
+                        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+          <a th:if="${currentPage != i}" th:href="@{'/api/v1/house/page/' + ${i}}">[[${i}]]</a>
+          <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+                        </span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/api/v1/house/page/' + ${currentPage + 1}}">Next</a>
+                        <span th:unless="${currentPage < totalPages}">Next</span>
+                    </div>
+    
+                    <div class="col-sm-1">
+                        <a th:if="${currentPage < totalPages}" th:href="@{'/api/v1/house/page/' + ${totalPages}}">Last</a>
+                        <span th:unless="${currentPage < totalPages}">Last</span>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
       </div> 
     </div> 
-  </div>       
+  </div> 
       <footer th:insert="template_client.html :: footer"> </footer>
       <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
       <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

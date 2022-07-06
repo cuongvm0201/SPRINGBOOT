@@ -28,5 +28,11 @@ public class HouseRequest {
     private Long price;
     private String logo_main;
     private MultipartFile logo;
+    private String logo_sub_main1;
+    private MultipartFile logo1;
+    private String logo_sub_main2;
+    private MultipartFile logo2;
+    private String logo_sub_main3;
+    private MultipartFile logo3;
     private String adminID;
 }

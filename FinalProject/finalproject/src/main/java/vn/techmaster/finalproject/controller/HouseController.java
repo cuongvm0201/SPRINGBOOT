@@ -1,13 +1,17 @@
 package vn.techmaster.finalproject.controller;
 
 import java.time.LocalDate;
-
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +20,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 
 import vn.techmaster.finalproject.dto.UserDTO;
-
+import vn.techmaster.finalproject.model.House;
 import vn.techmaster.finalproject.repository.HouseRepo;
 import vn.techmaster.finalproject.request.SearchRequest;
 import vn.techmaster.finalproject.service.HouseService;
@@ -31,13 +35,33 @@ import vn.techmaster.finalproject.service.HouseService;
 public class HouseController {
     @Autowired private HouseRepo houseRepo;
     @Autowired private HouseService houseService;
-    @GetMapping
-    public String getAllHouse(Model model, HttpSession session) {
-        UserDTO userDTO = (UserDTO) session.getAttribute("user");
-        model.addAttribute("user", userDTO);
-        model.addAttribute("searchRequest", new SearchRequest(null,null,null,null));
-        model.addAttribute("houses", houseRepo.findAll());
+    // @GetMapping
+    // public String getAllHouse(Model model, HttpSession session) {
+    //     UserDTO userDTO = (UserDTO) session.getAttribute("user");
+    //     model.addAttribute("user", userDTO);
+    //     model.addAttribute("searchRequest", new SearchRequest(null,null,null,null));
+    //     model.addAttribute("houses", houseRepo.findAll());
+    //     return "houses";
+    // }
+
+    
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+        int pageSize = 5;
+    
+        Page <House> page = houseService.findPaginated(pageNo, pageSize);
+        List <House> listHouses = page.getContent();
+    
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listHouses", listHouses);
         return "houses";
+    }
+
+    @GetMapping("/all")
+    public String viewHomePage(Model model) {
+    return findPaginated(1, model);  
     }
 
     @GetMapping("/{id}")

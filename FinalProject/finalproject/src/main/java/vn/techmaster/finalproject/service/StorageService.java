@@ -21,6 +21,7 @@ public class StorageService {
     if (file.isEmpty()) {
       throw new StorageException("Failed to store empty file");
     }
+    
     // logo.png
     String extension = getFileExtension(file.getOriginalFilename()); // png
     String newFileName = path + id + "." + extension; // path=/abc/21321312322.png
