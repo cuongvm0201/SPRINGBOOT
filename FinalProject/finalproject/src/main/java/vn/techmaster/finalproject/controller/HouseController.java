@@ -46,8 +46,10 @@ public class HouseController {
 
     
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
-        int pageSize = 5;
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        model.addAttribute("user", userDTO);
+        int pageSize = 3;
     
         Page <House> page = houseService.findPaginated(pageNo, pageSize);
         List <House> listHouses = page.getContent();
@@ -60,8 +62,10 @@ public class HouseController {
     }
 
     @GetMapping("/all")
-    public String viewHomePage(Model model) {
-    return findPaginated(1, model);  
+    public String viewHomePage(Model model, HttpSession session) {
+        UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        model.addAttribute("user", userDTO);
+    return findPaginated(1, model, session);  
     }
 
     @GetMapping("/{id}")
