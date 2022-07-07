@@ -1687,7 +1687,7 @@ Listing Page
 
 .listing-page .item .left-image {
   float: left;
-  overflow: hidden;
+  /* overflow: hidden; */
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
   position: relative;
@@ -1719,8 +1719,12 @@ Listing Page
 
 .listing-page .item .left-image img {
   overflow: hidden;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+    object-fit: cover;
+    width: 450px;
+    min-height: 350px;
+    min-width: 450px;
 }
 
 .listing-page .item .right-content {
@@ -2059,6 +2063,10 @@ responsive
     margin-top: 45px;
     margin-bottom: 55px;
   }
+
+  .header-area .main-nav .nav li:last-child, .background-header .main-nav .nav li:last-child {
+    display: block;
+  }
 }
 
 @media (max-width: 767px) {
@@ -2079,5 +2087,38 @@ responsive
     transform: translateX(-22px);
   }
   
+}
+
+@media screen and (max-width: 766px){
+  .listing-page .item .left-image img {
+    width: 100%;
+  
+  }
+  .header-area .main-nav .nav li:last-child, .background-header .main-nav .nav li:last-child {
+    display: inline-block;
+}
+
+.main-white-button a {
+  width: 100%;
+  display: block;
+    
+}
+
+.main-white-button {
+  height: 50px !important;
+  line-height: 50px !important;
+  padding: 0px !important;
+  border: none !important;
+  background: #f7f7f7 !important;
+  color: #191a20 !important;
+}
+}
+
+@media screen and (max-width: 992px){
+
+
+
+
+
 
 }

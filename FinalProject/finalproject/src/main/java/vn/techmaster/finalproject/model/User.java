@@ -45,11 +45,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     private City city;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "user_id")
     private List<Reverse> reverses = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "user_id")
     private List<Bill> bills = new ArrayList<>();
     

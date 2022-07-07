@@ -35,7 +35,7 @@ public class Reverse {
     @JsonIgnore
     private House house; //Mỗi lệnh đặt phòng phải gắn vào một house
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "reverse_id")
     private List<Bill> bills = new ArrayList<>();
 

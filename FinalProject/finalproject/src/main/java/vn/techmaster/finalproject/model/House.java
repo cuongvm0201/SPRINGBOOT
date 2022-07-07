@@ -41,7 +41,7 @@ public class House {
     private String address;
    
     private Long price;
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = false)
     @JsonIgnore
     @JoinColumn(name = "house_id")
     private List<Reverse> reverses = new ArrayList<>();
