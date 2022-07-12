@@ -41,11 +41,9 @@ public class House {
     private String address;
    
     private Long price;
-    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = false)
-    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name = "house_id")
     private List<Reverse> reverses = new ArrayList<>();
-
     
     private String logo_main;
   
@@ -66,5 +64,6 @@ public class House {
     @PreRemove
     public void preRemove() {
         reverses.stream().forEach(p -> p.setHouse(null));
+        reverses.clear();
       }
 }

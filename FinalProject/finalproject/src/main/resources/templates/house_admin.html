@@ -12,6 +12,9 @@
     </th:block>
     <th:block th:if="${user.getRole().toString().equals('ADMIN') || user.getRole().toString().equals('SUBADMIN') }" >
     <a th:href="@{/api/v1/admin/creat-house}" class="btn btn-primary ">Add House</a><br><br>
+    <h1 th:if="${newhouse}">
+      <p th:text="${'Admin: '+ newhouse.fullname + ' thêm mới thành công nhà mới !'}"></p>
+  </h1>
     <table class="table table-striped table-bordered">
       <thead class="table-light">
         <tr>

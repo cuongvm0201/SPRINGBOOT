@@ -42,7 +42,7 @@ public class AppRunner implements ApplicationRunner {
     @Autowired private ReverseRepo reverseRepo;
     @Autowired private BillRepo billRepo;
     @Autowired private Hashing hashing;
-    private void generateAccount() {
+    private void generateData() {
         Discount discount1 = new Discount("101",DiscountType.FULL_INFO,0.9);
         Discount discount2 = new Discount("102",DiscountType.LONG_TIME,0.8);
         Discount discount3 = new Discount("103",DiscountType.LOCAL_PEOPLE,0.7);
@@ -52,7 +52,7 @@ public class AppRunner implements ApplicationRunner {
         User user1 = User.builder()
         .id("001")
         .fullname("Vu Manh Cuong")
-        .email("vmcuong9999@gmail.com")
+        .email("vmcuong2192@gmail.com")
         .hashed_password(hashing.hashPassword("123456"))
         .role(Roles.MEMBER)
         .state(State.ACTIVE)
@@ -234,22 +234,20 @@ public class AppRunner implements ApplicationRunner {
         houseRepo.save(house8);
         String str1 = "2022-06-28";
         String str2 = "2022-07-04";
-        List<Bill> list1 = new ArrayList<>();
-        Reverse reverse1 = new Reverse("1111",user1,house1,list1,LocalDate.parse(str1),LocalDate.parse(str2));
+        Reverse reverse1 = new Reverse("1111",house1,user1,LocalDate.parse(str1),LocalDate.parse(str2));
         reverseRepo.save(reverse1);
         long startDate = reverse1.getCheckin().toEpochDay();
         long endDate = reverse1.getCheckout().toEpochDay();
         long diffrent = endDate - startDate;
         
         Bill bill1 = new Bill("1", user1, reverse1, diffrent, reverse1.getHouse().getPrice()*diffrent, LocalDateTime.now());
-        list1.add(bill1);
         billRepo.save(bill1);
         
     }   
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-       generateAccount();
+       generateData();
         
     }
 }

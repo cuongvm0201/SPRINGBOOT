@@ -8,9 +8,9 @@
           <thead class="table-light">
             <tr>
               <th scope="col">No.</th>
-              <th scope="col">ID</th>
-              <th scope="col">User Name</th>
-              <th scope="col">House Name</th>
+              <th scope="col">Mã đặt phòng</th>
+              <th scope="col">Tên Khách Hàng</th>
+              <th scope="col">Tên Nhà</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
             </tr>
@@ -18,15 +18,14 @@
           <tbody>
             <tr th:each="reverse, iStat:${reverses}">
               <th scope="row" th:text="${iStat.index} +1"></th>
-              <td th:text="${reverse.getId()}"></td>
-              <td th:text="${reverse.user.fullname}"></td>
-              <td th:text="${reverse.house.name}"></td>
+              <td th:text="${reverse.id}"></td>
+              <td th:text="${reverse.getUser().getFullname()}"></td>
+              <td th:text="${reverse.getHouse().getName()}"></td>
               <td th:text="${reverse.checkin}"></td>
               <td th:text="${reverse.checkout}"></td>
             </tr>
           </tbody>
         </table>
       </div>
-
 </body>
 </html>

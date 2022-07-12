@@ -18,6 +18,7 @@ import vn.techmaster.finalproject.model.User;
 import vn.techmaster.finalproject.repository.ActiveCodeRepo;
 import vn.techmaster.finalproject.repository.UserRepo;
 import vn.techmaster.finalproject.request.UpdatePasswordRequest;
+import vn.techmaster.finalproject.ulties.RandomUtils;
 
 @Service
 public class UserService {
@@ -26,6 +27,7 @@ public class UserService {
     @Autowired private ActiveCodeService activeCodeService;
     @Autowired private ActiveCodeRepo activeCodeRepo;
     @Autowired private EmailService emailService;
+    @Autowired private RandomUtils randomUtils;
     public List<User> getAllUser(){
         return userRepo.findAll();
     }
@@ -120,6 +122,19 @@ public class UserService {
         user.setState(State.ACTIVE);
         userRepo.save(user);
         activeCodeRepo.deleteById(currentCodeID);
+    }
+
+    public void forgotPassword(String email){
+        Optional<User> o_user = userRepo.findUsersByEmail(email);
+        if (!o_user.isPresent()) {
+            throw new UserException("User is not found");
+        }
+        String newPassword = randomUtils.generatePassword(6);
+        emailService.sendnewPass(email, newPassword);
+        User user = o_user.get();
+        user.setHashed_password(hashing.hashPassword(newPassword));
+        user.setUpdateAt(LocalDateTime.now());
+        userRepo.save(user);
     }
 
 }

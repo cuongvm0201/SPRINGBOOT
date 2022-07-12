@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.techmaster.finalproject.dto.UserDTO;
 import vn.techmaster.finalproject.model.House;
@@ -113,6 +114,7 @@ public class AdminHouseController {
     
     
     model.addAttribute("houses", houseService.showAllHouse());
+   
     return "house_admin";
   }
 
@@ -215,6 +217,6 @@ public class AdminHouseController {
     storageService.deleteFile(house.get().getLogo_sub_main2());
     storageService.deleteFile(house.get().getLogo_sub_main3());
     houseService.deleteById(id);
-    return "redirect:/api/v1/house/all";
+    return "redirect:/api/v1/admin/allhouse";
   }
 }

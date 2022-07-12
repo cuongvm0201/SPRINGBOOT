@@ -127,9 +127,8 @@ public class ReverseController {
         String newReverseID = UUID.randomUUID().toString();
         session.setAttribute("reverseDTO",
                     new Reverse(newReverseID,
-                    userService.findById(userDTO.getId()).get(),
                     houseService.findById(reverseRequest.getHouseID()).get(),
-                     null,
+                    userService.findById(userDTO.getId()).get(),
                      checkin,
                      checkout
                      ));

@@ -114,7 +114,7 @@ public class HouseController {
         
         
         model.addAttribute("houses", houseService.findHouseBySearch(searchRequest));
-        return "houses";
+        return "house_search";
     }
     
 }

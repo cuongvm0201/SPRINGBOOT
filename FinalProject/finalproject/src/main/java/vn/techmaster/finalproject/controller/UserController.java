@@ -1,6 +1,7 @@
 package vn.techmaster.finalproject.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.techmaster.finalproject.dto.UserDTO;
 import vn.techmaster.finalproject.hash.Hashing;
+import vn.techmaster.finalproject.model.Reverse;
 import vn.techmaster.finalproject.model.Roles;
 import vn.techmaster.finalproject.model.State;
 import vn.techmaster.finalproject.model.User;
 import vn.techmaster.finalproject.repository.UserRepo;
 import vn.techmaster.finalproject.request.ContactRequest;
+import vn.techmaster.finalproject.request.ForgotRequest;
 import vn.techmaster.finalproject.request.UpdatePasswordRequest;
 import vn.techmaster.finalproject.request.UserRequest;
 import vn.techmaster.finalproject.service.BillService;
@@ -124,6 +127,26 @@ public class UserController {
         model.addAttribute("user", userDTO);
         model.addAttribute("updatePass", new UpdatePasswordRequest(id,"",""));
         return "change_password";
+    }
+
+    @GetMapping("/forgotpass")
+    public String forgotPass(Model model){
+        model.addAttribute("forgotRequest", new ForgotRequest());
+        return "forgot_password";
+    }
+
+    @PostMapping("/forgotpass")
+    public String forgotPass(@Valid @ModelAttribute("forgotRequest") ForgotRequest forgotRequest, BindingResult result){
+        if (result.hasErrors()) {
+            return "forgot_password";
+        }
+        if(!userRepo.findUsersByEmail(forgotRequest.getEmail()).isPresent()){
+            result.addError(new FieldError("forgotRequest", "email", "Email không đúng hoặc không tồn tại"));
+            return "forgot_password";
+        }
+
+        userService.forgotPassword(forgotRequest.getEmail());
+        return "redirect:/api/v1/security/login";
     }
     
     

@@ -79,9 +79,9 @@ public class HouseService {
                 }
             }
         }
-
         return filterHouse;
     }
+
 
     public House add(House house) {
         String id = UUID.randomUUID().toString();
@@ -90,29 +90,7 @@ public class HouseService {
         return house;
     }
 
-    public void updateLogo(String id, String logo_main) {
-        Optional<House> house = findById(id);
-        house.get().setLogo_main(logo_main);
-        houseRepo.save(house.get());
-    }
 
-    public void updateLogo1(String id, String logo_sub1) {
-        Optional<House> house = findById(id);
-        house.get().setLogo_sub_main1(logo_sub1);
-        houseRepo.save(house.get());
-    }
-
-    public void updateLogo2(String id, String logo_sub2) {
-        Optional<House> house = findById(id);
-        house.get().setLogo_sub_main2(logo_sub2);
-        houseRepo.save(house.get());
-    }
-
-    public void updateLogo3(String id, String logo_sub3 ) {
-        Optional<House> house = findById(id);
-        house.get().setLogo_sub_main3(logo_sub3);
-        houseRepo.save(house.get());
-    }
 
     public Optional<House> findById(String id) {
         return houseRepo.findById(id);

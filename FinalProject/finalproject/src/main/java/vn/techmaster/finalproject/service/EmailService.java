@@ -44,4 +44,15 @@ public class EmailService {
         emailSender.send(message);
     }
 
+    public void sendnewPass(String email, String pass){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Mật khẩu mới của bạn là: ");
+        message.setText(pass);
+
+        emailSender.send(message);
+
+
+    }
+
 }

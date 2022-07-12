@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -55,4 +57,15 @@ public class User {
     
     private LocalDateTime creatAt;
     private LocalDateTime updateAt;
+
+    @PrePersist
+    public void prePersist() {
+        creatAt = LocalDateTime.now();
+      }
+
+    @PreRemove
+    public void preRemove() {
+        reverses.stream().forEach(p -> p.setUser(null));
+        bills.stream().forEach(i -> i.setUser(null));
+      }
 }
