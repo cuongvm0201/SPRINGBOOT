@@ -56,19 +56,21 @@
         <a class="nav-link navbar-brand" th:href="@{/api/v1/user/findbyid/{id}(id=${user.id})}">Thông tin người dùng</a>
       </li>
      </th:block>
+     <th:block th:if="${user != null && user.getRole().toString().equals('MEMBER')}">
       <li class="nav-item">
         <a class="nav-link navbar-brand" aria-current="page"  th:href="@{/api/v1/user/listreverse/{id}(id=${user.id})}">Lịch sử đặt phòng</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link navbar-brand" aria-current="page" th:href="@{/api/v1/user/listbill/{id}(id=${user.id})}">Lịch sử thanh toán</a>
       </li>
+    </th:block>
       <th:block th:if="${user != null && user.getRole().toString().equals('ADMIN')}">
         <li class="nav-item">
           <a class="nav-link navbar-brand" aria-current="page" th:href="@{/api/v1/admin/allhouse}">ADMIN</a>
         </li>
       </th:block>
-      <li style="margin-left: 400px" class="nav-item">
-        <th:block th:if="${user == null}">
+      <li class="nav-item">
+        <th:block th:if="${user == null || user.getState().toString.equals('DISABLED')}">
           <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/login" >Login</a>
           <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/register" >Register</a>
         </th:block>

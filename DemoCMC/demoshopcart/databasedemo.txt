@@ -1,0 +1,56 @@
+CREATE TABLE `shopcart`.`user`(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    fullname TEXT NOT NULL,
+    mobile VARCHAR(10) NOT NULL,
+    email TEXT NOT NULL,
+    address TEXT NOT NULL,
+    role ENUM('ADMIN','MEMBER'),
+    creatAt DATETIME NOT NULL,
+    updateAt DATETIME
+);
+
+CREATE TABLE `shopcart`.`cart`(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    total BIGINT NOT NULL,
+	user_id INT UNIQUE,
+    FOREIGN KEY(user_id) REFERENCES user(id)
+);
+
+CREATE TABLE `shopcart`.`product` (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    name TEXT NOT NULL,
+    price BIGINT NOT NULL,
+    amount BIGINT NOT NULL,
+    category ENUM('MOBILE','TABLET','LAPTOP'),
+    creatAt TEXT NOT NULL,
+    updateAt TEXT NOT NULL
+);
+
+CREATE TABLE `shopcart`.`cartline` (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    cart_id INT UNIQUE,
+    FOREIGN KEY(cart_id) REFERENCES cart(id),
+    count INT NOT NULL,
+    product_id INT UNIQUE,
+    FOREIGN KEY(product_id) REFERENCES product(id)
+);
+
+CREATE TABLE `shopcart`.`cartline_product` (
+	cartline_id INT NOT NULL,
+    product_id INT NOT NULL,
+    PRIMARY KEY(`cartline_id`, `product_id`)
+);
+
+CREATE TABLE `shopcart`.`bill_order`(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+	user_id INT UNIQUE,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+	cartline_id INT UNIQUE,
+    FOREIGN KEY(cartline_id) REFERENCES cartline(id),
+    creatAt DATETIME NOT NULL
+);
+
+
+

@@ -22,11 +22,11 @@
         <div class="container">
           <div class="row">
             <div class="booking-form">
-              <form th:action="@{/api/v1/house/searchhouse}" method="get" th:object="${searchRequest}">
+              <form th:action="@{/api/v1/house/searchhouse/1}" method="get" th:object="${searchRequest}">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Enter Price" name="price" th:value="*{price}" autocomplete="off"/>
-                    <span class="form-label">Price</span>
+                    <input class="form-control" type="number" placeholder="Enter Price" name="price" th:value="*{price}" autocomplete="off"/>
+                    <span class="form-label">Giá Thuê</span>
                     <div th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
                       Price Error
                     </div>
@@ -41,7 +41,7 @@
                       </option>
                   </select>
                     <span class="select-arrow"></span>
-                    <span class="form-label">City</span>
+                    <span class="form-label">Thành Phố</span>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -64,27 +64,146 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-btn">
-                    <button class="submit-btn" type="submit">Check availability</button>
+                    <button class="submit-btn" type="submit">Tìm Kiếm</button>
                   </div>
                 </div>
               </form>
             </div>
+            
             <div class="col-lg-10 offset-lg-1">
               <ul class="categories">
-                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Hà Nội"></span> Hà Nội</a></li>
-                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Đà Nẵng"></span> Đà Nẵng</a></li>
-                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Sài Gòn"></span> Sài Gòn</a></li>
-                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Nha Trang"></span> Nha Trang</a></li>
-                <li><a href="#"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Phú Quốc"></span> Phú Quốc</a></li>
+                <li><a th:href="@{/api/v1/house/city/1?cityvalue=HaNoi}"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Hà Nội"></span>TP.Hà Nội</a></li>
+                <li><a th:href="@{/api/v1/house/city/1?cityvalue=DaNang}"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Đà Nẵng"></span>TP.Đà Nẵng</a></li>
+                <li><a th:href="@{/api/v1/house/city/1?cityvalue=HoChiMinh}"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Sài Gòn"></span>TP.Hồ Chí Minh</a></li>
+                <li><a th:href="@{/api/v1/house/city/1?cityvalue=NhaTrang}"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Nha Trang"></span>TP.Nha Trang</a></li>
+                <li><a th:href="@{/api/v1/house/city/1?cityvalue=QuyNhon}"><span class="icon"><img th:src="@{/newstyles/assets/images/search-icon-01.png}" alt="Quy Nhơn"></span>TP.Quy Nhơn</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-   
   </div>
+    <!-- View Sort -->
+    <div class="recent-listing">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Lượt Xem Nhiều</h2>
+              <h6>Đặt Nhà / Liên Hệ</h6>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="owl-carousel owl-listing">
+              <!-- list1 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-lg-12" th:each="house, iStat:${list1}" th:class="${iStat.odd}? 'odd'">
+                    <div class="listing-item">
+                      <div class="left-image">
+                        <div><a th:href="|/api/v1/house/${house.id}|"><img th:src="@{'/firstphotos/'+${house.logo_main}}" alt=""></a></div>
+                      </div>
+                      <div class="right-content align-self-center">
+                        <a th:href="|/api/v1/house/${house.id}|"><h4 th:text="${house.name}">House Name</h4></a>
+                        <h6>by: Sale Agent</h6>
+                        <ul class="rate">
+                          <li style="font-size: 20px;" th:text="${house.view} + ' lượt xem'">(18) Reviews</li>
+                        </ul>
+                        <h3>Mô tả:</h3> <h6 class="description" th:text="${house.description}"></h6><br>
+                        <h3>Giá 1 đêm:</h3> <h6 class="price" th:text="${house.price}+' VNĐ'"></h6><br>
+                        <ul class="info">
+                          <li><img th:src="@{/newstyles/assets/images/listing-icon-02.png}" alt=""> 2 Bedrooms</li>
+                          <li><img th:src="@{/newstyles/assets/images/listing-icon-03.png}" alt=""> 2 Bathrooms</li>
+                        </ul>
+                        <div class="main-white-button">
+                          <th:block th:if="${user == null}">
+                            <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/login" >Đăng Nhập</a>
+                            </th:block>
+                            <th:block th:if="${user != null}">
+                            <a th:href="|/api/v1/reverse/newreverse/creat/${house.id}/${user.id}|"><i class="fa fa-eye"></i>Đặt Ngay</a>
+                          </th:block>
+                          <a th:href="|/api/v1/user/contact|"><i class="fa fa-eye"></i>Liên Hệ</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- list2 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-lg-12" th:each="house, iStat:${list2}" th:class="${iStat.odd}? 'odd'">
+                    <div class="listing-item">
+                      <div class="left-image">
+                        <a th:href="|/api/v1/house/${house.id}|"><img th:src="@{'/firstphotos/'+${house.logo_main}}" alt=""></a>
+                      </div>
+                      <div class="right-content align-self-center">
+                        <a th:href="|/api/v1/house/${house.id}|"><h4 th:text="${house.name}">House Name</h4></a>
+                        <h6>by: Sale Agent</h6>
+                        <ul class="rate">
+                          <li style="font-size: 20px;" th:text="${house.view} + ' lượt xem'">(18) Reviews</li>
+                        </ul>
+                        <h3>Mô tả:</h3> <h6 class="description" th:text="${house.description}"></h6><br>
+                        <h3>Giá 1 đêm:</h3> <h6 class="price" th:text="${house.price}+' VNĐ'"></h6><br>
+                        <ul class="info">
+                          <li><img th:src="@{/newstyles/assets/images/listing-icon-02.png}" alt=""> 2 Bedrooms</li>
+                          <li><img th:src="@{/newstyles/assets/images/listing-icon-03.png}" alt=""> 2 Bathrooms</li>
+                        </ul>
+                        <div class="main-white-button">
+                          <th:block th:if="${user == null}">
+                            <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/login" >Đăng Nhập</a>
+                            </th:block>
+                            <th:block th:if="${user != null}">
+                            <a th:href="|/api/v1/reverse/newreverse/creat/${house.id}/${user.id}|"><i class="fa fa-eye"></i>Đặt Ngay</a>
+                          </th:block>
+                          <a th:href="|/api/v1/user/contact|"><i class="fa fa-eye"></i>Liên Hệ</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- list3 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-lg-12" th:each="house, iStat:${list3}" th:class="${iStat.odd}? 'odd'">
+                    <div class="listing-item">
+                      <div class="left-image">
+                        <a th:href="|/api/v1/house/${house.id}|"><img th:src="@{'/firstphotos/'+${house.logo_main}}" alt=""></a>
+                      </div>
+                      <div class="right-content align-self-center">
+                        <a th:href="|/api/v1/house/${house.id}|"><h4 th:text="${house.name}">House Name</h4></a>
+                        <h6>by: Sale Agent</h6>
+                        <ul class="rate">
+                          <li style="font-size: 20px;" th:text="${house.view} + ' lượt xem'">(18) Reviews</li>
+                        </ul>
+                        <h3>Mô tả:</h3> <h6 class="description" th:text="${house.description}"></h6><br>
+                        <h3>Giá 1 đêm:</h3> <h6 class="price" th:text="${house.price}+' VNĐ'"></h6><br>
+                        <ul class="info">
+                          <li><img th:src="@{/newstyles/assets/images/listing-icon-02.png}" alt=""> 2 Bedrooms</li>
+                          <li><img th:src="@{/newstyles/assets/images/listing-icon-03.png}" alt=""> 2 Bathrooms</li>
+                        </ul>
+                        <div class="main-white-button">
+                          <th:block th:if="${user == null}">
+                            <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/login" >Đăng Nhập</a>
+                            </th:block>
+                            <th:block th:if="${user != null}">
+                            <a th:href="|/api/v1/reverse/newreverse/creat/${house.id}/${user.id}|"><i class="fa fa-eye"></i>Đặt Ngay</a>
+                          </th:block>
+                          <a th:href="|/api/v1/user/contact|"><i class="fa fa-eye"></i>Liên Hệ</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
   
     <footer th:insert="template_client.html :: footer"> </footer>
     <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>

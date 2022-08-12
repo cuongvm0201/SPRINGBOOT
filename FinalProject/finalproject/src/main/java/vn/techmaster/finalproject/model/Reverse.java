@@ -1,5 +1,6 @@
 package vn.techmaster.finalproject.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
@@ -19,14 +20,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reverse {
+public class Reverse implements Serializable {
+  private static final long serialVersionUID = 2L;
     @Id
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private House house; //Mỗi lệnh đặt phòng phải gắn vào một house
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user; //Mỗi lệnh đặt phòng phải gắn vào một user
 
     private LocalDate checkin;

@@ -3,6 +3,7 @@
     <head th:replace="template.html :: header('Reverse Information')">
 <body>
     <header th:insert="template.html :: topmenu"> </header>
+    <div class="alert alert-primary" id="alert" th:if="${error}" th:text="${error}"></div><br>
     <div class="container">
         <table class="table table-striped table-bordered">
           <thead class="table-light">
@@ -13,6 +14,7 @@
               <th scope="col">Tên Nhà</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -23,9 +25,16 @@
               <td th:text="${reverse.getHouse().getName()}"></td>
               <td th:text="${reverse.checkin}"></td>
               <td th:text="${reverse.checkout}"></td>
+              <td><a th:href="|/api/v1/reverse/cancel-reverse/${reverse.id}|" class="btn btn-primary float-end">Hủy Phòng</a></td>
             </tr>
           </tbody>
         </table>
       </div>
+      <script th:inline = "javascript">
+        let message = document.getElementById("alert")
+        setTimeout(function () {
+          message.parentElement.removeChild(message)
+        }, 1500)
+    </script>
 </body>
 </html>

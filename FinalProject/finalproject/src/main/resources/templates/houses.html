@@ -51,16 +51,20 @@
                     </div>
                     <div class="right-content align-self-center">
                       <a th:href="|/api/v1/house/${house.id}|"><h4 th:text="${house.name}"></h4></a> <br>
-                      Mô tả: <h6 class="description" th:text="${house.description}"></h6><br>
-                      Giá 1 đêm: <h6 class="price" th:text="${house.price}"></h6><br>
-                      Address: <h6 class="details" th:text="${house.address}"></h6><br>
-                      Type: <h6 class="info" th:text="${house.typeHouse}"></h6>
+                      <h3>Mô tả:</h3> <h6 class="description" th:text="${house.description}"></h6><br>
+                      <h3>Giá 1 đêm:</h3> <h6 class="price" th:text="${house.price}+' VNĐ'"></h6><br>
+                      <h3>Địa Chỉ:</h3> <h6 class="details" th:text="${house.address}"></h6><br>
+                      <h3>Chất lượng:</h3>
+                      <h6 class="info" th:if="${house.typeHouse.toString.equals('STAR3')}" ><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h6>
+                      <h6 class="info" th:if="${house.typeHouse.toString.equals('STAR4')}" ><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h6>
+                      <h6 class="info" th:if="${house.typeHouse.toString.equals('STAR5')}" ><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></h6>
+                      <!-- <h6 class="info" th:text="${house.typeHouse}"></h6> -->
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div  th:if="${totalPages > 1}">
+            <div th:if="${totalPages > 1}">
               <div class="row col-lg-10">
                   <div class="col-lg-2">
                       Total Rows: [[${totalItems}]]
@@ -86,6 +90,7 @@
       </div> 
     </div> 
   </div> 
+  
       <footer th:insert="template_client.html :: footer"> </footer>
       <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
       <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

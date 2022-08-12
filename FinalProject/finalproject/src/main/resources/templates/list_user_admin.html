@@ -6,7 +6,7 @@
     <header th:insert="template_admin.html :: topmenu"> </header>
 
   <div class="container">
-
+    <div class="alert alert-primary" id="alert" th:if="${alert}" th:text="${alert}"></div>
     <th:block th:if="${user.getRole().toString().equals('MEMBER') }" >
         <p>Bạn không có quyền xem trang này</p>
     </th:block>
@@ -21,12 +21,14 @@
           <th scope="col">User_Email</th>
           <th scope="col">User_Phone</th>
           <th scope="col">User_Address</th>
+          <th scope="col">Wallet</th>
           <th scope="col">User_City</th>
           <th scope="col">User_State</th>
           <th scope="col">User_Role</th>
           <th scope="col">CreatAt</th>
           <th scope="col">UpdateAt</th>
-          <th scope="col">Edit</th>
+          <th scope="col">SỬa</th>
+          <th scope="col">Action</th>
           <th scope="col">S.O.S</th>
         </tr>
       </thead>
@@ -38,18 +40,30 @@
           <td th:text="${member.email}"></td>
           <td th:text="${member.mobile}"></td>
           <td th:text="${member.address}"></td>
+          <td th:text="${member.wallet}"></td>
           <td th:text="${member.city}"></td>
           <td th:text="${member.state}"></td>
           <td th:text="${member.role}"></td>
           <td th:text="${member.creatAt}"></td>
           <td th:text="${member.updateAt}"></td>
           <td><a th:href="|/api/v1/admin/edit-user-admin/${member.getId()}|" class="btn btn-primary float-end">Sửa</a></td>
+          <th:block th:if="${member.state.toString().equals('ACTIVE')}">
+            <td><a th:href="|/api/v1/admin/lock-user-admin/${member.getId()}|" class="btn btn-primary float-end">Khóa</a></td>
+          </th:block>
+          <th:block th:if="${member.state.toString().equals('DISABLED')}">
+            <td><a th:href="|/api/v1/admin/unlock-user-admin/${member.getId()}|" class="btn btn-primary float-end">Mở</a></td>
+          </th:block>
           <td><a th:href="|/api/v1/admin/delete-user/${member.getId()}|" class="btn btn-primary float-end">Xóa</a></td>
         </tr>
       </tbody>
     </table>
  </th:block>
   </div>
-
+  <script th:inline = "javascript">
+    let message = document.getElementById("alert")
+    setTimeout(function () {
+      message.parentElement.removeChild(message)
+    }, 1500)
+</script>
 </body>
 </html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/layout_admin :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #css-resources},
+                                                ~{:: #js-resources},
+                                                ~{:: #main-content}
+                                               )}">
+
+<head>
+    <title>Dashboard</title>
+
+    <th:block id="css-resources">
+
+    </th:block>
+</head>
+<body>
+<th:block id="css-resources">
+
+</th:block>
+<div class="container-fluid">
+    <main id="main-content">
+        <div>
+            <h2>Quản Lý Loại Nhà đất</h2>
+            <a th:href="@{/admin/loainhadat/new}">Tạo Mới Một Loại Nhà Đất</a>
+        </div>
+
+        <div th:if="${message} != null" class="alert alert-success text-center">
+            [[${message}]]
+        </div>
+
+        <div>
+            <table class="
+            table table-bordered table-striped table-hover table-responsive-xl
+          ">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+
+                    <th>Tên Loại Nhà Đất</th>
+
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="lnd : ${listLoaiNhaDat}">
+                    <td>[[${lnd.id}]]</td>
+                    <td>[[${lnd.name}]]</td>
+                    <td><a class="fas fa-edit fa-2x icon-green" th:href="@{'/admin/loainhadat/edit/' + ${lnd.id}}"
+                           title="Edit  Loại Nhà Đất"></a>
+                        &nbsp;
+                        <a class="fas fa-trash fa-2x icon-dark link-delete"
+                           th:href="@{'/admin/loainhadat/delete/' + ${lnd.id}}"
+                           title="Delete Loại Nhà Đất"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<th:block id="js-resources">
+
+</th:block>
+</body>
+</html>

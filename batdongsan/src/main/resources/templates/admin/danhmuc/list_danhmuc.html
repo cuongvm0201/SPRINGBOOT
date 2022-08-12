@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/layout_admin :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #css-resources},
+                                                ~{:: #js-resources},
+                                                ~{:: #main-content}
+                                               )}">
+
+<head>
+    <title>Dashboard</title>
+
+    <th:block id="css-resources">
+
+    </th:block>
+</head>
+<body>
+<th:block id="css-resources">
+
+</th:block>
+<div class="container-fluid">
+    <main id="main-content">
+        <div th:if="${message} != null" class="alert alert-success text-center">
+            [[${message}]]
+        </div>
+
+        <div>
+            <table class="
+            table table-bordered table-striped table-hover table-responsive-xl
+          ">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+
+                    <th>Tên Danh Mục</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="dm : ${listDM}">
+                    <td>[[${dm.id}]]</td>
+                    <td>[[${dm.name}]]</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+<th:block id="js-resources">
+
+</th:block>
+</body>
+</html>

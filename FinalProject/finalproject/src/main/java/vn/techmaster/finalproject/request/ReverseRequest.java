@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import vn.techmaster.finalproject.model.PayType;
 
 
 @Data
@@ -27,6 +28,8 @@ public class ReverseRequest{
     
     @NotBlank(message = "Vui lòng chọn ngày về")
     private String checkout;
+
+    private PayType payType;
 
 
 

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link
+            rel="shortcut icon"
+            href="assest/logobackground/logo/logonhadatFix.png"
+            type="image/x-icon"
+    />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <title>Nhà Đất Xanh</title>
+</head>
+<body>
+<div id="fb-root"></div>
+<script
+        async
+        defer
+        crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0"
+        nonce="blmhaCzO"
+></script>
+<div class="wrap-desktop d-none d-xl-block">
+    <!-- Start Header Desktop -->
+    <div class="wrap__header--desktop">
+        <header class="header">
+            <div class="container--desktop wrap__header">
+                <div class="logo">
+                    <div class="logo__text">
+                        <a th:href="@{/trang-chu}"
+                        >
+                            <div class="logo__branch">Greenland</div>
+                        </a
+                        >
+                        <div class="logo__slogan">Nơi hạnh phúc ngập tràn</div>
+                    </div>
+                </div>
+                <nav class="wrap__nav">
+                    <ul class="nav__menu">
+                        <li class="nav__menu__items">
+                            <a th:href="@{/trang-chu/about}" class="nav__menu__item__link"
+                            >Giới Thiệu</a
+                            >
+                        </li>
+                        <li class="nav__menu__items">
+                            <a th:href="@{/trang-chu/tindangban}" class="nav__menu__item__link"
+                            >Nhà Bán</a
+                            >
+                        </li>
+                        <li class="nav__menu__items">
+                            <a th:href="@{/trang-chu/tindangthue}" class="nav__menu__item__link"
+                            >Nhà Cho Thuê</a
+                            >
+                        </li>
+                        <li class="nav__menu__items">
+                            <a  th:href="@{/trang-chu/tintuc}" class="nav__menu__item__link">Tin Tức</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="page__banner--desktop page__banner--desktop__product"></div>
+    </div>
+    <!-- Start main content -->
+    <main
+            class="container--desktop about__main"
+            id="product__link--desk">
+
+        <div class="main__link__nav">
+            <a th:href="@{/trang-chu}" class="page-nav-link">Trang chủ</a> >
+            <a th:href="@{/trang-chu/tindangban}" class="page-nav-link">Nhà Bán</a> >
+            <a th:href="@{'/trang-chu/tindangban/detail/'+${tindangban.id}}" class="page-nav-link page-nav-link__active"
+            >[[${tindangban.title}]]</a
+            >
+        </div>
+        <div class="container--desktop">
+            <div class="title-section-font" style="text-align: left">
+                [[${tindangban.title}]]
+            </div>
+            <div class="product__item__content">
+                <div class="produc__item_slider">
+                    <div
+                            style="
+                  --swiper-navigation-color: #fff;
+                  --swiper-pagination-color: #fff;
+                "
+                            class="swiper mySwiper2"
+                    >
+                        <div class="swiper-wrapper swiper-slide__full">
+                            <div class="swiper-slide">
+                                <img style="width: 500px;height: 500px" th:src="@{${tindangban.getPhotosMainPath}}"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img style="width: 600px;height: 600px" th:src="@{${tindangban.getPhoto1Path}}"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img style="width: 600px;height: 600px" th:src="@{${tindangban.getPhoto2Path}}"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img style="width: 600px;height: 600px" th:src="@{${tindangban.getPhoto3Path}}"/>
+                            </div>
+                        </div>
+                        <div
+                                class="swiper-button-next swiper-button-next--desktop"
+                        ></div>
+                        <div
+                                class="swiper-button-prev swiper-button-prev--desktop"
+                        ></div>
+                    </div>
+                    <div
+                            thumbsSlider=""
+                            class="swiper mySwiper swiper-slide__thumb"
+                    >
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img th:src="@{${tindangban.getPhotosMainPath}}"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img th:src="@{${tindangban.getPhoto1Path}}"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img th:src="@{${tindangban.getPhoto2Path}}"/>
+                            </div>
+                            <div class="swiper-slide">
+                                <img th:src="@{${tindangban.getPhoto3Path}}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product__item__detail">
+                <div class="product__item__detail__price">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="content-font">Mức giá :</div>
+                            <div class="content-header">[[${tindangban.giaBan}]] Tỷ</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Diện tích :</div>
+                            <div class="content-header">[[${tindangban.dienTich}]] m2</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Phòng ngủ</div>
+                            <div class="content-header">[[${tindangban.soPhongNgu}]]</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Phòng Toilet</div>
+                            <div class="content-header">[[${tindangban.soPhongToilet}]]</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Số điện thoại liện hệ</div>
+                            <div class="content-header">[[${tindangban.sdt}]]</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="content-font">Mặt Tiền:</div>
+                            <div class="content-header">[[${tindangban.matTien}]] m</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Đường Vào :</div>
+                            <div class="content-header">[[${tindangban.duongVao}]] m</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Số Tầng</div>
+                            <div class="content-header">[[${tindangban.soTang}]]</div>
+                        </div>
+                        <div class="col-2">
+                            <div class="content-font">Pháp Lý</div>
+                            <div class="content-header">[[${tindangban.phapLy}]]</div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="content-font">Nội Thất</div>
+                            <div class="content-header">[[${tindangban.noiThat}]]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product__item__metadata row">
+                <div class="col-7 product__item__metadata__main">
+                    <p class="content-header">Thông tin mô tả</p>
+                    <p class="content-font">
+                    <div th:utext="${tindangban.moTa}"></div>
+                </div>
+                <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.215487994048!2d109.19552451533976!3d12.233683733948103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3170676df3d13491%3A0xa372058e222a1b89!2zVHLhuqduIFBow7osIFRwLiBOaGEgVHJhbmcsIEtow6FuaCBIw7JhLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1627311523310!5m2!1svi!2s"
+                        width="100%"
+                        height="100%"
+                        style="border: 0"
+                        allowfullscreen=""
+                        loading="lazy"
+                ></iframe>
+            </div>
+        </div>
+</div>
+
+</main>
+<!-- End main content -->
+<!-- End Header Desktop -->
+<!-- Start footer desktop -->
+<div class="wrap__footer--desktop">
+    <div class="footer--desktop container--desktop">
+        <div class="row">
+            <div class="col-4 footer--desktop__contact__info">
+                <div class="content-header footer--desktop__header">
+                    THÔNG TIN LIÊN HỆ
+                </div>
+                <div class="content-font">
+                    <i class="bi bi-telephone-forward"></i>&nbsp;<a
+                        href="tel:+374889957"
+                        class="footer--desktop__link__item"
+                >Hot Line : 0374889957</a
+                >
+                </div>
+                <div class="content-font">
+                    <i class="bi bi-envelope"></i>&nbsp;<a
+                        href="mailto:rovpc1211@gmail.com"
+                        class="footer--desktop__link__item"
+                >Email : rovpc1211@gmail.com</a
+                >
+                </div>
+                <div class="content-font">
+                    <i class="bi bi-house"></i>&nbsp;Địa chỉ : Thanh Liệt - Thanh
+                    Trì - Hà Nội
+                </div>
+            </div>
+            <div class="col-4 footer--desktop__links">
+                <div class="content-header footer--desktop__header">LIÊN KẾT</div>
+                <ul class="footer--desktop__links__list">
+                    <li class="content-font">
+                        <a href="index.html" class="footer--desktop__link__item"
+                        >Trang chủ</a
+                        >
+                    </li>
+                    <li class="content-font">
+                        <a href="product-tindangban.html" class="footer--desktop__link__item"
+                        >Nhà Bán</a
+                        >
+                    </li>
+                    <li class="content-font">
+                        <a href="news.html" class="footer--desktop__link__item"
+                        >Tin Tức</a
+                        >
+                    </li>
+                    <li class="content-font">
+                        <a href="contact.html" class="footer--desktop__link__item"
+                        >Liên Hệ</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <div class="col-4 footer--desktop__fanpage">
+                <div class="content-header footer--desktop__header">
+                    FANPAGE CỦA CHÚNG TÔI
+                </div>
+                <div
+                        class="fb-page"
+                        data-href="https://www.facebook.com/facebook"
+                        data-width="380"
+                        data-hide-cover="false"
+                        data-show-facepile="false"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End footer desktop -->
+</div>
+<!-- Start mobile -->
+<div class="wrap-mobile d-xl-none d-xxl-none">
+    <!-- Start header mobile -->
+    <header class="header--mobile">
+        <nav class="nav--mobile container d-flex justify-content-between">
+            <div class="logo">
+                <div class="logo__text">
+                    <a href="index.html">
+                        <div class="logo__branch">Greenland</div>
+                    </a>
+                    <div class="logo__slogan">Nơi hạnh phúc ngập tràn</div>
+                </div>
+            </div>
+            <div class="nav--mobile--external d-flex">
+                <button id="nav__btnSearch" type="button">
+                    <i class="bi bi-search nav__btn__icon__search--mobile"></i>
+                </button>
+                <button id="nav__btnMenu" type="button">
+                    <i class="bi bi-list nav__btn__icon--mobile"></i>
+                    <i class="bi bi-x-circle nav__btn__icon--mobile__close"></i>
+                </button>
+            </div>
+        </nav>
+        <div class="wrap__nav--mobile">
+            <ul class="nav__menu--mobile">
+                <li class="nav__menu__items">
+                    <a href="about.html" class="nav__menu__item__link">Giới Thiệu</a>
+                </li>
+                <li class="nav__menu__items">
+                    <a href="product-tindangban.html" class="nav__menu__item__link">Nhà Bán</a>
+                </li>
+                <li class="nav__menu__items">
+                    <a href="news.html" class="nav__menu__item__link">Tin Tức</a>
+                </li>
+                <li class="nav__menu__items">
+                    <a href="contact.html" class="nav__menu__item__link">Liên Hệ</a>
+                </li>
+                <li class="nav__menu__items">
+                    <p class="nav__menu__item__link">
+                        Hotline : <strong>0374889957</strong>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="wrap__search--mobile">
+            <div class="searchbar--mobile">
+                <div class="row">
+                    <div class="col-12 searchbar__item">
+                        <p class="">Địa điểm</p>
+                        <select
+                                class="
+                    form-select-menu
+                    banner__searchbar__item__select
+                    form-select
+                  "
+                                id="select-search-address-mobile"
+                        >
+                            <option value="1" selected>Miền Bắc</option>
+                            <option value="2">Miền Trung</option>
+                            <option value="3">Miền Nam</option>
+                        </select>
+                    </div>
+                    <div class="col-12 searchbar__item">
+                        <p class="">Loại nhà</p>
+                        <select
+                                class="
+                    form-select-menu
+                    banner__searchbar__item__select
+                    form-select
+                  "
+                                id="select-search-type-mobile"
+                        >
+                            <option value="1" selected>Căn Hộ</option>
+                            <option value="2">Chung Cư</option>
+                            <option value="3">Biệt Thự</option>
+                        </select>
+                    </div>
+                    <div class="col-12 searchbar__item">
+                        <p class="">Khoảng chi phí</p>
+                        <select
+                                class="
+                    form-select-menu
+                    banner__searchbar__item__select
+                    form-select
+                  "
+                                id="select-search-price-mobile"
+                        >
+                            <option selected>Chọn</option>
+                            <option value="1">Nhỏ hơn 1 Tỷ</option>
+                            <option value="2">1 - 2 Tỷ</option>
+                            <option value="3">2 - 3 Tỷ</option>
+                            <option value="4">3 - 5 Tỷ</option>
+                            <option value="5">Trên 5 Tỷ</option>
+                        </select>
+                    </div>
+                    <div class="col-12 searchbar__item">
+                        <button
+                                type="button"
+                                id="banner__searchbar__btn-mobile"
+                                class="btn__searchbar"
+                        >
+                            Tìm Kiếm
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="banner__product--mobile"></div>
+    <!-- End header mobile -->
+    <!-- Start main content mobile -->
+    <main class="main__mobile" id="main__mobile__product"></main>
+    <!-- End main content -->
+    <!-- Start footer mobile -->
+    <div class="wrap__section--mobile">
+        <div class="footer--desktop container--desktop">
+            <div class="ms-3">
+                <div class="footer--desktop__contact__info">
+                    <div class="content-header footer--desktop__header">
+                        THÔNG TIN LIÊN HỆ
+                    </div>
+                    <div class="content-font">
+                        <i class="bi bi-telephone-forward"></i>&nbsp;<a
+                            href="tel:+374889957"
+                            class="footer--desktop__link__item"
+                    >Hot Line : 0374889957</a
+                    >
+                    </div>
+                    <div class="content-font">
+                        <i class="bi bi-envelope"></i>&nbsp;<a
+                            href="mailto:rovpc1211@gmail.com"
+                            class="footer--desktop__link__item"
+                    >Email : rovpc1211@gmail.com</a
+                    >
+                    </div>
+                    <div class="content-font">
+                        <i class="bi bi-house"></i>&nbsp;Địa chỉ : Thanh Liệt - Thanh
+                        Trì - Hà Nội
+                    </div>
+                </div>
+                <div class="footer--desktop__fanpage footer--mobile__fanpage">
+                    <div class="content-header footer--desktop__header">
+                        FANPAGE CỦA CHÚNG TÔI
+                    </div>
+                    <div
+                            class="fb-page"
+                            data-href="https://www.facebook.com/facebook"
+                            data-width="380"
+                            data-hide-cover="false"
+                            data-show-facepile="false"
+                    ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End footer mobile -->
+</div>
+<!-- End mobile -->
+<!-- Script -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+></script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script th:src="@{/js/productitem.js}"></script>
+</body>
+</html>

@@ -6,6 +6,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import vn.techmaster.finalproject.model.House;
+
 @NoRepositoryBean
 public interface PagingAndSortingRepository < T, ID > extends CrudRepository < T, ID > {
 
@@ -24,4 +26,6 @@ public interface PagingAndSortingRepository < T, ID > extends CrudRepository < T
      * @return a page of entities
      */
     Page < T > findAll(Pageable pageable);
+
+    
 }

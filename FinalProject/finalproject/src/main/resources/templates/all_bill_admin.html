@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_admin.html :: header('Dach sách hóa đơn')">
+    </head>
+<body>
+    <header th:insert="template_admin.html :: topmenu"> </header>
+    <th:block th:if="${user.getRole().toString().equals('MEMBER') }" >
+        <p>Bạn không có quyền xem trang này</p>
+    </th:block>
+    <div class="container">
+        <table class="table table-striped table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">No.</th>
+              <th scope="col">Mã Bill</th>
+              <th scope="col">Tên Khách Hàng</th>
+              <th scope="col">Mã Đặt Phòng</th>
+              <th scope="col">Số ngày thuê</th>
+              <th scope="col">Tổng tiền thanh toán</th>
+              <th scope="col">Creat At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="bill, iStat:${bills}">
+              <th scope="row" th:text="${iStat.index} +1"></th>
+              <td th:text="${bill.id}"></td>
+              <td th:text="${bill.user.fullname}"></td>
+              <td th:text="${bill.reverse.id}"></td>
+              <td th:text="${bill.reverseDay}"></td>
+              <td th:text="${bill.totalPrice}"></td>
+              <td th:text="${bill.creatAt}"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</body>
+</html>

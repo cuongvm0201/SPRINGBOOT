@@ -55,7 +55,16 @@ public class House {
     
     private LocalDateTime creatAt;
     private LocalDateTime updateAt;
+    private Long view;
+    private Long rever;
 
+    public long increment(){
+      return view++;
+    }
+
+    public long increment1(){
+      return rever++;
+    }
     @PrePersist
     public void prePersist() {
         creatAt = LocalDateTime.now();

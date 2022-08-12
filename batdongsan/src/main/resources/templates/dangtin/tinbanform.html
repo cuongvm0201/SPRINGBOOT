@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- include libraries(jQuery, bootstrap) -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+<div class="container-fluid">
+    <main id="main-content">
+        <div class="row">
+            <div class="col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/products">Danh sách sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Thêm sản phẩm mới</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <a role="button" class="btn btn-default" href="/admin/products">
+                <span class="fas fa-chevron-left" style="margin-right:0.5rem;"></span>
+                <span>Trở về</span>
+            </a>
+            <div class="clear"></div>
+        </div>
+
+        <!-- Main content -->
+        <form action="#" method="post" th:action="@{/dangtin/dangtinban/save}" onsubmit="return validatePhoneNumber()" th:object="${tindangbanRequest}"
+              enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-outline">
+                        <div class="card-body pad">
+                            <div class="row">
+                                <div class="col-lg-9 col-md-8">
+                                    <input type="hidden" th:field="*{id}"/>
+                                    <input type="hidden" id="inputThanhPho" th:field="*{thanhPho}"/>
+                                    <input type="hidden" id="inputQuanHuyen" th:field="*{quanHuyen}"/>
+                                    <input type="hidden" id="inputPhuong" th:field="*{phuong}"/>
+                                    <input type="hidden" th:field="*{startAt}"/>
+                                    <input type="hidden" th:field="*{mainPhoto}"/>
+                                    <input type="hidden" id="inputSoNgayDang" th:field="*{soNgayDang}"/>
+                                    <input type="hidden" id="inputChiPhi" th:field="*{chiPhi}"/>
+                                    <input type="hidden" th:field="*{photo1}"/>
+                                    <input type="hidden" th:field="*{photo2}"/>
+                                    <input type="hidden" th:field="*{photo3}"/>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="name">Title</label>
+                                            <span class="invalid-feedback" id="invalid-feedback-name">Độ dài tên từ 1 - 300 ký tự</span>
+                                        </div>
+                                        <input type="text" th:field="*{title}" required minlength="3"
+                                               class="form-control" id="name">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea id="summernote" th:field="*{moTa}" name="editordata"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4">
+                                    <div class="banner__searchbar__items">
+                                        <p class="banner__searchbar__item__title">Thành Phố</p>
+                                        <select id="city"
+                                                class="
+                    form-control
+                  "
+                                        >
+                                            <option value="" selected>Chọn tỉnh thành</option>
+                                        </select>
+                                    </div>
+                                    <div class="banner__searchbar__items">
+                                        <p class="banner__searchbar__item__title">Quận/Huyện</p>
+                                        <select id="district"
+                                                class="
+                    form-select-menu form-control
+                    banner__searchbar__item__select
+                    form-select
+                  "
+                                        >
+                                            <option value="" selected>Chọn quận huyện</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="banner__searchbar__items">
+                                        <p class="banner__searchbar__item__title">Phường Xã</p>
+                                        <select id="ward"
+                                                class="
+                    form-select-menu form-control
+                    banner__searchbar__item__select
+                    form-select
+                  "
+                                        >
+                                            <option value="" selected>Chọn phường xã</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Địa Chỉ</label>
+                                        </div>
+                                        <input th:field="*{diaChi}" type="text" class="form-control text-price-input"
+                                               id="diachi">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="is-available" class="required-label">Trạng thái</label>
+                                        <select readonly="" th:field="*{tinDangStatus}" class="form-control" id="is-available">
+                                            <option selected th:value="PUBLIC">PUBLIC</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="required-label">Loại Nhà Đất</label>
+                                        <select th:field="*{loaiNhaDat}" class="form-control" required>
+                                            <option value=""> -----------</option>
+                                            <option th:each="cate : ${categories}"
+                                                    th:value="${cate.id}"
+                                                    th:text="${cate.name}"/>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Giá bán (Tỷ Đồng)</label>
+                                            <span class="invalid-feedback" id="invalid-feedback-price">Khoảng giá sản phẩm: 0-100 tỷ</span>
+                                        </div>
+                                        <input th:field="*{giaBan}" step="0.1" min="0" type="number" required
+                                               class="form-control text-price-input" id="price">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Diện Tích</label>
+                                        </div>
+                                        <input th:field="*{dienTich}" step="0.1" min="0" type="number" required
+                                               class="form-control text-price-input" id="dientich">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Hướng Nhà</label>
+                                        </div>
+                                        <input th:field="*{huongNha}" type="text" class="form-control text-price-input"
+                                               id="huongnha">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Hướng Ban Công</label>
+                                        </div>
+                                        <input th:field="*{huongBanCong}" type="text"
+                                               class="form-control text-price-input" id="huongbancong">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Số Phòng Ngủ</label>
+                                        </div>
+                                        <input th:field="*{soPhongNgu}"  type="number" min="0"
+                                               class="form-control text-price-input" id="soPhongngu">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Số Phòng Toilet</label>
+                                        </div>
+                                        <input th:field="*{soPhongToilet}" type="number" min="0"
+                                               class="form-control text-price-input" id="soPhongToilet">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Mặt Tiền</label>
+                                        </div>
+                                        <input th:field="*{matTien}" type="number" min="0" class="form-control text-price-input"
+                                               id="matTien">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Đường Vào</label>
+                                        </div>
+                                        <input th:field="*{duongVao}" type="number" min="0"
+                                               class="form-control text-price-input" id="duongVao">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Số Tầng</label>
+                                        </div>
+                                        <input th:field="*{soTang}" type="number" min="0" class="form-control text-price-input"
+                                               id="soTang">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Pháp Lý</label>
+                                        </div>
+                                        <input th:field="*{phapLy}" type="text" class="form-control text-price-input"
+                                               id="phapLy">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Nội Thất</label>
+                                        </div>
+                                        <input th:field="*{noiThat}" type="text" class="form-control text-price-input"
+                                               id="noiThat">
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Số Điện Thoại Liên Hệ</label>
+                                        </div>
+                                        <input th:field="*{sdt}" required type="text"
+                                               class="form-control text-price-input" id="sdt">
+                                    </div>
+                                    <th:block  th:if="${editTitle != 'Edit'}">
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Số Ngày Đăng</label>
+                                        </div>
+                                        <select  required id="soNgayChon" class="form-control">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <div>
+                                            <label class="required-label" for="price">Chi Phí Trả Cho Bản Tin</label>
+                                        </div>
+                                        <input id="chiPhi"  type="number"
+                                               class="form-control text-price-input">
+                                    </div>
+                                    </th:block>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-3">
+                                    <input type="file" id="mainPhotoa" name="mainPictureFile"
+                                           accept="image/png, image/jpeg"/>
+                                    <img width="250px" height="250px" id="thumbnail" alt="Photos Preview"
+                                         th:src="@{${tindangbanRequest.getPhotosMainPath}}"
+                                         class="img-fluid"/>
+                                </div>
+                                <div class="form-group col-3">
+                                    <input type="file" id="photo1a" name="photo1File" accept="image/png, image/jpeg"/>
+                                    <img width="250px" height="250px" id="thumbnail1" alt="Photos Preview"
+                                         th:src="@{${tindangbanRequest.getPhoto1Path}}"
+                                         class="img-fluid"/>
+                                </div>
+                                <div class="form-group col-3">
+                                    <input type="file" id="photo2a" name="photo2File" accept="image/png, image/jpeg"/>
+                                    <img width="250px" height="250px" id="thumbnail2" alt="Photos Preview"
+                                         th:src="@{${tindangbanRequest.getPhoto2Path}}"
+                                         class="img-fluid"/>
+                                </div>
+                                <div class="form-group col-3">
+                                    <input type="file" id="photo3a" name="photo3File" accept="image/png, image/jpeg"/>
+                                    <img width="250px" height="250px" id="thumbnail3" alt="Photos Preview"
+                                         th:src="@{${tindangbanRequest.getPhoto3Path}}"
+                                         class="img-fluid"/>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-create-product">
+                                <span class="fa fa-plus" style="margin-right:0.5rem;"></span>
+                                <span>Đăng tin</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </main>
+</div>
+<th:block id="js-resources">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script th:src="@{/js/home.js}"></script>
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            $('#summernote').summernote({
+                placeholder: 'Enter content....',
+                tabsize: 2,
+                height: 1500,
+                minHeight: 500,
+                maxHeight: 1800,
+                focus: true,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough', 'superscript', 'subscript']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']],
+                ],
+                popover: {
+                    image: [
+                        ['image', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']],
+                        ['float', ['floatLeft', 'floatRight', 'floatNone']],
+                        ['remove', ['removeMedia']]
+                    ],
+                    link: [
+                        ['link', ['linkDialogShow', 'unlink']]
+                    ],
+                    table: [
+                        ['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']],
+                        ['delete', ['deleteRow', 'deleteCol', 'deleteTable']],
+                    ],
+                    air: [
+                        ['color', ['color']],
+                        ['font', ['bold', 'underline', 'clear']],
+                        ['para', ['ul', 'paragraph']],
+                        ['table', ['table']],
+                        ['insert', ['link', 'picture']]
+                    ]
+                },
+                codemirror: {
+                    theme: 'monokai'
+                }
+            });
+        });
+
+        $("#city").change(function () {
+            $("#inputThanhPho").val($("#city option:selected").text());
+        });
+
+        $("#soNgayChon").change(function () {
+            $("#chiPhi").val($("#soNgayChon option:selected").text() * 10000);
+        });
+
+        $("#soNgayChon").change(function () {
+            $("#inputSoNgayDang").val($("#soNgayChon option:selected").text());
+            $("#inputChiPhi").val($("#soNgayChon option:selected").text() * 10000);
+        });
+
+
+
+
+        $("#district").change(function () {
+            $("#inputQuanHuyen").val($("#district option:selected").text());
+        });
+
+        $("#ward").change(function () {
+            $("#inputPhuong").val($("#ward option:selected").text());
+        });
+
+        $("#mainPhotoa").change(function () {
+            fileSize = this.files[0].size;
+            alert("File Size  :" + fileSize);
+
+            if (fileSize > 1048576) {
+                this.setCustomValidity("You must choose  an image less than 1MB");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail(this);
+            }
+        });
+
+        $("#photo1a").change(function () {
+            fileSize = this.files[0].size;
+            alert("File Size  :" + fileSize);
+
+            if (fileSize > 1048576) {
+                this.setCustomValidity("You must choose  an image less than 1MB");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail1(this);
+            }
+        });
+
+        $("#photo2a").change(function () {
+            fileSize = this.files[0].size;
+            alert("File Size  :" + fileSize);
+
+            if (fileSize > 1048576) {
+                this.setCustomValidity("You must choose  an image less than 1MB");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail2(this);
+            }
+        });
+
+        $("#photo3a").change(function () {
+            fileSize = this.files[0].size;
+            alert("File Size  :" + fileSize);
+
+            if (fileSize > 1048576) {
+                this.setCustomValidity("You must choose  an image less than 1MB");
+                this.reportValidity();
+            } else {
+                this.setCustomValidity("");
+                showImageThumbnail3(this);
+            }
+        });
+
+
+        function showImageThumbnail(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function showImageThumbnail1(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail1").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function showImageThumbnail2(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail2").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function showImageThumbnail3(fileInput) {
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#thumbnail3").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function validatePhoneNumber() {
+            var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+            var mobile = $('#sdt').val();
+            if (mobile !== '') {
+                if (vnf_regex.test(mobile) == false) {
+                    alert('Số điện thoại của bạn không đúng định dạng!');
+                    return false;
+                } else {
+                    alert('Số điện thoại của bạn hợp lệ!');
+                    return true;
+                }
+            }
+        }
+
+
+    </script>
+</th:block>
+</body>
+
+</html>

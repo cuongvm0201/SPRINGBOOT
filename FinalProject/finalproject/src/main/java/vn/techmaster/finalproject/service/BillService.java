@@ -16,6 +16,10 @@ import vn.techmaster.finalproject.repository.BillRepo;
 public class BillService {
     @Autowired private EmailService emailService;
     @Autowired private BillRepo billRepo;
+
+    public List<Bill> getAllBill(){
+        return billRepo.findAll();
+    }
     public Bill creatBillByUser(Bill newBill){
         long startDate = newBill.getReverse().getCheckin().toEpochDay();
         long endDate = newBill.getReverse().getCheckout().toEpochDay();
@@ -67,4 +71,9 @@ public class BillService {
         }
        return billByUser;
    }
+
+   public void deleteBill(String billID){
+    billRepo.deleteById(billID);
+}
+
 }

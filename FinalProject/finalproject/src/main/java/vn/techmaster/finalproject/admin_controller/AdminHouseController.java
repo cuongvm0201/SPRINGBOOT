@@ -4,11 +4,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,16 +17,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import vn.techmaster.finalproject.dto.UserDTO;
+import vn.techmaster.finalproject.exception.AuthorizedException;
 import vn.techmaster.finalproject.model.House;
 import vn.techmaster.finalproject.model.Reverse;
+import vn.techmaster.finalproject.model.Roles;
 import vn.techmaster.finalproject.repository.HouseRepo;
+import vn.techmaster.finalproject.request.AdminSearchRequest;
 import vn.techmaster.finalproject.request.HouseRequest;
 import vn.techmaster.finalproject.service.HouseService;
 import vn.techmaster.finalproject.service.StorageService;
+import vn.techmaster.finalproject.service.UserService;
 import vn.techmaster.finalproject.ulties.FileUploadUtil;
 
 @Controller
@@ -38,18 +37,38 @@ public class AdminHouseController {
     @Autowired private HouseRepo houseRepo;
     @Autowired private HouseService houseService;
     @Autowired private StorageService storageService;
+    @Autowired private UserService userService;
     @GetMapping("/allhouse")
     public String getAllHouseByAdmin(Model model, HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", userDTO);
+        if(!userService.findById(userDTO.getId()).get().getRole().equals(Roles.ADMIN)){
+          throw new AuthorizedException("Bạn không có quyền Admin nên không thể xem trang này !");
+         }
         model.addAttribute("houses", houseService.showAllHouse());
+        model.addAttribute("adminSearchRequest", new AdminSearchRequest(null,null));
         return "house_admin";
     }
 
+    @GetMapping("/searchhouse")
+    public String searchHouseByAdmin(Model model, 
+    @ModelAttribute("adminSearchRequest") AdminSearchRequest adminSearchRequest,
+     HttpSession session){
+      UserDTO userDTO = (UserDTO) session.getAttribute("user");
+      model.addAttribute("user", userDTO);
+      if(!userService.findById(userDTO.getId()).get().getRole().equals(Roles.ADMIN)){
+        throw new AuthorizedException("Bạn không có quyền Admin nên không thể xem trang này !");
+       }
+      model.addAttribute("houses", houseService.filterHouseByAdmin(adminSearchRequest));
+      return "house_admin";
+    }
     @GetMapping("/creat-house")
     public String creatNewHouseByAdmin(Model model,HttpSession session){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", userDTO);
+        if(!userService.findById(userDTO.getId()).get().getRole().equals(Roles.ADMIN)){
+          throw new AuthorizedException("Bạn không có quyền Admin nên không thể xem trang này !");
+         }
         model.addAttribute("houseRequest", 
         new HouseRequest(null,null,null,null,null,null,0L,null,null,null,null,null,null,null,null,userDTO.getId()));
 
@@ -58,7 +77,7 @@ public class AdminHouseController {
 
     @PostMapping(value = "/creat-house", consumes = { "multipart/form-data" })
   public String addHouse(@Valid @ModelAttribute("houseRequest") HouseRequest houseRequest,
-      BindingResult result, Model model,HttpSession session) throws IOException {
+      BindingResult result, Model model,HttpSession session, RedirectAttributes redirectAttributes) throws IOException {
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", userDTO);
     if (houseRequest.getLogo().getOriginalFilename().isEmpty()) {
@@ -114,8 +133,8 @@ public class AdminHouseController {
     
     
     model.addAttribute("houses", houseService.showAllHouse());
-   
-    return "house_admin";
+    redirectAttributes.addFlashAttribute("success", "Tạo mới nhà thành công!");
+    return "redirect:/api/v1/admin/allhouse";
   }
 
   @GetMapping(value = "/edit/{id}")
@@ -123,6 +142,9 @@ public class AdminHouseController {
     UserDTO userDTO = (UserDTO) session.getAttribute("user");
     System.out.println("Session ID: " + session.getId());
     model.addAttribute("user", userDTO);
+    if(!userService.findById(userDTO.getId()).get().getRole().equals(Roles.ADMIN)){
+      throw new AuthorizedException("Bạn không có quyền Admin nên không thể xem trang này !");
+     }
     Optional<House> house = houseService.findById(id);
     if (house.isPresent()) {
       House currentHouse = house.get();
@@ -208,15 +230,19 @@ public class AdminHouseController {
   }
 
   @GetMapping(value = "/delete/{id}")
-  public String deleteEmployerByID(@PathVariable String id,Model model, HttpSession session) {
+  public String deleteEmployerByID(@PathVariable String id,Model model, HttpSession session,RedirectAttributes redirectAttributes) {
     UserDTO userDTO = (UserDTO) session.getAttribute("user");
     model.addAttribute("user", userDTO);
+    if(!userService.findById(userDTO.getId()).get().getRole().equals(Roles.ADMIN)){
+      throw new AuthorizedException("Bạn không có quyền Admin nên không thể xem trang này !");
+     }
     Optional<House> house = houseService.findById(id);
     storageService.deleteFile(house.get().getLogo_main());
     storageService.deleteFile(house.get().getLogo_sub_main1());
     storageService.deleteFile(house.get().getLogo_sub_main2());
     storageService.deleteFile(house.get().getLogo_sub_main3());
     houseService.deleteById(id);
+    redirectAttributes.addFlashAttribute("success1", "Xóa nhà có ID: "+house.get().getId()+" thành công!");
     return "redirect:/api/v1/admin/allhouse";
   }
 }

@@ -1,22 +1,23 @@
 package vn.techmaster.finalproject.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
+
 public class EmailService {
-    @Autowired
-    private JavaMailSender emailSender;
+    @Autowired private JavaMailSender emailSender;
 
     public void sendEmail(String email, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setTo(email);
         message.setSubject("Your verification code of my application");
-        message.setText("http://localhost:8080/api/v1/security/validate/" + text);
-
+        message.setText("http://46.137.193.202/api/v1/security/validate/" + text);
+        // message.setText("http://localhost:8083/api/v1/security/validate/" + text);
         // Send Message!
         emailSender.send(message);
     }

@@ -4,6 +4,8 @@
 <body>
   <header th:insert="template.html :: topmenu"> </header>
     <div class="container mt-5 mb-5">
+      <div class="alert alert-primary" id="message" th:if="${message}" th:text="${message}"></div><br>
+      <div class="alert alert-primary" id="message1" th:if="${message1}" th:text="${message1}"></div><br>
         <h2 class="text-center text-uppercase mb-3">Thông tin user</h2>
         <form action="#" th:action="@{/api/v1/user/findbyid/edit}" method="post" name="userRequest" th:object="${userRequest}">
         <div class="row justify-content-center">
@@ -19,6 +21,10 @@
                 <input type="text" id="email" class="form-control" th:field="*{email}" readonly />
               </div>
               <div class="mb-3">
+                <label class="col-form-label">Wallet</label>
+                <input type="text" id="wallet" class="form-control" th:field="*{wallet}" readonly/>
+              </div>
+              <div class="mb-3">
                 <label class="col-form-label">Phone</label>
                 <input type="text" id="phone" class="form-control" th:field="*{mobile}" />
               </div>
@@ -26,6 +32,7 @@
                 <label class="col-form-label">Address</label>
                 <input type="text" id="address" class="form-control" th:field="*{address}" />
               </div>
+              
               <div class="mb-3">
                 <label class="col-form-label">City</label>
                 <select class="form-select" id="address" th:field="*{city}" >
@@ -79,6 +86,22 @@
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"
   ></script>
+  <script th:inline = "javascript">
+    let message = document.getElementById("message")
+    let message1 = document.getElementById("message1")
+    setTimeout(function () {
+      message.parentElement.removeChild(message)
+    }, 1500)
+    setTimeout(function () {
+      message1.parentElement.removeChild(message1)
+    }, 1500)
+</script>
+<script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/newstyles/assets/js/owl-carousel.js}"></script>
+  <script th:src="@{/newstyles/assets/js/animation.js}"></script>
+  <script th:src="@{/newstyles/assets/js/imagesloaded.js}"></script>
+  <script th:src="@{/newstyles/assets/js/custom.js}"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <!-- <script th:src="@{/js/cssandjs/user_detail.js}"></script> -->
 </body>

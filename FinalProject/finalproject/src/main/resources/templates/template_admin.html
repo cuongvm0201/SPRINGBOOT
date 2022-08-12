@@ -17,7 +17,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Thông tin User</title>
+    
 
     <style>
       img {
@@ -62,7 +62,7 @@
       <li class="nav-item active">
         <a class="nav-link navbar-brand" aria-current="page" th:href="@{/api/v1/admin/view-user}">Danh sách User</a>
       </li>
-      <li style="margin-left: 400px" class="nav-item active">
+      <li class="nav-item active">
         <th:block th:if="${user == null}">
           <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/login" >Đăng Nhập</a>
           <a class="nav-link navbar-brand" aria-current="page" href="/api/v1/security/register" >Đăng Ký</a>
@@ -131,7 +131,12 @@
     </footer>
   </div>
 
-
+  <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/newstyles/assets/js/owl-carousel.js}"></script>
+  <script th:src="@{/newstyles/assets/js/animation.js}"></script>
+  <script th:src="@{/newstyles/assets/js/imagesloaded.js}"></script>
+  <script th:src="@{/newstyles/assets/js/custom.js}"></script>
 </body>
 
 </html>

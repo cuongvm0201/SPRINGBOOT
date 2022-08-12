@@ -20,6 +20,9 @@
                 <input type="text"  class="form-control" th:field="*{userName}"  disabled>
                 <label for="mobile" class="col-sm-2 col-form-label">Mobile:</label>
                 <input type="text"  class="form-control" th:field="*{mobile}" >
+                <div th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">
+                  Mobile Error
+                  </div>
                 <label for="checkin" class="col-sm-2 col-form-label">CheckIn Date:</label>
                 <input type="date" class="form-control" th:field="*{checkin}"/>
                 <div th:if="${#fields.hasErrors('checkin')}" th:errors="*{checkin}">
@@ -30,6 +33,18 @@
                 <div th:if="${#fields.hasErrors('checkout')}" th:errors="*{checkout}">
                   CheckOut Error
                   </div>
+
+                    <label for="PayType" class="col-sm-2 col-form-label">Hình thức thanh toán</label>
+                    <select class="form-select" id="payType" th:field="*{payType}" >
+                      <option value="">-Vui lòng chọn-</option>
+                          <option  th:each="state : ${T(vn.techmaster.finalproject.model.PayType).values()}" th:value="${state}"
+                                  th:text="${state.label}">
+                          </option>
+                    </select>
+                    <div th:if="${#fields.hasErrors('payType')}" th:errors="*{payType}">
+                      CheckOut Error
+                      </div>
+
                 <button type="submit" class="btn btn-primary mt-3" ><a th:href="|/api/v1/reverse/newreverse/payment/${houseID}/${userID}|" ></a>Đặt Ngay</button>
                 
             </form>

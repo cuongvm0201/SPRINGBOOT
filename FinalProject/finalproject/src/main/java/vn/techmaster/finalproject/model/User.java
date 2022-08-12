@@ -1,5 +1,6 @@
 package vn.techmaster.finalproject.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,13 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Table(name = "users")
+@Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class User implements Serializable {
+  private static final long serialVersionUID = 1L;
     @Id
     private String id;
     private String fullname;
@@ -38,6 +40,7 @@ public class User {
     private String hashed_password;
     private String mobile;
     private String address;
+    private Long wallet;
     private String avatar_path;
     @Enumerated(EnumType.STRING)
     private State state;

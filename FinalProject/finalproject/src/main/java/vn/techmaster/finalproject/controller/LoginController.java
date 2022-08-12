@@ -1,5 +1,8 @@
 package vn.techmaster.finalproject.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.techmaster.finalproject.dto.UserDTO;
 import vn.techmaster.finalproject.exception.UserException;
+import vn.techmaster.finalproject.model.Roles;
 import vn.techmaster.finalproject.model.User;
 import vn.techmaster.finalproject.repository.HouseRepo;
 import vn.techmaster.finalproject.request.LoginRequest;
@@ -45,15 +49,17 @@ public class LoginController {
         User user;
         try {
             user = userService.login(loginRequest.getEmail(), loginRequest.getPassword());
-            model.addAttribute("houses", houseRepo.findAll());
             session.setAttribute("user",
-                    new UserDTO(user.getId(), user.getFullname(), user.getEmail(), user.getRole()));
-                    
+                    new UserDTO(user.getId(), user.getFullname(), user.getEmail(), user.getState(), user.getRole()));
+                    model.addAttribute("houses", houseRepo.findAll());
             return "redirect:/";
         } catch (UserException ex) {
             switch (ex.getMessage()) {
                 case "User is not found":
                     result.addError(new FieldError("loginrequest", "email", "Email does not exist"));
+                    break;
+                case "User is locked":
+                    result.addError(new FieldError("loginrequest", "email", "Email is locked"));
                     break;
                 case "User is not activated":
                     result.addError(new FieldError("loginrequest", "email", "User is not activated"));

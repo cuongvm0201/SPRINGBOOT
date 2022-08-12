@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          rel="shortcut icon"
+          href="assest/logobackground/logo/logonhadatFix.png"
+          type="image/x-icon"
+  />
+  <link rel="stylesheet" th:href="@{/css/style-index1.css}"/>
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  />
+  <title>Nhà Đất Xanh</title>
+</head>
+<body>
+<div id="fb-root"></div>
+<script
+        async
+        defer
+        crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0"
+        nonce="blmhaCzO"
+></script>
+<div class="wrap-desktop d-none d-xl-block">
+  <!-- Start Header Desktop -->
+  <div class="wrap__header--desktop">
+    <header class="header">
+      <div class="container--desktop wrap__header">
+        <div class="logo">
+          <div class="logo__text">
+            <a th:href="@{/trang-chu}"
+            ><div class="logo__branch">Greenland</div></a
+            >
+            <div class="logo__slogan">Nơi hạnh phúc ngập tràn</div>
+          </div>
+        </div>
+        <nav class="wrap__nav">
+          <ul class="nav__menu">
+            <li class="nav__menu__items">
+              <a th:href="@{/trang-chu/about}" class="nav__menu__item__link"
+              >Giới Thiệu</a
+              >
+            </li>
+            <li class="nav__menu__items">
+              <a th:href="@{/trang-chu/tindangban}" class="nav__menu__item__link"
+              >Nhà Bán</a
+              >
+            </li>
+            <li class="nav__menu__items">
+              <a th:href="@{/trang-chu/tindangthue}" class="nav__menu__item__link"
+              >Nhà Cho Thuê</a
+              >
+            </li>
+            <li class="nav__menu__items">
+              <a  th:href="@{/trang-chu/tintuc}" class="nav__menu__item__link">Tin Tức</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="page__banner--desktop page__banner--desktop__product"></div>
+  </div>
+  <!-- Start main content -->
+  <main class="container--desktop about__main">
+    <div class="main__link__nav">
+      <a href="index.html" class="page-nav-link">Trang chủ</a> >
+      <a href="product-tindangban.html" class="page-nav-link page-nav-link__active"
+      >Nhà Bán</a
+      >
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="title-section-font">Kết quả tìm kiếm</div>
+        <div
+                class="row page__product__list"
+                id="page-product-desk-show"
+        >
+          <div  th:each="tdb : ${listTinDangBan}" class="page__product__item--desktop col-3">
+            <a href="#">
+              <a href="#"
+              ><img th:src="@{${tdb.getPhotosMainPath}}" alt="" class=""
+              /></a>
+              <div class="page__product__item__content--desktop">
+                <div class="content-header">[[${tdb.title}]]</div>
+                <div
+                        class="content-font"
+                        style="margin-top: 5px !important"
+                >
+                  Diện tích: [[${tdb.dienTich}]] m2 - [[${tdb.soPhongNgu}]] Phòng Ngủ - [[${tdb.soPhongToilet}]] Phòng Toilet
+                </div>
+                <div class="link-font" style="margin-top: 12px !important">
+                  <a
+                          th:href="@{'/trang-chu/tindangban/detail/' + ${tdb.id}}"
+                          class="page__product__item__link--desktop"
+                  >Xem thêm</a
+                  >
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <th:block th:if="${khongCoTinDang == 'empty'}">
+          <h2 style="text-align: center">Không tồn tại tin đăng nào</h2>
+        </th:block>
+        <th:block th:if="${khongCoTinDang != 'empty'}">
+          <div style="text-align: center">
+            <a style="color: #EEBC1D" th:if="${currentPage>1}" th:href="@{'/trang-chu/timkiem/1?thanhPho=' + ${thanhPho}+'&quanHuyen='+${quanHuyen}+'&phuongXa='+${phuongXa}+'&keyword='+${keyword}+'&loaiNha_id='+${loaiNha_id}+'&muaGia='+${mucGia}+'&dienTich='+${dienTich}}">First</a>
+            <span style="color: #EEBC1D" th:unless="${currentPage>1}">First</span>
+
+            <a style="color: #EEBC1D" th:if="${currentPage > 1}" th:href="@{'/trang-chu/timkiem/' + ${currentPage - 1}+'?thanhPho='+ ${thanhPho}+'&quanHuyen='+${quanHuyen}+'&phuongXa='+${phuongXa}+'&keyword='+${keyword}+'&loaiNha_id='+${loaiNha_id}+'&muaGia='+${mucGia}+'&dienTich='+${dienTich}}">Previous</a>
+            <span  th:unless="${currentPage > 1}"></span>
+            <span th:each="i:${#numbers.sequence(1,totalPages)}">
+            <a style="color: #EEBC1D" th:if="${i != currentPage}" th:text="${i}" th:href="@{'/trang-chu/timkiem/' + ${i}+'?thanhPho='+ ${thanhPho}+'&quanHuyen='+${quanHuyen}+'&phuongXa='+${phuongXa}+'&keyword='+${keyword}+'&loaiNha_id='+${loaiNha_id}+'&muaGia='+${mucGia}+'&dienTich='+${dienTich}}"></a>
+            <span style="color: #EEBC1D" th:unless="${i != currentPage}" th:text="${i}"></span>
+            &nbsp;&nbsp;
+    </span>
+
+            <a style="color: #EEBC1D" th:if="${currentPage < totalPages}" th:href="@{'/trang-chu/timkiem/' + ${currentPage + 1} +'?thanhPho='+ ${thanhPho}+'&quanHuyen='+${quanHuyen}+'&phuongXa='+${phuongXa}+'&keyword='+${keyword}+'&loaiNha_id='+${loaiNha_id}+'&muaGia='+${mucGia}+'&dienTich='+${dienTich}}">Next</a>
+            <span  th:unless="${currentPage < totalPages}"></span>
+            <a style="color: #EEBC1D" th:if="${currentPage < totalPages}" th:href="@{'/trang-chu/timkiem/' + ${totalPages} +'?thanhPho='+ ${thanhPho}+'&quanHuyen='+${quanHuyen}+'&phuongXa='+${phuongXa}+'&keyword='+${keyword}+'&loaiNha_id='+${loaiNha_id}+'&muaGia='+${mucGia}+'&dienTich='+${dienTich}}">Last</a>
+            <span th:unless="${currentPage < totalPages}">Last</span>
+
+          </div>
+        </th:block>
+      </div>
+    </div>
+  </main>
+  <!-- End main content -->
+  <!-- End Header Desktop -->
+  <!-- Start footer desktop -->
+  <div class="wrap__footer--desktop">
+    <div class="footer--desktop container--desktop">
+      <div class="row">
+        <div class="col-4 footer--desktop__contact__info">
+          <div class="content-header footer--desktop__header">
+            THÔNG TIN LIÊN HỆ
+          </div>
+          <div class="content-font">
+            <i class="bi bi-telephone-forward"></i>&nbsp;<a
+                  href="tel:+374889957"
+                  class="footer--desktop__link__item"
+          >Hot Line : 0374889957</a
+          >
+          </div>
+          <div class="content-font">
+            <i class="bi bi-envelope"></i>&nbsp;<a
+                  href="mailto:rovpc1211@gmail.com"
+                  class="footer--desktop__link__item"
+          >Email : rovpc1211@gmail.com</a
+          >
+          </div>
+          <div class="content-font">
+            <i class="bi bi-house"></i>&nbsp;Địa chỉ : Thanh Liệt - Thanh
+            Trì - Hà Nội
+          </div>
+        </div>
+        <div class="col-4 footer--desktop__links">
+          <div class="content-header footer--desktop__header">LIÊN KẾT</div>
+          <ul class="footer--desktop__links__list">
+            <li class="content-font">
+              <a href="index.html" class="footer--desktop__link__item"
+              >Trang chủ</a
+              >
+            </li>
+            <li class="content-font">
+              <a href="product-tindangban.html" class="footer--desktop__link__item"
+              >Nhà Bán</a
+              >
+            </li>
+            <li class="content-font">
+              <a href="news.html" class="footer--desktop__link__item"
+              >Tin Tức</a
+              >
+            </li>
+            <li class="content-font">
+              <a href="contact.html" class="footer--desktop__link__item"
+              >Liên Hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="col-4 footer--desktop__fanpage">
+          <div class="content-header footer--desktop__header">
+            FANPAGE CỦA CHÚNG TÔI
+          </div>
+          <div
+                  class="fb-page"
+                  data-href="https://www.facebook.com/facebook"
+                  data-width="380"
+                  data-hide-cover="false"
+                  data-show-facepile="false"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End footer desktop -->
+</div>
+
+<!-- Script -->
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"
+></script>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</body>
+</html>

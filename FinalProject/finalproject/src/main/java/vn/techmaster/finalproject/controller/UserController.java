@@ -13,9 +13,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import vn.techmaster.finalproject.dto.UserDTO;
+import vn.techmaster.finalproject.exception.UserException;
 import vn.techmaster.finalproject.hash.Hashing;
 import vn.techmaster.finalproject.model.Reverse;
 import vn.techmaster.finalproject.model.Roles;
@@ -52,10 +53,17 @@ public class UserController {
     public String getUserDetailByID(Model model, HttpSession session, @PathVariable String id){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", userDTO);
+        if(!userService.findById(id).isPresent()){
+            throw new UserException("Tài khoản không tồn tại !");
+        }
+
+        if(userService.findById(id).get().getState().equals(State.DISABLED)){
+            throw new UserException("Tài khoản đã bị khóa !");
+        }
         User currentUser = userRepo.findById(id).get();
         
         model.addAttribute("userRequest",
-        new UserRequest(currentUser.getId(),currentUser.getFullname(),currentUser.getEmail(),currentUser.getMobile(),currentUser.getAddress(),currentUser.getCity()));
+        new UserRequest(currentUser.getId(),currentUser.getFullname(),currentUser.getEmail(),currentUser.getMobile(),currentUser.getAddress(),currentUser.getWallet(),currentUser.getCity()));
         
         return "user_detail";
     }
@@ -76,13 +84,19 @@ public class UserController {
     }
 
     @PostMapping("findbyid/edit")
-    public String postMethodName(@Valid @ModelAttribute("userRequest") UserRequest userRequest, HttpSession session, Model model, BindingResult result) {
+    public String postMethodName(@Valid @ModelAttribute("userRequest") UserRequest userRequest,
+     HttpSession session, Model model, BindingResult result,RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "user_detail";
         }
+
+        
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", userDTO);
-        User currentUser = userRepo.findById(userRequest.getId()).get();
+        if(userService.findById(userDTO.getId()).get().getState().equals(State.DISABLED)){
+            throw new UserException("Tài khoản đã bị khóa !");
+        }
+        User currentUser = userService.findById(userRequest.getId()).get();
         User updateUser = User.builder()
         .id(userRequest.getId())
         .fullname(userRequest.getFullname())
@@ -90,6 +104,7 @@ public class UserController {
         .email(userRequest.getEmail())
         .mobile(userRequest.getMobile())
         .address(userRequest.getAddress())
+        .wallet(currentUser.getWallet())
         .city(userRequest.getCity())
         .role(Roles.MEMBER)
         .state(State.ACTIVE)
@@ -100,7 +115,8 @@ public class UserController {
         .build();
         userService.edit(updateUser);
         model.addAttribute("userRequest",
-        new UserRequest(updateUser.getId(),updateUser.getFullname(),updateUser.getEmail(),updateUser.getMobile(),updateUser.getAddress(),updateUser.getCity()));
+        new UserRequest(updateUser.getId(),updateUser.getFullname(),updateUser.getEmail(),updateUser.getMobile(),updateUser.getAddress(),currentUser.getWallet(),updateUser.getCity()));
+        redirectAttributes.addFlashAttribute("message", "Cập nhật thông tin thành công");
         return "redirect:/api/v1/user/findbyid/" + updateUser.getId();
     }
 
@@ -108,6 +124,13 @@ public class UserController {
     @GetMapping("listreverse/{id}")
     public String getAllReverse(Model model, HttpSession session, @PathVariable String id){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        if(!userService.findById(id).isPresent()){
+            throw new UserException("Tài khoản không tồn tại !");
+        }
+
+        if(userService.findById(id).get().getState().equals(State.DISABLED)){
+            throw new UserException("Tài khoản đã bị khóa !");
+        }
         model.addAttribute("user", userDTO);
         model.addAttribute("reverses", reverseService.findAllReverseByUserID(id));
         return "reverse_detail";
@@ -116,6 +139,14 @@ public class UserController {
     @GetMapping("listbill/{id}")
     public String getAllBill(Model model, HttpSession session, @PathVariable String id){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        if(!userService.findById(id).isPresent()){
+            throw new UserException("Tài khoản không tồn tại !");
+        }
+
+        if(userService.findById(id).get().getState().equals(State.DISABLED)){
+            throw new UserException("Tài khoản đã bị khóa !");
+        }
+
         model.addAttribute("user", userDTO);
         model.addAttribute("bills", billService.findAllBillByUserID(id));
         return "bill_detail";
@@ -124,6 +155,13 @@ public class UserController {
     @GetMapping("findbyid/updatepass/{id}")
     public String updatePass(Model model, HttpSession session, @PathVariable String id){
         UserDTO userDTO = (UserDTO) session.getAttribute("user");
+        if(!userService.findById(id).isPresent()){
+            throw new UserException("Tài khoản không tồn tại !");
+        }
+
+        if(userService.findById(id).get().getState().equals(State.DISABLED)){
+            throw new UserException("Tài khoản đã bị khóa !");
+        }
         model.addAttribute("user", userDTO);
         model.addAttribute("updatePass", new UpdatePasswordRequest(id,"",""));
         return "change_password";

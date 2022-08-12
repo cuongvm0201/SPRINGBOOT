@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,5 +38,11 @@ public class Bill {
     public void prePersist() {
         creatAt = LocalDateTime.now();
       }
+
+      @PreRemove
+      public void preRemove() {
+          this.setReverse(null);
+          this.setUser(null);
+        }
 
 }

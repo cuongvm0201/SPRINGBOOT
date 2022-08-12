@@ -21,6 +21,11 @@ public class ReverseService {
     @Autowired ReverseRepo reverseRepo;
     @Autowired HouseRepo houseRepo;
     @Autowired UserRepo userRepo;
+
+    public List<Reverse> getAllReverse(){
+        return reverseRepo.findAll();
+    }
+
     public Reverse creatNewReverse(Reverse reverse){
 
         return reverseRepo.save(reverse);
@@ -37,5 +42,8 @@ public class ReverseService {
         return reverseByUser;
     }
 
+    public void deleteReverse(String reverID){
+        reverseRepo.deleteById(reverID);
+    }
 
 }

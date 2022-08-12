@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="template_client.html :: header('Thanh Toán Ví')">
+    </head>
+<body>
+    <header th:insert="template_client.html :: topmenu"> </header>
+    
+    <div class="page-heading">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="top-text header-text" >
+                <h2>Payment Information</h2>
+                <div>
+                <div class="form-container">
+                    <form action="#" th:action="@{/api/v1/reverse/newreverse/wallet}" method="post" name="payWalletRequest" th:object="${payWalletRequest}">
+                        <input type="hidden" class="form-control" th:field="*{reverseID}" />
+                        <input type="hidden" class="form-control" th:field="*{userID}" />
+                        
+                        <label class="col-sm-2 col-form-label" for="walletuser">Số Dư Ví</label><br>
+                        <input class="form-control" id="walletuser" type="text" th:field="*{walletuser}" readonly><br>
+                        <div th:if="${#fields.hasErrors('walletuser')}" th:errors="*{walletuser}">
+                          walletuser Error
+                          </div>
+                        <label class="col-sm-2 col-form-label" for="totalPay">Số tiền thanh toán</label><br>
+                        <input class="form-control" id="totalPay" type="text" th:field="*{totalPay}" readonly><br>
+                        
+                    <button class="btn btn-primary" type="submit">Pay Now</button><br>
+                    </form>
+                    <a class="btn btn-primary"  aria-current="page" href="/api/v1/reverse/newreverse/payment-cancel">Hủy</a><br>
+    
+                   
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      
+    <footer th:insert="template_client.html :: footer"> </footer>
+    <script th:inline = "javascript">
+      let message = document.getElementById("error")
+      setTimeout(function () {
+        message.parentElement.removeChild(message)
+      }, 1500)
+  </script>
+    <script th:src="@{/newstyles/vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{/newstyles/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/newstyles/assets/js/owl-carousel.js}"></script>
+  <script th:src="@{/newstyles/assets/js/animation.js}"></script>
+  <script th:src="@{/newstyles/assets/js/imagesloaded.js}"></script>
+  <script th:src="@{/newstyles/assets/js/custom.js}"></script>
+</body>
+</html>

@@ -6,22 +6,22 @@ public enum City {
     HaiPhong("Hải phòng"),
     DaNang("Đà Nẵng"),
     BacGiang("Bắc Giang"),
-    PhuYen("Phú Yên"),
-    KhanhHoa("Khánh Hòa"),
-    HungYen("Hưng Yên"),
+    TuyHoa("TP Tuy Hòa"),
+    NhaTrang("TP Nha Trang"),
+    DaLat("TP Đà Lạt"),
     Hue("TP Huế"),
     LangSon("Lạng Sơn"),
     LaoCai("Lào Cai"),
     DienBien("Điện Biên"),
     HoaBinh("Hòa Bình"),
     BacNinh("Bắc Ninh"),
-    QuangBinh("Quảng Bình"),
-    KienGiang("Kiên Giang"),
-    CanTho("Cần Thơ"),
-    QuangNgai("Quảng Ngãi"),
-    SocTrang("Sóc Trăng"),
-    BinhDinh("Bình Định"),
-    TienGiang("Tiền Giang");
+    DongHoi("TP Đồng Hới"),
+    PhuQuoc("Phú Quốc"),
+    CanTho("TP Cần Thơ"),
+    QuangNgai("TP Quảng Ngãi"),
+    SocTrang("TP Sóc Trăng"),
+    QuyNhon("TP Quy Nhơn"),
+    MyTho("TP Mỹ Tho");
   
     public final String label;
     private City(String label) {

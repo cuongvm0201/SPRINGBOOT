@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/layout/layout_admin :: main-fragment(
+                                                ~{:: title},
+                                                ~{:: #css-resources},
+                                                ~{:: #js-resources},
+                                                ~{:: #main-content}
+                                               )}">
+
+<head>
+    <title>Dashboard</title>
+
+    <th:block id="css-resources">
+
+    </th:block>
+</head>
+<body>
+<th:block id="css-resources">
+
+</th:block>
+<div class="container-fluid">
+    <main id="main-content">
+        <div>
+            <h2>Quản Lý tin đăng bán</h2>
+            <a th:href="@{/admin/tindangban/new}">Tạo  Một Tin Đăng Bán</a>
+        </div>
+
+        <div th:if="${message} != null" class="alert alert-success text-center">
+            [[${message}]]
+        </div>
+        <form   th:action="@{'/admin/tindangban/search'}" method="get">
+            <input  type="text" name="keyword"  th:value="${keyword}" id="tt8" class="form-control shadow-none" placeholder="Search For a Keyword">
+            <button type="submit" value="Search" class="btn btn-secondary"  >
+               Tìm Kiếm
+            </button>
+        </form>
+        <div>
+            <table class="
+            table table-bordered table-striped table-hover table-responsive-xl
+          ">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+
+                    <th>Tên Tin Đăng</th>
+                    <th>Diện Tích </th>
+                    <th>Giá </th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="tdb : ${listTinDangBan}">
+                    <td>[[${tdb.id}]]</td>
+                    <td><a th:href="@{'/admin/tindangban/detail/' + ${tdb.id}}">[[${tdb.title}]]</a></td>
+                    <td>[[${tdb.dienTich}]]</td>
+                    <td>[[${tdb.giaBan}]]</td>
+                    <td><a class="fas fa-edit fa-2x icon-green" th:href="@{'/admin/tindangban/edit/' + ${tdb.id}}"
+                           title="Edit Tin"></a>
+                        &nbsp;
+                        <a class="fas fa-trash fa-2x icon-dark link-delete"
+                           th:href="@{'/admin/tindangban/delete/' + ${tdb.id}}"
+                           title="Delete Tin"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <th:block th:if="${khongCoTinDang == 'empty'}">
+            <h2 style="text-align: center">Không tồn tại tin đăng nào</h2>
+        </th:block>
+
+        <th:block th:if="${khongCoTinDang != 'empty'}">
+        <div style="text-align: center">
+            <a style="color: #EEBC1D" th:if="${currentPage>1}" th:href="@{'/admin/tindangban/page/1'+'?keyword='+${keyword}}">First</a>
+            <span style="color: #EEBC1D" th:unless="${currentPage>1}">First</span>
+
+            <a style="color: #EEBC1D" th:if="${currentPage > 1}" th:href="@{'/admin/tindangban/page/' + ${currentPage - 1} +'?keyword='+${keyword}}">Previous</a>
+            <span  th:unless="${currentPage > 1}"></span>
+            <span th:each="i:${#numbers.sequence(1,totalPages)}">
+            <a style="color: #EEBC1D" th:if="${i != currentPage}" th:text="${i}" th:href="@{'/admin/tindangban/page/' + ${i}  +'?keyword='+${keyword}}"></a>
+            <span style="color: #EEBC1D" th:unless="${i != currentPage}" th:text="${i}"></span>
+            &nbsp;&nbsp;
+    </span>
+
+            <a style="color: #EEBC1D" th:if="${currentPage < totalPages}" th:href="@{'/admin/tindangban/page/' + ${currentPage + 1}  +  '?keyword=' + ${keyword}}">Next</a>
+            <span  th:unless="${currentPage < totalPages}"></span>
+            <a style="color: #EEBC1D" th:if="${currentPage < totalPages}" th:href="@{'/admin/tindangban/page/' + ${totalPages}  + '?keyword=' +${keyword}}">Last</a>
+            <span th:unless="${currentPage < totalPages}">Last</span>
+
+        </div>
+        </th:block>
+    </main>
+</div>
+<th:block id="js-resources">
+
+</th:block>
+</body>
+</html>
