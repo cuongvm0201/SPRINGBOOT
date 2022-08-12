@@ -6,8 +6,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import vn.techmaster.finalproject.model.ActiveCode;
 import vn.techmaster.finalproject.repository.ActiveCodeRepo;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;

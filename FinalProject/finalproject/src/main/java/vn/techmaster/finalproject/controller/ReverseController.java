@@ -2,7 +2,6 @@ package vn.techmaster.finalproject.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,7 +27,6 @@ import vn.techmaster.finalproject.model.PayType;
 import vn.techmaster.finalproject.model.Reverse;
 import vn.techmaster.finalproject.model.State;
 import vn.techmaster.finalproject.model.User;
-import vn.techmaster.finalproject.repository.BillRepo;
 import vn.techmaster.finalproject.repository.HouseRepo;
 import vn.techmaster.finalproject.repository.ReverseRepo;
 import vn.techmaster.finalproject.repository.UserRepo;

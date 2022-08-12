@@ -1,7 +1,6 @@
 package vn.techmaster.finalproject.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.techmaster.finalproject.dto.UserDTO;
 import vn.techmaster.finalproject.exception.UserException;
-import vn.techmaster.finalproject.model.Roles;
 import vn.techmaster.finalproject.model.User;
 import vn.techmaster.finalproject.repository.HouseRepo;
 import vn.techmaster.finalproject.request.LoginRequest;

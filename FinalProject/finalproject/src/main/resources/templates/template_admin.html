@@ -56,11 +56,17 @@
         <a class="nav-link navbar-brand" th:href="@{/api/v1/admin/allhouse}">Danh sách nhà</a>
       </li>
      </th:block>
+     <li class="nav-item active">
+      <a class="nav-link navbar-brand" aria-current="page" th:href="@{/api/v1/admin/view-user}">Danh sách User</a>
+    </li>
+     <li class="nav-item">
+      <a class="nav-link navbar-brand" th:href="@{/api/v1/admin/listreverse}">Danh sách đặt phòng</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link navbar-brand" th:href="@{/api/v1/admin/listbill}">Danh sách hóa đơn</a>
+    </li>
       <li class="nav-item">
         <a class="nav-link navbar-brand" th:href="@{/api/v1/admin/inbox}">Inbox</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link navbar-brand" aria-current="page" th:href="@{/api/v1/admin/view-user}">Danh sách User</a>
       </li>
       <li class="nav-item active">
         <th:block th:if="${user == null}">
